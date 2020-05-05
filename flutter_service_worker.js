@@ -14,9 +14,9 @@ const RESOURCES = {
 "assets/images/me.jpg": "262cf54ffad42bf29824f4f4394f3772",
 "assets/LICENSE": "8eb46c5d32f5176c54614af61b3cedde",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
-"index.html": "b035406569ef966698ec32f796eeb0fa",
-"/": "b035406569ef966698ec32f796eeb0fa",
-"main.dart.js": "55b8ed4c7cad0ad6b82fae33551f4411"
+"index.html": "86659f2bf98e4e9e890255ba00f5ddae",
+"/": "86659f2bf98e4e9e890255ba00f5ddae",
+"main.dart.js": "5523c966dd6035521679cd185b001fa0"
 };
 
 self.addEventListener('activate', function (event) {
