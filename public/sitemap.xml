@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://philipscheer.github.io/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/recruiters/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/recruiters/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/recruiters/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/recruiters/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/recruiters/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/recruiters/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/experience/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/experience/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/experience/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/experience/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/experience/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/experience/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/projects/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/projects/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/projects/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/projects/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/resume/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/resume/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/resume/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/resume/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/resume/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/resume/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/contact/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/contact/"/>
+  </url>
+</urlset>

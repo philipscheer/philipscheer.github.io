@@ -1,0 +1,17 @@
+# Source documents (kept local)
+*.DOC
+*.doc
+*.docx
+
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Misc
+.DS_Store
+*.log
+.idea/
+.vscode/
