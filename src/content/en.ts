@@ -33,6 +33,26 @@ export const en: Dictionary = {
       description:
         'Contact Philip Scheer for remote technology leadership opportunities: Engineering Manager, Head of Technology, Solutions Architect.',
     },
+    about: {
+      title: 'About — Philip Scheer | Technology Leadership Story',
+      description:
+        'Professional story, leadership style and values. 20+ years connecting technology strategy, architecture and hands-on engineering to business outcomes.',
+    },
+    leadership: {
+      title: 'Technical Leadership — Philip Scheer | Teams, Governance & Roadmaps',
+      description:
+        'How I lead engineering organizations: squad design, technical roadmaps, governance, metrics, engineering culture and stakeholder management.',
+    },
+    articles: {
+      title: 'Articles & Insights — Philip Scheer',
+      description:
+        'Technical and executive articles on software architecture, AI-assisted engineering, FinOps, engineering leadership and technology governance.',
+    },
+    playbook: {
+      title: 'Engineering Playbook — Philip Scheer | Templates & Checklists',
+      description:
+        'Practical engineering templates: design.md, ADR, technical RFC, cloud cost checklist and rollout/rollback checklist. Free to download and adapt.',
+    },
   },
   nav: {
     home: 'Home',
@@ -41,6 +61,154 @@ export const en: Dictionary = {
     projects: 'Case Studies',
     resume: 'Resume',
     contact: 'Contact',
+    about: 'About',
+    leadership: 'Leadership',
+    articles: 'Articles',
+    playbook: 'Playbook',
+  },
+  about: {
+    title: 'About',
+    intro: 'Technology leadership built from the ground up — from code to boardroom.',
+    story: [
+      'I started in technology more than 20 years ago, writing code and integrating systems — and never lost that hands-on foundation. Over the years I moved through software engineering, payments architecture at 99 (a DiDi company) across Brazil, USA and China, design systems at Dell Technologies, innovation management in retail, senior technology management at Dexco, and founding my own consultancy delivering dedicated teams and solution architecture for enterprise clients.',
+      'That path shaped a conviction: technology only matters when it moves a business metric. The architectures I am most proud of are not the most elegant diagrams — they are the ones that cut operating cost in half while scaling tenfold, or turned a chaotic delivery process into a roadmap stakeholders trust.',
+      'Today I lead engineering and architecture for real-time platforms serving over a million concurrent users, while helping companies bring governance, FinOps discipline and AI-assisted engineering into their daily practice.',
+    ],
+    positioningTitle: 'Executive positioning',
+    positioning:
+      'I turn ideas into low-cost, high-performance products. I operate at the intersection of strategy and execution: fluent enough in business to sit with the board, hands-on enough to review an architecture decision record or a pull request.',
+    leadershipStyleTitle: 'Leadership style',
+    leadershipStyle:
+      'Context over control. I build squads with clear missions, give engineers ownership of outcomes, and keep decision-making transparent through ADRs, RFCs and open roadmaps. I am demanding on clarity and measurement, and generous with autonomy. Remote-first by conviction, not convenience — I have led distributed teams across the US, China, Europe and Brazil since 2017.',
+    valuesTitle: 'Professional values',
+    values: [
+      {
+        title: 'Results over rituals',
+        body: 'Process exists to serve delivery. Every ceremony, document or gate must pay for itself in clarity or quality — otherwise it goes.',
+      },
+      {
+        title: 'Truth through data',
+        body: 'Decisions anchored on metrics everyone trusts. Engineering indicators, product analytics and cost visibility are non-negotiable.',
+      },
+      {
+        title: 'Lean by design',
+        body: 'The cheapest infrastructure is the one your architecture no longer needs. Efficiency is an engineering value, not a finance afterthought.',
+      },
+      {
+        title: 'People grow products',
+        body: 'Sustainable delivery comes from engineers who understand the why, own the how, and see their growth connected to the product’s success.',
+      },
+    ],
+    visionTitle: 'Technology & business vision',
+    vision:
+      'The next decade belongs to organizations that treat AI as an engineering discipline — with governance, validation and measurable productivity — rather than a novelty. My focus is helping companies adopt AI-assisted development, modern architecture and FinOps as one integrated operating model, where every technical decision has a visible business consequence.',
+    languagesTitle: 'Languages',
+    languages: 'English (full professional) · Portuguese (native) · German (intermediate)',
+  },
+  leadership: {
+    title: 'Technical Leadership',
+    intro:
+      'How I structure and lead engineering organizations — the operating model behind the results.',
+    sections: [
+      {
+        title: 'Team & squad design',
+        body: 'Squads organized around missions, not technologies: each team owns a slice of product outcome with clear interfaces to the rest. I have led organizations from 3 teams (27 people) to cross-functional squads of 80+, always balancing autonomy with alignment. Staffing follows the architecture — Conway’s law is a tool, not a trap.',
+      },
+      {
+        title: 'Technical roadmap',
+        body: 'A single prioritized roadmap connecting business goals to engineering capacity, reviewed biweekly with stakeholders. Technical debt, platform work and product features compete transparently in the same backlog — which forces honest conversations about trade-offs instead of invisible erosion.',
+      },
+      {
+        title: 'Architecture governance',
+        body: 'Architecture Review Boards with teeth but no bureaucracy: decisions documented as ADRs, significant changes proposed as RFCs, reusable solution templates that cut delivery time across teams. At Crefisa this model reduced both delivery time and infrastructure cost for financial-services squads.',
+      },
+      {
+        title: 'Engineering metrics',
+        body: 'Delivery cadence, lead time, incident trends, cost per workload and quality indicators — visible to the team and to the business. Metrics exist to drive conversations, not rankings. What gets measured honestly gets improved sustainably.',
+      },
+      {
+        title: 'Engineering culture',
+        body: 'Ownership, written communication and blameless learning. Documentation as a first-class deliverable: design.md before building, ADRs when deciding, postmortems when failing. AI-assisted development with human review and quality gates — productivity with governance.',
+      },
+      {
+        title: 'Stakeholder management',
+        body: 'Translating between engineering and business is the core of the job. Executives get risk, cost and time in their language; engineers get context and stable priorities in theirs. Bad news travels fast, with options attached.',
+      },
+    ],
+    closing:
+      'The result of this operating model: predictable delivery, auditable decisions, costs under control and teams that grow with the product. The case studies show it applied to real platforms.',
+  },
+  articles: {
+    title: 'Articles & Insights',
+    intro:
+      'Technical and executive writing on architecture, AI-assisted engineering, FinOps and engineering leadership.',
+    readArticle: 'Read article',
+    backToArticles: '← All articles',
+    publishedLabel: 'Published',
+    minuteRead: 'min read',
+    empty: 'New articles coming soon.',
+  },
+  playbook: {
+    title: 'Engineering Playbook',
+    intro:
+      'Practical templates and checklists I use to bring governance and clarity to engineering work. Download, adapt and use them in your team — no attribution required.',
+    templatesTitle: 'Templates',
+    downloadLabel: 'Download template',
+    templates: [
+      {
+        name: 'design.md',
+        description:
+          'Design document template: context, scope, requirements, proposed architecture, decisions, risks, test strategy, rollout and rollback plans. The single most effective tool for aligning humans — and AI assistants — before code is written.',
+        file: '/playbook/design-md-template.md',
+      },
+      {
+        name: 'ADR — Architecture Decision Record',
+        description:
+          'Lightweight record of one architectural decision: context, options considered, decision and consequences. Makes the "why" auditable long after everyone forgot the meeting.',
+        file: '/playbook/adr-template.md',
+      },
+      {
+        name: 'Technical RFC',
+        description:
+          'Proposal template for significant changes: problem, proposal, alternatives, impact analysis, security and operational considerations, open questions. Built for async, written decision-making.',
+        file: '/playbook/rfc-template.md',
+      },
+    ],
+    checklistsTitle: 'Checklists',
+    checklists: [
+      {
+        title: 'Cloud cost (FinOps)',
+        items: [
+          'Cost visibility per workload/service — not just per account',
+          'Right-sizing review: CPU/memory utilization vs. allocation',
+          'Storage lifecycle policies and orphaned resources sweep',
+          'Reserved capacity / savings plans coverage for steady workloads',
+          'Architecture review: can a redesign eliminate the cost entirely?',
+          'Cost regression alerts wired into the team’s routine',
+        ],
+      },
+      {
+        title: 'Rollout & rollback',
+        items: [
+          'Feature flag or staged rollout path defined',
+          'Database migrations backward-compatible with previous release',
+          'Rollback procedure tested — not just documented',
+          'Observability: dashboards and alerts for the new path before traffic',
+          'Success metrics and abort thresholds agreed before deploy',
+          'Communication plan: who is notified, when, through which channel',
+        ],
+      },
+      {
+        title: 'Observability minimum',
+        items: [
+          'Golden signals (latency, traffic, errors, saturation) per service',
+          'Structured logs with correlation IDs end to end',
+          'Alerts tied to user impact, not raw thresholds',
+          'Dashboards reviewed in incident drills, not built during incidents',
+          'P99 — not averages — as the latency conversation',
+        ],
+      },
+    ],
   },
   home: {
     availability: 'Open to remote opportunities · São Paulo, Brazil (GMT-3)',

@@ -5,60 +5,156 @@
     <loc>https://philipscheer.github.io/en/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/pt/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/en/recruiters/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/recruiters/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/recruiters/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/recruiters/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/pt/recruiters/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/recruiters/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/recruiters/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/recruiters/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/about/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/about/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/en/experience/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/experience/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/experience/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/experience/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/pt/experience/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/experience/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/experience/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/experience/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/en/projects/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/projects/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/projects/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/projects/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/pt/projects/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/projects/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/projects/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/projects/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/leadership/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/leadership/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/leadership/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/leadership/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/articles/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/articles/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/articles/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/articles/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/articles/design-md-engineering-practice/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/design-md-engineering-practice/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/articles/design-md-engineering-practice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/design-md-engineering-practice/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/articles/design-md-engineering-practice/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/design-md-engineering-practice/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/articles/design-md-engineering-practice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/design-md-engineering-practice/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/articles/claude-code-agentic-coding/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/claude-code-agentic-coding/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/articles/claude-code-agentic-coding/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/claude-code-agentic-coding/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/articles/claude-code-agentic-coding/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/claude-code-agentic-coding/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/articles/claude-code-agentic-coding/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/claude-code-agentic-coding/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/articles/finops-architecture/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/finops-architecture/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/articles/finops-architecture/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/finops-architecture/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/articles/finops-architecture/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/finops-architecture/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/articles/finops-architecture/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/finops-architecture/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/en/playbook/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/playbook/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/playbook/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/playbook/"/>
+  </url>
+  <url>
+    <loc>https://philipscheer.github.io/pt/playbook/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/playbook/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/playbook/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/playbook/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/en/resume/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/resume/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/resume/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/resume/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/pt/resume/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/resume/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/resume/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/resume/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/en/contact/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/contact/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/contact/"/>
   </url>
   <url>
     <loc>https://philipscheer.github.io/pt/contact/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/contact/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/contact/"/>
   </url>
 </urlset>

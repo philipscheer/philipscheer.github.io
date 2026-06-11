@@ -1,7 +1,17 @@
 import type { Metadata } from 'next';
 import { getDictionary, locales, siteUrl } from '@/content';
 
-type PageKey = 'home' | 'recruiters' | 'experience' | 'projects' | 'resume' | 'contact';
+type PageKey =
+  | 'home'
+  | 'recruiters'
+  | 'experience'
+  | 'projects'
+  | 'resume'
+  | 'contact'
+  | 'about'
+  | 'leadership'
+  | 'articles'
+  | 'playbook';
 
 const pagePaths: Record<PageKey, string> = {
   home: '',
@@ -10,6 +20,10 @@ const pagePaths: Record<PageKey, string> = {
   projects: '/projects',
   resume: '/resume',
   contact: '/contact',
+  about: '/about',
+  leadership: '/leadership',
+  articles: '/articles',
+  playbook: '/playbook',
 };
 
 export function buildMetadata(locale: string, page: PageKey): Metadata {
