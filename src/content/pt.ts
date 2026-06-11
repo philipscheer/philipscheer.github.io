@@ -33,6 +33,26 @@ export const pt: Dictionary = {
       description:
         'Entre em contato com Philip Scheer para oportunidades remotas de liderança em tecnologia: Engineering Manager, Head of Technology, Arquiteto de Soluções.',
     },
+    about: {
+      title: 'Sobre — Philip Scheer | Trajetória de Liderança em Tecnologia',
+      description:
+        'História profissional, estilo de liderança e valores. 20+ anos conectando estratégia de tecnologia, arquitetura e engenharia hands-on a resultados de negócio.',
+    },
+    leadership: {
+      title: 'Liderança Técnica — Philip Scheer | Times, Governança e Roadmaps',
+      description:
+        'Como lidero organizações de engenharia: desenho de squads, roadmaps técnicos, governança, métricas, cultura de engenharia e gestão de stakeholders.',
+    },
+    articles: {
+      title: 'Artigos e Insights — Philip Scheer',
+      description:
+        'Artigos técnicos e executivos sobre arquitetura de software, engenharia assistida por IA, FinOps, liderança de engenharia e governança de tecnologia.',
+    },
+    playbook: {
+      title: 'Engineering Playbook — Philip Scheer | Templates e Checklists',
+      description:
+        'Templates práticos de engenharia: design.md, ADR, RFC técnico, checklist de custos cloud e checklist de rollout/rollback. Baixe e adapte livremente.',
+    },
   },
   nav: {
     home: 'Início',
@@ -41,6 +61,154 @@ export const pt: Dictionary = {
     projects: 'Cases',
     resume: 'Currículo',
     contact: 'Contato',
+    about: 'Sobre',
+    leadership: 'Liderança',
+    articles: 'Artigos',
+    playbook: 'Playbook',
+  },
+  about: {
+    title: 'Sobre',
+    intro: 'Liderança em tecnologia construída da base — do código ao board.',
+    story: [
+      'Comecei em tecnologia há mais de 20 anos, escrevendo código e integrando sistemas — e nunca perdi essa base hands-on. Ao longo dos anos passei por engenharia de software, arquitetura de pagamentos na 99 (uma empresa DiDi) entre Brasil, EUA e China, design systems na Dell Technologies, gestão de inovação no varejo, gerência sênior de tecnologia na Dexco e a fundação da minha própria consultoria, entregando times dedicados e arquitetura de soluções para clientes corporativos.',
+      'Esse caminho consolidou uma convicção: tecnologia só importa quando move uma métrica de negócio. As arquiteturas das quais mais me orgulho não são os diagramas mais elegantes — são as que cortaram o custo de operação pela metade enquanto escalavam dez vezes, ou que transformaram uma entrega caótica em um roadmap confiável para os stakeholders.',
+      'Hoje lidero engenharia e arquitetura de plataformas em tempo real que atendem mais de um milhão de usuários simultâneos, enquanto ajudo empresas a levar governança, disciplina FinOps e engenharia assistida por IA para a prática diária.',
+    ],
+    positioningTitle: 'Posicionamento executivo',
+    positioning:
+      'Transformo ideias em produtos de baixo custo e alta performance. Atuo na interseção entre estratégia e execução: fluente em negócio o suficiente para sentar com o board, e hands-on o suficiente para revisar um ADR ou um pull request.',
+    leadershipStyleTitle: 'Estilo de liderança',
+    leadershipStyle:
+      'Contexto acima de controle. Monto squads com missões claras, dou aos engenheiros ownership dos resultados e mantenho as decisões transparentes via ADRs, RFCs e roadmaps abertos. Sou exigente com clareza e medição, e generoso com autonomia. Remote-first por convicção, não por conveniência — lidero times distribuídos entre EUA, China, Europa e Brasil desde 2017.',
+    valuesTitle: 'Valores profissionais',
+    values: [
+      {
+        title: 'Resultados acima de rituais',
+        body: 'Processo existe para servir a entrega. Toda cerimônia, documento ou gate precisa se pagar em clareza ou qualidade — senão, sai.',
+      },
+      {
+        title: 'Verdade pelos dados',
+        body: 'Decisões ancoradas em métricas em que todos confiam. Indicadores de engenharia, analytics de produto e visibilidade de custos são inegociáveis.',
+      },
+      {
+        title: 'Enxuto por design',
+        body: 'A infraestrutura mais barata é a que a sua arquitetura deixou de precisar. Eficiência é valor de engenharia, não um detalhe do financeiro.',
+      },
+      {
+        title: 'Pessoas fazem produtos crescer',
+        body: 'Entrega sustentável vem de engenheiros que entendem o porquê, são donos do como e veem o próprio crescimento conectado ao sucesso do produto.',
+      },
+    ],
+    visionTitle: 'Visão de tecnologia e negócio',
+    vision:
+      'A próxima década pertence às organizações que tratam IA como disciplina de engenharia — com governança, validação e produtividade mensurável — e não como novidade. Meu foco é ajudar empresas a adotar desenvolvimento assistido por IA, arquitetura moderna e FinOps como um único modelo operacional, em que toda decisão técnica tem consequência visível para o negócio.',
+    languagesTitle: 'Idiomas',
+    languages: 'Inglês (profissional completo) · Português (nativo) · Alemão (intermediário)',
+  },
+  leadership: {
+    title: 'Liderança Técnica',
+    intro:
+      'Como estruturo e lidero organizações de engenharia — o modelo operacional por trás dos resultados.',
+    sections: [
+      {
+        title: 'Desenho de times e squads',
+        body: 'Squads organizados por missão, não por tecnologia: cada time é dono de uma fatia de resultado do produto, com interfaces claras com o restante. Já liderei de 3 times (27 pessoas) a squads multidisciplinares de 80+, sempre equilibrando autonomia com alinhamento. O staffing segue a arquitetura — a lei de Conway é ferramenta, não armadilha.',
+      },
+      {
+        title: 'Roadmap técnico',
+        body: 'Um único roadmap priorizado conectando objetivos de negócio à capacidade de engenharia, revisado quinzenalmente com os stakeholders. Dívida técnica, trabalho de plataforma e features competem de forma transparente no mesmo backlog — o que força conversas honestas sobre trade-offs em vez de erosão invisível.',
+      },
+      {
+        title: 'Governança de arquitetura',
+        body: 'Architecture Review Boards com efeito prático e sem burocracia: decisões documentadas em ADRs, mudanças relevantes propostas via RFC, templates de solução reutilizáveis que reduzem tempo de entrega entre times. Na Crefisa, esse modelo reduziu tempo de entrega e custo de infraestrutura nos squads de serviços financeiros.',
+      },
+      {
+        title: 'Métricas de engenharia',
+        body: 'Cadência de entrega, lead time, tendência de incidentes, custo por workload e indicadores de qualidade — visíveis para o time e para o negócio. Métricas existem para gerar conversas, não rankings. O que é medido com honestidade melhora de forma sustentável.',
+      },
+      {
+        title: 'Cultura de engenharia',
+        body: 'Ownership, comunicação escrita e aprendizado sem culpados. Documentação como entregável de primeira classe: design.md antes de construir, ADR ao decidir, postmortem ao falhar. Desenvolvimento assistido por IA com revisão humana e quality gates — produtividade com governança.',
+      },
+      {
+        title: 'Gestão de stakeholders',
+        body: 'Traduzir entre engenharia e negócio é o núcleo do trabalho. Executivos recebem risco, custo e prazo na língua deles; engenheiros recebem contexto e prioridades estáveis na deles. Notícia ruim viaja rápido — e acompanhada de opções.',
+      },
+    ],
+    closing:
+      'O resultado desse modelo operacional: entrega previsível, decisões auditáveis, custos sob controle e times que crescem com o produto. Os cases mostram isso aplicado a plataformas reais.',
+  },
+  articles: {
+    title: 'Artigos e Insights',
+    intro:
+      'Escrita técnica e executiva sobre arquitetura, engenharia assistida por IA, FinOps e liderança de engenharia.',
+    readArticle: 'Ler artigo',
+    backToArticles: '← Todos os artigos',
+    publishedLabel: 'Publicado em',
+    minuteRead: 'min de leitura',
+    empty: 'Novos artigos em breve.',
+  },
+  playbook: {
+    title: 'Engineering Playbook',
+    intro:
+      'Templates e checklists práticos que uso para trazer governança e clareza ao trabalho de engenharia. Baixe, adapte e use no seu time — sem necessidade de atribuição.',
+    templatesTitle: 'Templates',
+    downloadLabel: 'Baixar template',
+    templates: [
+      {
+        name: 'design.md',
+        description:
+          'Template de documento de design: contexto, escopo, requisitos, arquitetura proposta, decisões, riscos, estratégia de testes, planos de rollout e rollback. A ferramenta mais eficaz para alinhar humanos — e assistentes de IA — antes de escrever código.',
+        file: '/playbook/design-md-template.md',
+      },
+      {
+        name: 'ADR — Architecture Decision Record',
+        description:
+          'Registro leve de uma decisão de arquitetura: contexto, opções consideradas, decisão e consequências. Torna o "porquê" auditável muito depois de todos esquecerem a reunião.',
+        file: '/playbook/adr-template.md',
+      },
+      {
+        name: 'RFC técnico',
+        description:
+          'Template de proposta para mudanças relevantes: problema, proposta, alternativas, análise de impacto, considerações de segurança e operação, questões em aberto. Feito para decisão assíncrona e por escrito.',
+        file: '/playbook/rfc-template.md',
+      },
+    ],
+    checklistsTitle: 'Checklists',
+    checklists: [
+      {
+        title: 'Custos cloud (FinOps)',
+        items: [
+          'Visibilidade de custo por workload/serviço — não só por conta',
+          'Revisão de right-sizing: utilização de CPU/memória vs. alocação',
+          'Políticas de ciclo de vida de storage e varredura de recursos órfãos',
+          'Cobertura de capacidade reservada / savings plans para workloads estáveis',
+          'Revisão de arquitetura: um redesenho pode eliminar o custo por completo?',
+          'Alertas de regressão de custo integrados à rotina do time',
+        ],
+      },
+      {
+        title: 'Rollout e rollback',
+        items: [
+          'Feature flag ou caminho de rollout em estágios definido',
+          'Migrações de banco compatíveis com a versão anterior',
+          'Procedimento de rollback testado — não apenas documentado',
+          'Observabilidade: dashboards e alertas do novo caminho antes do tráfego',
+          'Métricas de sucesso e limiares de abortar acordados antes do deploy',
+          'Plano de comunicação: quem é avisado, quando e por qual canal',
+        ],
+      },
+      {
+        title: 'Mínimo de observabilidade',
+        items: [
+          'Golden signals (latência, tráfego, erros, saturação) por serviço',
+          'Logs estruturados com correlation IDs de ponta a ponta',
+          'Alertas ligados a impacto no usuário, não a thresholds crus',
+          'Dashboards revisados em simulados de incidente, não criados durante incidentes',
+          'P99 — não médias — como a conversa de latência',
+        ],
+      },
+    ],
   },
   home: {
     availability: 'Aberto a oportunidades remotas · São Paulo, Brasil (GMT-3)',

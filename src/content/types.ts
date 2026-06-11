@@ -28,7 +28,19 @@ export interface PageMeta {
 
 export interface Dictionary {
   locale: Locale;
-  meta: Record<'home' | 'recruiters' | 'experience' | 'projects' | 'resume' | 'contact', PageMeta>;
+  meta: Record<
+    | 'home'
+    | 'recruiters'
+    | 'experience'
+    | 'projects'
+    | 'resume'
+    | 'contact'
+    | 'about'
+    | 'leadership'
+    | 'articles'
+    | 'playbook',
+    PageMeta
+  >;
   nav: {
     home: string;
     recruiters: string;
@@ -36,6 +48,49 @@ export interface Dictionary {
     projects: string;
     resume: string;
     contact: string;
+    about: string;
+    leadership: string;
+    articles: string;
+    playbook: string;
+  };
+  about: {
+    title: string;
+    intro: string;
+    story: string[];
+    positioningTitle: string;
+    positioning: string;
+    leadershipStyleTitle: string;
+    leadershipStyle: string;
+    valuesTitle: string;
+    values: { title: string; body: string }[];
+    visionTitle: string;
+    vision: string;
+    languagesTitle: string;
+    languages: string;
+  };
+  leadership: {
+    title: string;
+    intro: string;
+    sections: { title: string; body: string }[];
+    closing: string;
+  };
+  articles: {
+    title: string;
+    intro: string;
+    readArticle: string;
+    backToArticles: string;
+    publishedLabel: string;
+    minuteRead: string;
+    empty: string;
+  };
+  playbook: {
+    title: string;
+    intro: string;
+    templatesTitle: string;
+    downloadLabel: string;
+    templates: { name: string; description: string; file: string }[];
+    checklistsTitle: string;
+    checklists: { title: string; items: string[] }[];
   };
   home: {
     availability: string;

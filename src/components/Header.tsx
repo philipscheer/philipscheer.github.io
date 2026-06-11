@@ -11,10 +11,12 @@ export default function Header({ dict }: { dict: Dictionary }) {
   const locale = dict.locale;
 
   const links = [
-    { href: `/${locale}/`, label: dict.nav.home },
-    { href: `/${locale}/recruiters/`, label: dict.nav.recruiters },
+    { href: `/${locale}/about/`, label: dict.nav.about },
     { href: `/${locale}/experience/`, label: dict.nav.experience },
     { href: `/${locale}/projects/`, label: dict.nav.projects },
+    { href: `/${locale}/leadership/`, label: dict.nav.leadership },
+    { href: `/${locale}/articles/`, label: dict.nav.articles },
+    { href: `/${locale}/playbook/`, label: dict.nav.playbook },
     { href: `/${locale}/resume/`, label: dict.nav.resume },
     { href: `/${locale}/contact/`, label: dict.nav.contact },
   ];
@@ -34,7 +36,7 @@ export default function Header({ dict }: { dict: Dictionary }) {
           Philip<span className="text-accent"> Scheer</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-5 lg:flex" aria-label="Main navigation">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -47,6 +49,12 @@ export default function Header({ dict }: { dict: Dictionary }) {
             </Link>
           ))}
           <Link
+            href={`/${locale}/recruiters/`}
+            className="rounded-lg bg-accent px-3.5 py-1.5 text-sm font-semibold text-ink-950 transition hover:bg-accent-soft"
+          >
+            {dict.nav.recruiters}
+          </Link>
+          <Link
             href={switchHref}
             className="rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wide text-slate-300 transition-colors hover:border-accent hover:text-accent"
             aria-label={otherLocale === 'pt' ? 'Mudar para português' : 'Switch to English'}
@@ -56,7 +64,7 @@ export default function Header({ dict }: { dict: Dictionary }) {
         </nav>
 
         <button
-          className="md:hidden"
+          className="lg:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -72,7 +80,16 @@ export default function Header({ dict }: { dict: Dictionary }) {
       </div>
 
       {open && (
-        <nav className="border-t border-white/5 px-5 pb-4 md:hidden" aria-label="Mobile navigation">
+        <nav className="border-t border-white/5 px-5 pb-4 lg:hidden" aria-label="Mobile navigation">
+          <Link
+            href={`/${locale}/recruiters/`}
+            onClick={() => setOpen(false)}
+            className={`block py-2.5 text-sm font-semibold ${
+              isActive(`/${locale}/recruiters/`) ? 'text-accent' : 'text-accent-soft'
+            }`}
+          >
+            {dict.nav.recruiters}
+          </Link>
           {links.map((l) => (
             <Link
               key={l.href}
