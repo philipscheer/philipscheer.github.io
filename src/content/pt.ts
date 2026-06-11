@@ -173,6 +173,12 @@ export const pt: Dictionary = {
           'Template de proposta para mudanças relevantes: problema, proposta, alternativas, análise de impacto, considerações de segurança e operação, questões em aberto. Feito para decisão assíncrona e por escrito.',
         file: '/playbook/rfc-template.md',
       },
+      {
+        name: 'go-ws-template — camada WebSocket de alta densidade (Go)',
+        description:
+          'Starter Go pronto para produção em camadas WebSocket de 50k–100k+ conexões por instância: assinaturas multiplexadas por canal, hub shardado com snapshot atômico e fan-out multi-core, mailbox latest-wins para clientes lentos, envelope binário com seq + timestamp (a idade da mensagem vira métrica p99), keepalive, política de cliente lento, graceful shutdown, auth JWT opcional e métricas Prometheus. Inclui Docker, ferramentas de load/publisher, 8 ADRs e docs de arquitetura. Duas dependências. Baixe o projeto completo em zip.',
+        file: '/playbook/go-ws-template.zip',
+      },
     ],
     checklistsTitle: 'Checklists',
     checklists: [
