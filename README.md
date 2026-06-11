@@ -1,10 +1,10 @@
 # philipscheer.github.io
-A flutter Web page to create a CV and understand a litle more of dart.
 
-Roadmap
-[X] Create a simple CV as a webpage using only Flutter and Dart.
-[X] 100% Responsive Page.
-[ ] Generate an menu for multiple pages
-[ ] Generate an API to integrate to another site/blog
-[ ] Generate an Certification book/page 
- 
+Personal professional website — living resume, case studies and recruiter hub.
+
+**Stack:** Next.js (static export) · React · TypeScript · Tailwind CSS · GitHub Actions → GitHub Pages
+
+## Structure
+
+- `src/app/[locale]/` — pages (en, pt): Home, For Recruiters, Experience, Case Studies, Resume, Contact
+- `sr
