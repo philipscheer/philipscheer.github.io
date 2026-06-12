@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getDictionary, locales, siteUrl, type Locale } from '@/content';
 import { getAllArticles, getArticle, formatDate } from '@/lib/articles';
+import ArticleBody from '@/components/ArticleBody';
 
 export const dynamicParams = false;
 
@@ -90,10 +91,7 @@ export default async function ArticlePage({
         </div>
       </header>
 
-      <div
-        className="prose prose-invert prose-slate mt-10 max-w-none prose-headings:tracking-tight prose-a:text-accent prose-strong:text-white prose-code:text-accent-soft prose-pre:bg-ink-900 prose-pre:border prose-pre:border-white/5"
-        dangerouslySetInnerHTML={{ __html: article.html }}
-      />
+      <ArticleBody html={article.html} />
 
       <footer className="mt-14 border-t border-white/5 pt-8">
         <Link
