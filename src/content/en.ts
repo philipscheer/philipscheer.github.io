@@ -174,10 +174,22 @@ export const en: Dictionary = {
         file: '/playbook/rfc-template.md',
       },
       {
-        name: 'go-ws-template — high-density WebSocket layer (Go)',
+        name: 'PRD — Product Requirements',
         description:
-          'Production-grade Go starter for WebSocket layers handling 50k–100k+ connections per instance: multiplexed channel subscriptions, sharded snapshot hub with multi-core fan-out, latest-wins mailbox for slow clients, binary envelope with seq + timestamp (age becomes a p99 metric), keepalive, slow-client policy, graceful shutdown, optional JWT auth and Prometheus metrics. Ships with Docker, load/publisher tools, 8 ADRs and architecture docs. Two dependencies. Download the full project as a zip.',
-        file: '/playbook/go-ws-template.zip',
+          'Product management template: problem evidence, success metrics, jobs to be done, scoped requirements with acceptance criteria, launch and measurement plans. Aligns product, engineering and design before anything is built.',
+        file: '/playbook/prd-template.md',
+      },
+      {
+        name: 'Digital Product Creation Flow',
+        description:
+          'Stage-gated flow from idea to operation: opportunity framing, discovery, definition, build, launch and operate — each stage with a clear gate decision (persevere, pivot or stop). Rigor scales with the size of the bet.',
+        file: '/playbook/product-creation-flow.md',
+      },
+      {
+        name: 'ARB — Architecture Review Board Playbook',
+        description:
+          'Operating model for an ARB that serves teams instead of blocking them: scope, composition, 48h pre-reads, 45-minute review format, decision rules with SLA, ADR artifacts and the anti-patterns to refuse.',
+        file: '/playbook/arb-playbook.md',
       },
     ],
     checklistsTitle: 'Checklists',
@@ -212,6 +224,19 @@ export const en: Dictionary = {
           'Alerts tied to user impact, not raw thresholds',
           'Dashboards reviewed in incident drills, not built during incidents',
           'P99 — not averages — as the latency conversation',
+        ],
+      },
+      {
+        title: 'Financial-environment security',
+        items: [
+          'Segregation of duties: no single person deploys and approves money-moving changes',
+          'Every financial mutation behind an explicit state machine with audit trail',
+          'PII masked at rest and in logs; access on least-privilege with periodic review',
+          'Secrets in a vault, rotated; no credentials in code, config or CI logs',
+          'Idempotency keys on every payment operation — retries must be safe',
+          'Reconciliation jobs comparing internal ledger vs. provider statements',
+          'Pen test and dependency/secret scanning wired into CI, not annual rituals',
+          'Incident playbook for financial impact: freeze, assess, communicate, reconcile',
         ],
       },
     ],
@@ -428,6 +453,48 @@ export const en: Dictionary = {
           'Architecture is the most powerful FinOps tool: the cheapest infrastructure is the one your design no longer needs.',
       },
       {
+        slug: 'push-notifications-scale',
+        name: 'Push Notification Platform for 500K+ Users',
+        tagline: 'Resilience engineering at fan-out scale',
+        context:
+          'A sports platform needed to deliver push notifications for live match events to hundreds of thousands of devices within seconds — with traffic spiking at every goal.',
+        challenge:
+          'Handle burst loads of thousands of events per second, duplicated upstream signals and third-party throttling (SNS/FCM/APNs) without missed or duplicate notifications.',
+        role: 'Architecture and engineering lead for the notifications backend.',
+        solution:
+          'Go/gRPC service with a 100-worker processing pool; distributed deduplication using Redis Lua scripts; circuit breaker on the SNS integration; adaptive rate limiting with automatic backoff; batch publishing (10 messages per API call); Prometheus metrics end to end and graceful shutdown for safe deploys.',
+        stack: ['Go', 'gRPC/Protobuf', 'Redis cluster', 'PostgreSQL (pgx)', 'AWS SNS → FCM/APNs', 'Prometheus', 'Docker/ECS'],
+        impact: [
+          'Designed and validated for 500K+ concurrent users',
+          '5,000+ events/second processed per instance',
+          '10x fewer SNS API calls through batch publishing',
+          'Duplicate-free delivery under burst load',
+        ],
+        learnings:
+          'At fan-out scale, resilience patterns — deduplication, circuit breaking, adaptive backoff — are not extras. They are the product.',
+      },
+      {
+        slug: 'dell-design-system',
+        name: 'Dell Design System at Enterprise Scale',
+        tagline: '800+ teams, 12 companies, 2,000+ products',
+        context:
+          'Dell Technologies needed UX consistency and development efficiency across one of the largest product portfolios in tech — spanning multiple business units, brands and e-commerce operations.',
+        challenge:
+          'Build and govern a single design system serving hundreds of teams without becoming a bottleneck: components, standards, documentation, tooling and — hardest of all — adoption at enterprise scale.',
+        role: 'Design System Manager (2020–2022) — vision, roadmap, governance and delivery, working fully remote across US and Brazil teams.',
+        solution:
+          'Built and governed the Dell Design System (delldesignsystem.com): component standards, design tokens, documentation and tooling, with incremental agile delivery and a contribution model that let product teams extend the system instead of forking it.',
+        stack: ['Design systems', 'Design tokens', 'Component libraries', 'Documentation tooling', 'Governance', 'Agile delivery'],
+        impact: [
+          '800+ teams across 12 companies using DDS as their primary framework',
+          '2,000+ products built on the system',
+          'Higher e-commerce reliability through consistent, tested components',
+          'Lower development cost through reuse at scale',
+        ],
+        learnings:
+          'A design system at enterprise scale is a product with customers — adoption is earned through reliability and developer experience, not mandates.',
+      },
+      {
         slug: 'cloud-cost-finops',
         name: 'Cloud Cost Optimization & FinOps Governance',
         tagline: 'Spend predictability as an engineering discipline',
@@ -446,6 +513,48 @@ export const en: Dictionary = {
         ],
         learnings:
           'Cost optimization is continuous, not a one-off project. Visibility comes first; savings follow.',
+      },
+      {
+        slug: 'mobile-product-engineering',
+        name: 'Cross-Platform Mobile App at Production Maturity',
+        tagline: 'One codebase, two platforms, 700+ builds shipped',
+        context:
+          'A sports product needed iOS and Android apps with live real-time data, payments and rich content — evolving weekly without doubling the team.',
+        challenge:
+          'Real-time updates over unreliable mobile networks, in-app purchases compliant with both stores, and a modular architecture that keeps a fast-growing codebase healthy.',
+        role: 'Engineering leadership for the mobile platform and its architecture.',
+        solution:
+          'Flutter app structured as 10+ internal packages (authentication, push, deep links, core, preferences); BLoC pattern for state; Protobuf over WebSockets for live match data; Firebase for analytics, crash reporting and auth; multi-flavor builds per environment; conventional commits and git hooks enforcing release discipline.',
+        stack: ['Flutter/Dart', 'BLoC', 'Protobuf/WebSockets', 'gRPC', 'Firebase', 'In-app purchases', 'CI/CD'],
+        impact: [
+          'Single codebase serving iOS and Android',
+          '700+ builds shipped — weekly release cadence sustained',
+          'Live match data streaming inside the app',
+          'Modular packages enabling parallel team workstreams',
+        ],
+        learnings:
+          'Mobile scale problems are organizational before they are technical: modular boundaries and release discipline are what keep weekly shipping sustainable.',
+      },
+      {
+        slug: 'affiliate-financial-platform',
+        name: 'Affiliate Platform with Financial Governance',
+        tagline: 'Money flows demand auditable engineering',
+        context:
+          'An affiliate network needed a platform to manage partners, commissions, campaign analytics and payment cycles — where every cent must be traceable.',
+        challenge:
+          'Financial correctness under concurrency, abuse detection, LGPD compliance and full auditability — without slowing product delivery.',
+        role: 'Architecture and delivery leadership for the platform.',
+        solution:
+          'NestJS + React monorepo over Prisma/PostgreSQL; payment cycles modeled as an explicit state machine; async processing with Redis/Bull queues; BigQuery sync for analytics; audit trail with request context; PII masking, role-based access control and a partner-facing API gateway; Stripe integration for payouts.',
+        stack: ['NestJS', 'React', 'TypeScript', 'Prisma/PostgreSQL', 'BigQuery', 'Redis/Bull', 'Stripe', 'Jest/Vitest/Playwright'],
+        impact: [
+          'End-to-end auditable financial flows with explicit payment-cycle states',
+          'CPA abuse detection with automated adjustments',
+          'LGPD compliance by design (PII masking, consent, retention)',
+          'Analytics decoupled to BigQuery without touching transactional load',
+        ],
+        learnings:
+          'In financial systems, the state machine is the specification — if a money state is not explicit in code, it will eventually be implicit in a spreadsheet.',
       },
       {
         slug: 'digital-platform',
@@ -488,6 +597,46 @@ export const en: Dictionary = {
           'LLMs shine when wrapped in deterministic guardrails: search, validation and observability turn a demo into a product.',
       },
       {
+        slug: 'ai-document-automation',
+        name: 'AI Document Analysis & Distribution at Scale',
+        tagline: 'LLM vision with production guardrails',
+        context:
+          'A commercial operation processed thousands of user-submitted images per day that needed validation, classification and routing to messaging channels.',
+        challenge:
+          'Sustain throughput and control cost on LLM/OCR analysis while respecting messaging-platform rate limits — with zero tolerance for duplicate sends.',
+        role: 'Architecture and delivery lead for the automation pipeline.',
+        solution:
+          'OpenAI Vision pipeline with a 48-worker analysis pool and large-batch processing; separate 24-worker media pipeline; global and per-chat rate limiting for Telegram distribution; deduplication window; cloud storage for media; admin panel for operations.',
+        stack: ['Python/Flask', 'OpenAI Vision', 'Telegram API', 'Supabase', 'Worker pools', 'Rate limiting'],
+        impact: [
+          'Thousands of images triaged automatically per day',
+          'API spend controlled through batching and caching',
+          'Stable distribution under burst load, duplicate-free',
+        ],
+        learnings:
+          'LLMs in production are a throughput-and-guardrails problem: the model is 20% of the system, the engineering around it is the other 80%.',
+      },
+      {
+        slug: 'mcp-agentic-tooling',
+        name: 'MCP & Agentic Tooling for Engineering Operations',
+        tagline: 'Connecting LLMs to real systems, safely',
+        context:
+          'Daily engineering routines — standups, work-item planning, branching, changelogs, quality checks, PR creation, document and data analysis — consumed senior engineering time across Azure DevOps, GitHub and internal systems.',
+        challenge:
+          'Give LLM agents real access to production tooling without giving up governance, traceability or quality standards.',
+        role: 'Designed and built the agentic tooling and its operating model.',
+        solution:
+          'MCP-based skills connecting Claude to Azure DevOps and GitHub: automated standup digests, work-item planning with approval gates, branch and changelog conventions, enforced quality gates (lint, type-check, tests, secret scanning, conventional commits) and PR creation with AI self-review. The same pattern extended to OCR and data-analysis pipelines with human approval before any write.',
+        stack: ['MCP', 'Claude / LLMs', 'Azure DevOps API', 'GitHub CLI', 'Quality gates', 'Python/TypeScript'],
+        impact: [
+          'Daily engineering routine automated end to end',
+          'Quality gates enforced on every AI-assisted change',
+          'One agentic pattern reused across DevOps, OCR and data analysis',
+        ],
+        learnings:
+          'Agents are only as safe as the tools you hand them — MCP turns governance from a policy document into executable code.',
+      },
+      {
         slug: 'technical-governance',
         name: 'Technical Governance & Roadmap Structuring',
         tagline: 'From ad-hoc delivery to predictable engineering',
@@ -517,10 +666,11 @@ export const en: Dictionary = {
           'Integrate data continuously and reliably, with quality guarantees, into analytics that support real decisions.',
         role: 'Technology leader for the data integration and analytics initiative.',
         solution:
-          'CDC-based pipelines from transactional bases into BigQuery; modeled product and business indicators; data governance and quality checks across the flow.',
-        stack: ['BigQuery', 'CDC', 'Data pipelines', 'Data governance', 'BI & analytics'],
+          '30 Airflow DAGs orchestrating ingestion from 8+ sources — partner platforms, ERP, marketing and project-management APIs — into PostgreSQL and BigQuery, with CDC where applicable; 8 dbt projects modeling business views; idempotent, conflict-safe loads and pipeline alerting via Telegram.',
+        stack: ['Airflow', 'dbt', 'BigQuery', 'CDC', 'PostgreSQL', 'Data governance'],
         impact: [
-          'Reliable, up-to-date product and business indicators',
+          '30 production DAGs integrating 8+ data sources',
+          '8 dbt projects powering modeled business views',
           'Decision-making anchored on a single source of truth',
           'Data quality monitored, not assumed',
         ],

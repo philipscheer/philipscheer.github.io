@@ -174,10 +174,22 @@ export const pt: Dictionary = {
         file: '/playbook/rfc-template.md',
       },
       {
-        name: 'go-ws-template — camada WebSocket de alta densidade (Go)',
+        name: 'PRD — Product Requirements',
         description:
-          'Starter Go pronto para produção em camadas WebSocket de 50k–100k+ conexões por instância: assinaturas multiplexadas por canal, hub shardado com snapshot atômico e fan-out multi-core, mailbox latest-wins para clientes lentos, envelope binário com seq + timestamp (a idade da mensagem vira métrica p99), keepalive, política de cliente lento, graceful shutdown, auth JWT opcional e métricas Prometheus. Inclui Docker, ferramentas de load/publisher, 8 ADRs e docs de arquitetura. Duas dependências. Baixe o projeto completo em zip.',
-        file: '/playbook/go-ws-template.zip',
+          'Template de gestão de produto: evidência do problema, métricas de sucesso, jobs to be done, requisitos com critérios de aceite, planos de lançamento e medição. Alinha produto, engenharia e design antes de qualquer construção.',
+        file: '/playbook/prd-template.md',
+      },
+      {
+        name: 'Fluxo de Criação de Produtos Digitais',
+        description:
+          'Fluxo com gates da ideia à operação: enquadramento da oportunidade, discovery, definição, build, lançamento e operação — cada estágio com uma decisão clara de gate (perseverar, pivotar ou parar). O rigor escala com o tamanho da aposta.',
+        file: '/playbook/product-creation-flow.md',
+      },
+      {
+        name: 'ARB — Playbook de Architecture Review Board',
+        description:
+          'Modelo operacional de um ARB que serve aos times em vez de bloqueá-los: escopo, composição, pré-leitura de 48h, formato de revisão de 45 minutos, regras de decisão com SLA, ADRs como artefato e os anti-padrões a recusar.',
+        file: '/playbook/arb-playbook.md',
       },
     ],
     checklistsTitle: 'Checklists',
@@ -212,6 +224,19 @@ export const pt: Dictionary = {
           'Alertas ligados a impacto no usuário, não a thresholds crus',
           'Dashboards revisados em simulados de incidente, não criados durante incidentes',
           'P99 — não médias — como a conversa de latência',
+        ],
+      },
+      {
+        title: 'Segurança em ambiente financeiro',
+        items: [
+          'Segregação de funções: ninguém sozinho faz deploy e aprova mudanças que movem dinheiro',
+          'Toda mutação financeira atrás de state machine explícita com trilha de auditoria',
+          'PII mascarado em repouso e em logs; acesso por privilégio mínimo com revisão periódica',
+          'Segredos em vault, com rotação; nenhuma credencial em código, config ou logs de CI',
+          'Chaves de idempotência em toda operação de pagamento — retries precisam ser seguros',
+          'Jobs de reconciliação comparando ledger interno vs. extratos dos provedores',
+          'Pen test e scanning de dependências/segredos no CI, não como ritual anual',
+          'Playbook de incidente com impacto financeiro: congelar, avaliar, comunicar, reconciliar',
         ],
       },
     ],
@@ -428,6 +453,48 @@ export const pt: Dictionary = {
           'Arquitetura é a ferramenta de FinOps mais poderosa: a infraestrutura mais barata é a que o seu design deixou de precisar.',
       },
       {
+        slug: 'push-notifications-scale',
+        name: 'Plataforma de Push Notifications para 500K+ Usuários',
+        tagline: 'Engenharia de resiliência em escala de fan-out',
+        context:
+          'Uma plataforma esportiva precisava entregar push notifications de eventos ao vivo para centenas de milhares de dispositivos em segundos — com picos a cada gol.',
+        challenge:
+          'Suportar rajadas de milhares de eventos por segundo, sinais duplicados na origem e throttling de terceiros (SNS/FCM/APNs) sem notificações perdidas ou duplicadas.',
+        role: 'Líder de arquitetura e engenharia do backend de notificações.',
+        solution:
+          'Serviço Go/gRPC com pool de 100 workers; deduplicação distribuída com scripts Lua no Redis; circuit breaker na integração SNS; rate limiting adaptativo com backoff automático; publicação em lote (10 mensagens por chamada de API); métricas Prometheus de ponta a ponta e graceful shutdown para deploys seguros.',
+        stack: ['Go', 'gRPC/Protobuf', 'Redis cluster', 'PostgreSQL (pgx)', 'AWS SNS → FCM/APNs', 'Prometheus', 'Docker/ECS'],
+        impact: [
+          'Projetado e validado para 500K+ usuários simultâneos',
+          '5.000+ eventos/segundo processados por instância',
+          '10x menos chamadas à API SNS com publicação em lote',
+          'Entrega sem duplicatas sob carga de rajada',
+        ],
+        learnings:
+          'Em escala de fan-out, padrões de resiliência — deduplicação, circuit breaking, backoff adaptativo — não são extras. São o produto.',
+      },
+      {
+        slug: 'dell-design-system',
+        name: 'Dell Design System em Escala Enterprise',
+        tagline: '800+ times, 12 empresas, 2.000+ produtos',
+        context:
+          'A Dell Technologies precisava de consistência de UX e eficiência de desenvolvimento em um dos maiores portfólios de produto da tecnologia — abrangendo múltiplas unidades de negócio, marcas e operações de e-commerce.',
+        challenge:
+          'Construir e governar um único design system servindo centenas de times sem virar gargalo: componentes, padrões, documentação, ferramentas e — o mais difícil — adoção em escala enterprise.',
+        role: 'Design System Manager (2020–2022) — visão, roadmap, governança e entrega, 100% remoto entre times dos EUA e do Brasil.',
+        solution:
+          'Construí e governei o Dell Design System (delldesignsystem.com): padrões de componentes, design tokens, documentação e ferramentas, com entrega ágil incremental e um modelo de contribuição que permitia aos times de produto estender o sistema em vez de bifurcá-lo.',
+        stack: ['Design systems', 'Design tokens', 'Bibliotecas de componentes', 'Ferramentas de documentação', 'Governança', 'Entrega ágil'],
+        impact: [
+          '800+ times em 12 empresas usando o DDS como framework principal',
+          '2.000+ produtos construídos sobre o sistema',
+          'Maior confiabilidade do e-commerce com componentes consistentes e testados',
+          'Menor custo de desenvolvimento com reuso em escala',
+        ],
+        learnings:
+          'Um design system em escala enterprise é um produto com clientes — adoção se conquista com confiabilidade e experiência do desenvolvedor, não por decreto.',
+      },
+      {
         slug: 'cloud-cost-finops',
         name: 'Otimização de Custos Cloud & Governança FinOps',
         tagline: 'Previsibilidade de gastos como disciplina de engenharia',
@@ -446,6 +513,48 @@ export const pt: Dictionary = {
         ],
         learnings:
           'Otimização de custos é contínua, não um projeto pontual. Visibilidade vem primeiro; a economia vem em seguida.',
+      },
+      {
+        slug: 'mobile-product-engineering',
+        name: 'App Mobile Multiplataforma em Maturidade de Produção',
+        tagline: 'Um codebase, duas plataformas, 700+ builds publicados',
+        context:
+          'Um produto esportivo precisava de apps iOS e Android com dados ao vivo em tempo real, pagamentos e conteúdo rico — evoluindo semanalmente sem dobrar o time.',
+        challenge:
+          'Atualizações em tempo real sobre redes móveis instáveis, compras in-app em conformidade com as duas lojas e arquitetura modular para manter saudável um codebase em crescimento acelerado.',
+        role: 'Liderança de engenharia da plataforma mobile e sua arquitetura.',
+        solution:
+          'App Flutter estruturado em 10+ packages internos (autenticação, push, deep links, core, preferências); padrão BLoC para estado; Protobuf sobre WebSockets para dados ao vivo; Firebase para analytics, crash reporting e auth; builds multi-flavor por ambiente; conventional commits e git hooks garantindo disciplina de release.',
+        stack: ['Flutter/Dart', 'BLoC', 'Protobuf/WebSockets', 'gRPC', 'Firebase', 'Compras in-app', 'CI/CD'],
+        impact: [
+          'Um único codebase servindo iOS e Android',
+          '700+ builds publicados — cadência semanal de release sustentada',
+          'Dados de partidas ao vivo dentro do app',
+          'Packages modulares permitindo frentes paralelas de trabalho',
+        ],
+        learnings:
+          'Problemas de escala em mobile são organizacionais antes de técnicos: fronteiras modulares e disciplina de release são o que torna o ship semanal sustentável.',
+      },
+      {
+        slug: 'affiliate-financial-platform',
+        name: 'Plataforma de Afiliados com Governança Financeira',
+        tagline: 'Fluxos de dinheiro exigem engenharia auditável',
+        context:
+          'Uma rede de afiliados precisava de uma plataforma para gerenciar parceiros, comissões, analytics de campanhas e ciclos de pagamento — onde cada centavo precisa ser rastreável.',
+        challenge:
+          'Correção financeira sob concorrência, detecção de abuso, conformidade com a LGPD e auditabilidade completa — sem desacelerar a entrega de produto.',
+        role: 'Liderança de arquitetura e entrega da plataforma.',
+        solution:
+          'Monorepo NestJS + React sobre Prisma/PostgreSQL; ciclos de pagamento modelados como state machine explícita; processamento assíncrono com filas Redis/Bull; sync para BigQuery para analytics; trilha de auditoria com contexto de requisição; mascaramento de PII, RBAC e API gateway para parceiros; integração Stripe para pagamentos.',
+        stack: ['NestJS', 'React', 'TypeScript', 'Prisma/PostgreSQL', 'BigQuery', 'Redis/Bull', 'Stripe', 'Jest/Vitest/Playwright'],
+        impact: [
+          'Fluxos financeiros auditáveis de ponta a ponta com estados explícitos de ciclo de pagamento',
+          'Detecção de abuso de CPA com ajustes automatizados',
+          'LGPD by design (mascaramento de PII, consentimento, retenção)',
+          'Analytics desacoplado no BigQuery sem tocar a carga transacional',
+        ],
+        learnings:
+          'Em sistemas financeiros, a state machine é a especificação — se um estado de dinheiro não está explícito no código, acabará implícito numa planilha.',
       },
       {
         slug: 'digital-platform',
@@ -488,6 +597,46 @@ export const pt: Dictionary = {
           'LLMs brilham quando cercados de guardrails determinísticos: busca, validação e observabilidade transformam demo em produto.',
       },
       {
+        slug: 'ai-document-automation',
+        name: 'Análise e Distribuição de Documentos com IA em Escala',
+        tagline: 'Visão LLM com guardrails de produção',
+        context:
+          'Uma operação comercial processava milhares de imagens enviadas por usuários por dia, que precisavam de validação, classificação e roteamento para canais de mensagens.',
+        challenge:
+          'Sustentar throughput e controlar custo na análise LLM/OCR respeitando rate limits das plataformas de mensagens — com tolerância zero a envios duplicados.',
+        role: 'Líder de arquitetura e entrega do pipeline de automação.',
+        solution:
+          'Pipeline OpenAI Vision com pool de 48 workers e processamento em grandes lotes; pipeline de mídia separado com 24 workers; rate limiting global e por chat na distribuição via Telegram; janela de deduplicação; armazenamento de mídia em nuvem; painel administrativo para operação.',
+        stack: ['Python/Flask', 'OpenAI Vision', 'Telegram API', 'Supabase', 'Worker pools', 'Rate limiting'],
+        impact: [
+          'Milhares de imagens triadas automaticamente por dia',
+          'Gasto com API controlado via lotes e cache',
+          'Distribuição estável sob rajadas, sem duplicatas',
+        ],
+        learnings:
+          'LLM em produção é um problema de throughput e guardrails: o modelo é 20% do sistema, a engenharia ao redor é os outros 80%.',
+      },
+      {
+        slug: 'mcp-agentic-tooling',
+        name: 'MCP & Agentic Tooling para Operações de Engenharia',
+        tagline: 'Conectando LLMs a sistemas reais, com segurança',
+        context:
+          'Rotinas diárias de engenharia — standups, planejamento de work items, branches, changelogs, checagens de qualidade, criação de PRs, análise de documentos e dados — consumiam tempo sênior em Azure DevOps, GitHub e sistemas internos.',
+        challenge:
+          'Dar a agentes LLM acesso real ao ferramental de produção sem abrir mão de governança, rastreabilidade e padrões de qualidade.',
+        role: 'Desenhei e construí o ferramental agentic e seu modelo operacional.',
+        solution:
+          'Skills baseadas em MCP conectando o Claude ao Azure DevOps e GitHub: digests automáticos de standup, planejamento de work items com gates de aprovação, convenções de branch e changelog, quality gates obrigatórios (lint, type-check, testes, secret scanning, conventional commits) e criação de PR com self-review por IA. O mesmo padrão estendido a pipelines de OCR e análise de dados com aprovação humana antes de qualquer escrita.',
+        stack: ['MCP', 'Claude / LLMs', 'Azure DevOps API', 'GitHub CLI', 'Quality gates', 'Python/TypeScript'],
+        impact: [
+          'Rotina diária de engenharia automatizada de ponta a ponta',
+          'Quality gates aplicados em toda mudança assistida por IA',
+          'Um único padrão agentic reusado em DevOps, OCR e análise de dados',
+        ],
+        learnings:
+          'Agentes são tão seguros quanto as ferramentas que você entrega a eles — MCP transforma governança de documento de política em código executável.',
+      },
+      {
         slug: 'technical-governance',
         name: 'Governança Técnica & Estruturação de Roadmap',
         tagline: 'Da entrega ad-hoc à engenharia previsível',
@@ -517,10 +666,11 @@ export const pt: Dictionary = {
           'Integrar dados de forma contínua e confiável, com garantias de qualidade, em analytics que sustentem decisões reais.',
         role: 'Líder de tecnologia da iniciativa de integração de dados e analytics.',
         solution:
-          'Pipelines baseados em CDC das bases transacionais para o BigQuery; modelagem de indicadores de produto e negócio; governança de dados e checagens de qualidade em todo o fluxo.',
-        stack: ['BigQuery', 'CDC', 'Pipelines de dados', 'Governança de dados', 'BI & analytics'],
+          '30 DAGs no Airflow orquestrando ingestão de 8+ fontes — plataformas parceiras, ERP, marketing e APIs de gestão de projetos — para PostgreSQL e BigQuery, com CDC onde aplicável; 8 projetos dbt modelando visões de negócio; cargas idempotentes e seguras contra conflito e alertas de pipeline via Telegram.',
+        stack: ['Airflow', 'dbt', 'BigQuery', 'CDC', 'PostgreSQL', 'Governança de dados'],
         impact: [
-          'Indicadores de produto e negócio confiáveis e atualizados',
+          '30 DAGs em produção integrando 8+ fontes de dados',
+          '8 projetos dbt sustentando visões modeladas de negócio',
           'Tomada de decisão ancorada em fonte única da verdade',
           'Qualidade de dados monitorada, não presumida',
         ],
