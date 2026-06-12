@@ -158,15 +158,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/tech-radar-2026-06-12/"/>
   </url>
   <url>
-    <loc>https://philipscheer.github.io/en/contact/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/contact/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/contact/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/contact/"/>
+    <loc>https://philipscheer.github.io/en/articles/payment-orchestration-platform/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/payment-orchestration-platform/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/articles/payment-orchestration-platform/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/articles/payment-orchestration-platform/"/>
   </url>
   <url>
-    <loc>https://philipscheer.github.io/pt/contact/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/contact/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://philipscheer.github.io/pt/contact/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://philipscheer.github.io/en/contact/"/>
-  </url>
-</urlset>
+    <loc>https://philipscheer.github.io/pt/articles/payment-orchestration-platform/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://philipscheer.github.io/en/articles/payment-orchestration-platform/"/>
+    <xhtml:link rel="alternate" h
