@@ -37,8 +37,13 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={dict.locale === 'pt' ? 'pt-BR' : 'en'}>
+    <html lang={dict.locale === 'pt' ? 'pt-BR' : 'en'} suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

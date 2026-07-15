@@ -4,11 +4,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import type { Dictionary } from '@/content';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Header({ dict }: { dict: Dictionary }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const locale = dict.locale;
+  const themeLabel = locale === 'pt' ? 'Alternar tema claro/escuro' : 'Toggle light/dark theme';
 
   const links = [
     { href: `/${locale}/about/`, label: dict.nav.about },
@@ -30,10 +32,10 @@ export default function Header({ dict }: { dict: Dictionary }) {
     pathname === href || (href !== `/${locale}/` && pathname?.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-ink-950/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-line/5 bg-bg/80 backdrop-blur">
       <div className="mx-auto flex max-w-content items-center justify-between px-5 py-4">
-        <Link href={`/${locale}/`} className="text-base font-semibold tracking-tight text-white">
-          Philip<span className="text-accent"> Scheer</span>
+        <Link href={`/${locale}/`} className="text-base font-semibold tracking-tight text-fg">
+          Philip<span className="text-primary"> Scheer</span>
         </Link>
 
         <nav className="hidden items-center gap-5 lg:flex" aria-label="Main navigation">
@@ -41,8 +43,8 @@ export default function Header({ dict }: { dict: Dictionary }) {
             <Link
               key={l.href}
               href={l.href}
-              className={`text-sm transition-colors hover:text-white ${
-                isActive(l.href) ? 'text-white' : 'text-slate-400'
+              className={`text-sm transition-colors hover:text-fg ${
+                isActive(l.href) ? 'text-fg' : 'text-muted'
               }`}
             >
               {l.label}
@@ -50,42 +52,41 @@ export default function Header({ dict }: { dict: Dictionary }) {
           ))}
           <Link
             href={`/${locale}/recruiters/`}
-            className="rounded-lg bg-accent px-3.5 py-1.5 text-sm font-semibold text-ink-950 transition hover:bg-accent-soft"
+            className="rounded-lg bg-primary px-3.5 py-1.5 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
           >
             {dict.nav.recruiters}
           </Link>
           <Link
             href={switchHref}
-            className="rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wide text-slate-300 transition-colors hover:border-accent hover:text-accent"
+            className="rounded-full border border-line/15 px-3 py-1 text-xs font-medium uppercase tracking-wide text-muted transition-colors hover:border-primary hover:text-primary"
             aria-label={otherLocale === 'pt' ? 'Mudar para português' : 'Switch to English'}
           >
             {otherLocale === 'pt' ? 'PT' : 'EN'}
           </Link>
+          <ThemeToggle label={themeLabel} />
         </nav>
 
-        <button
-          className="lg:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-        >
-          <svg className="h-6 w-6 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle label={themeLabel} />
+          <button onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>
+            <svg className="h-6 w-6 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {open ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {open && (
-        <nav className="border-t border-white/5 px-5 pb-4 lg:hidden" aria-label="Mobile navigation">
+        <nav className="border-t border-line/5 px-5 pb-4 lg:hidden" aria-label="Mobile navigation">
           <Link
             href={`/${locale}/recruiters/`}
             onClick={() => setOpen(false)}
             className={`block py-2.5 text-sm font-semibold ${
-              isActive(`/${locale}/recruiters/`) ? 'text-accent' : 'text-accent-soft'
+              isActive(`/${locale}/recruiters/`) ? 'text-primary' : 'text-primary'
             }`}
           >
             {dict.nav.recruiters}
@@ -95,7 +96,7 @@ export default function Header({ dict }: { dict: Dictionary }) {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className={`block py-2.5 text-sm ${isActive(l.href) ? 'text-white' : 'text-slate-400'}`}
+              className={`block py-2.5 text-sm ${isActive(l.href) ? 'text-fg' : 'text-muted'}`}
             >
               {l.label}
             </Link>
@@ -103,7 +104,7 @@ export default function Header({ dict }: { dict: Dictionary }) {
           <Link
             href={switchHref}
             onClick={() => setOpen(false)}
-            className="mt-2 inline-block rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase text-slate-300"
+            className="mt-2 inline-block rounded-full border border-line/15 px-3 py-1 text-xs font-medium uppercase text-muted"
           >
             {otherLocale === 'pt' ? 'Português' : 'English'}
           </Link>

@@ -24,60 +24,60 @@ export default async function ProjectsPage({
 
   return (
     <div className="mx-auto max-w-content px-5 py-16 md:py-20">
-      <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">{p.title}</h1>
-      <p className="mt-3 max-w-2xl text-lg text-slate-400">{p.intro}</p>
+      <h1 className="text-3xl font-bold tracking-tight text-fg md:text-5xl">{p.title}</h1>
+      <p className="mt-3 max-w-2xl text-lg text-muted">{p.intro}</p>
 
       <div className="mt-12 space-y-10">
         {p.cases.map((c) => (
           <Reveal key={c.slug}>
             <article
               id={c.slug}
-              className="rounded-2xl border border-white/5 bg-ink-900/50 p-7 transition-colors hover:border-accent/25 md:p-9"
+              className="rounded-2xl border border-line/5 bg-surface/50 p-7 transition-colors hover:border-primary/25 md:p-9"
             >
               <header>
-                <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                   {c.tagline}
                 </p>
-                <h2 className="mt-2 text-2xl font-bold text-white">{c.name}</h2>
+                <h2 className="mt-2 text-2xl font-bold text-fg">{c.name}</h2>
               </header>
 
               <div className="mt-6 grid gap-6 md:grid-cols-2">
                 <div className="space-y-5">
                   <section>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-faint">
                       {labels.context}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{c.context}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted">{c.context}</p>
                   </section>
                   <section>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-faint">
                       {labels.challenge}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{c.challenge}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted">{c.challenge}</p>
                   </section>
                   <section>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-faint">
                       {labels.role}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{c.role}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted">{c.role}</p>
                   </section>
                 </div>
 
                 <div className="space-y-5">
                   <section>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-faint">
                       {labels.solution}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{c.solution}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted">{c.solution}</p>
                   </section>
                   <section>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-faint">
                       {labels.impact}
                     </h3>
                     <ul className="mt-1.5 space-y-1.5">
                       {c.impact.map((i) => (
-                        <li key={i} className="flex gap-2 text-sm leading-relaxed text-slate-300">
-                          <span className="text-accent-emerald" aria-hidden="true">✓</span>
+                        <li key={i} className="flex gap-2 text-sm leading-relaxed text-muted">
+                          <span className="text-ok" aria-hidden="true">✓</span>
                           {i}
                         </li>
                       ))}
@@ -87,14 +87,14 @@ export default async function ProjectsPage({
               </div>
 
               <section className="mt-6">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-faint">
                   {labels.stack}
                 </h3>
                 <div className="mt-2.5 flex flex-wrap gap-2">
                   {c.stack.map((s) => (
                     <span
                       key={s}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300"
+                      className="rounded-full border border-line/10 bg-line/5 px-3 py-1 text-xs text-muted"
                     >
                       {s}
                     </span>
@@ -102,11 +102,11 @@ export default async function ProjectsPage({
                 </div>
               </section>
 
-              <section className="mt-6 rounded-lg border-l-2 border-accent/50 bg-ink-800/40 px-5 py-4">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <section className="mt-6 rounded-lg border-l-2 border-primary/50 bg-surface/40 px-5 py-4">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-faint">
                   {labels.learnings}
                 </h3>
-                <p className="mt-1.5 text-sm italic leading-relaxed text-slate-300">{c.learnings}</p>
+                <p className="mt-1.5 text-sm italic leading-relaxed text-muted">{c.learnings}</p>
               </section>
             </article>
           </Reveal>

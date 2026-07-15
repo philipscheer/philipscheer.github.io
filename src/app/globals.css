@@ -2,16 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Semantic color tokens — Petrol Teal brand (Scheer Tecnologia).
+ * Values are RGB triplets so Tailwind can apply opacity via
+ * rgb(var(--c-x) / <alpha-value>). Light is the default; dark is
+ * opted in via data-theme="dark" on <html> (set pre-paint).
+ * See design.md for the palette rationale.
+ */
+:root {
+  --c-bg: 245 248 248;
+  --c-surface: 255 255 255;
+  --c-line: 15 42 51;
+  --c-fg: 14 34 41;
+  --c-muted: 63 84 92;
+  --c-faint: 107 129 137;
+  --c-primary: 15 118 110;
+  --c-primary-hover: 17 94 89;
+  --c-primary-fg: 255 255 255;
+  --c-accent: 180 83 9;
+  --c-ok: 5 150 105;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --c-bg: 10 20 24;
+  --c-surface: 16 30 36;
+  --c-line: 148 163 184;
+  --c-fg: 231 238 240;
+  --c-muted: 159 179 186;
+  --c-faint: 100 128 138;
+  --c-primary: 20 184 166;
+  --c-primary-hover: 45 212 191;
+  --c-primary-fg: 5 19 26;
+  --c-accent: 245 158 11;
+  --c-ok: 52 211 153;
+  color-scheme: dark;
+}
+
+/* No-JS / no-preference fallback: follow the OS when no explicit choice. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --c-bg: 10 20 24;
+    --c-surface: 16 30 36;
+    --c-line: 148 163 184;
+    --c-fg: 231 238 240;
+    --c-muted: 159 179 186;
+    --c-faint: 100 128 138;
+    --c-primary: 20 184 166;
+    --c-primary-hover: 45 212 191;
+    --c-primary-fg: 5 19 26;
+    --c-accent: 245 158 11;
+    --c-ok: 52 211 153;
+    color-scheme: dark;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-ink-950 text-slate-300 antialiased;
+  @apply bg-bg text-muted antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
-  @apply bg-accent/30 text-white;
+  @apply bg-primary/30 text-fg;
 }
 
 .reveal {
