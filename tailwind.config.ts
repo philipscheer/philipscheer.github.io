@@ -1,22 +1,27 @@
 import type { Config } from 'tailwindcss';
 import typography from '@tailwindcss/typography';
 
+const token = (name: string) => `rgb(var(${name}) / <alpha-value>)`;
+
 const config: Config = {
+  darkMode: ['selector', '[data-theme="dark"]'],
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        ink: {
-          950: '#070b14',
-          900: '#0b1120',
-          800: '#101a30',
-          700: '#1a2740',
+        bg: token('--c-bg'),
+        surface: token('--c-surface'),
+        line: token('--c-line'),
+        fg: token('--c-fg'),
+        muted: token('--c-muted'),
+        faint: token('--c-faint'),
+        primary: {
+          DEFAULT: token('--c-primary'),
+          hover: token('--c-primary-hover'),
+          fg: token('--c-primary-fg'),
         },
-        accent: {
-          DEFAULT: '#38bdf8',
-          soft: '#7dd3fc',
-          emerald: '#34d399',
-        },
+        accent: token('--c-accent'),
+        ok: token('--c-ok'),
       },
       fontFamily: {
         sans: [

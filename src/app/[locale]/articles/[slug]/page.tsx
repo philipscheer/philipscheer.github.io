@@ -60,13 +60,13 @@ export default async function ArticlePage({
     <article className="mx-auto max-w-3xl px-5 py-16 md:py-20">
       <Link
         href={`/${dict.locale}/articles/`}
-        className="text-sm text-slate-500 transition-colors hover:text-accent"
+        className="text-sm text-faint transition-colors hover:text-primary"
       >
         {t.backToArticles}
       </Link>
 
       <header className="mt-6">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-faint">
           <span>
             {t.publishedLabel} {formatDate(article.date, dict.locale as Locale)}
           </span>
@@ -75,15 +75,15 @@ export default async function ArticlePage({
             {article.readingMinutes} {t.minuteRead}
           </span>
         </div>
-        <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl">
+        <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-fg md:text-4xl">
           {article.title}
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-slate-400">{article.description}</p>
+        <p className="mt-4 text-lg leading-relaxed text-muted">{article.description}</p>
         <div className="mt-5 flex flex-wrap gap-2">
           {article.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-slate-400"
+              className="rounded-full border border-line/10 bg-line/5 px-2.5 py-0.5 text-xs text-muted"
             >
               {tag}
             </span>
@@ -93,10 +93,10 @@ export default async function ArticlePage({
 
       <ArticleBody html={article.html} />
 
-      <footer className="mt-14 border-t border-white/5 pt-8">
+      <footer className="mt-14 border-t border-line/5 pt-8">
         <Link
           href={`/${dict.locale}/contact/`}
-          className="inline-block rounded-lg bg-accent px-6 py-3.5 text-sm font-semibold text-ink-950 transition hover:bg-accent-soft"
+          className="inline-block rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
         >
           {dict.home.recruiterCta.button}
         </Link>

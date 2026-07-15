@@ -23,25 +23,25 @@ export default async function ExperiencePage({
 
   return (
     <div className="mx-auto max-w-content px-5 py-16 md:py-20">
-      <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">{e.title}</h1>
-      <p className="mt-3 text-lg text-slate-400">{e.intro}</p>
+      <h1 className="text-3xl font-bold tracking-tight text-fg md:text-5xl">{e.title}</h1>
+      <p className="mt-3 text-lg text-muted">{e.intro}</p>
 
-      <ol className="relative mt-12 space-y-12 border-l border-white/10 pl-8">
+      <ol className="relative mt-12 space-y-12 border-l border-line/10 pl-8">
         {e.items.map((item) => (
           <li key={`${item.company}-${item.period}`} className="relative">
             <span
-              className="absolute -left-[37px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-accent bg-ink-950"
+              className="absolute -left-[37px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-primary bg-bg"
               aria-hidden="true"
             />
             <Reveal>
-              <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
+              <p className="text-xs font-medium uppercase tracking-wider text-faint">
                 {item.period} · {item.location}
               </p>
-              <h2 className="mt-1.5 text-xl font-semibold text-white">{item.role}</h2>
-              <p className="mt-0.5 text-sm font-medium text-accent">{item.company}</p>
+              <h2 className="mt-1.5 text-xl font-semibold text-fg">{item.role}</h2>
+              <p className="mt-0.5 text-sm font-medium text-primary">{item.company}</p>
               <ul className="mt-4 space-y-3">
                 {item.bullets.map((b, i) => (
-                  <li key={i} className="text-sm leading-relaxed text-slate-400">
+                  <li key={i} className="text-sm leading-relaxed text-muted">
                     {b}
                   </li>
                 ))}
@@ -53,22 +53,22 @@ export default async function ExperiencePage({
 
       <div className="mt-16 grid gap-8 md:grid-cols-3">
         <Reveal>
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-accent">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
             {e.educationTitle}
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-300">{e.education}</p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">{e.education}</p>
         </Reveal>
         <Reveal>
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-accent">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
             {e.certificationsTitle}
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-300">{e.certifications}</p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">{e.certifications}</p>
         </Reveal>
         <Reveal>
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-accent">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
             {e.languagesTitle}
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-300">{e.languages}</p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">{e.languages}</p>
         </Reveal>
       </div>
     </div>
