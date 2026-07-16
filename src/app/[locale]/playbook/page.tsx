@@ -31,10 +31,10 @@ export default async function PlaybookPage({
           {p.templatesTitle}
         </h2>
       </Reveal>
-      <div className="mt-5 grid gap-6 md:grid-cols-3">
+      <div className="stagger mt-5 grid gap-6 md:grid-cols-3">
         {p.templates.map((t) => (
           <Reveal key={t.name}>
-            <article className="flex h-full flex-col rounded-xl border border-line/5 bg-surface/50 p-6 transition-colors hover:border-primary/30">
+            <article className="flex h-full flex-col rounded-xl border border-line/5 bg-surface/50 p-6 lift transition-colors hover:border-primary/30">
               <h3 className="font-mono text-base font-semibold text-fg">{t.name}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{t.description}</p>
               <a
@@ -54,7 +54,7 @@ export default async function PlaybookPage({
           {p.checklistsTitle}
         </h2>
       </Reveal>
-      <div className="mt-5 grid gap-6 md:grid-cols-3">
+      <div className="stagger mt-5 grid gap-6 md:grid-cols-3">
         {p.checklists.map((c) => (
           <Reveal key={c.title}>
             <article className="h-full rounded-xl border border-line/5 bg-surface/50 p-6">

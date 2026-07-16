@@ -56,11 +56,11 @@ export default async function AboutPage({
         <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
           {a.valuesTitle}
         </h2>
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
+        <div className="stagger mt-5 grid gap-5 md:grid-cols-2">
           {a.values.map((v) => (
             <article
               key={v.title}
-              className="rounded-xl border border-line/5 bg-surface/50 p-6 transition-colors hover:border-primary/30"
+              className="rounded-xl border border-line/5 bg-surface/50 p-6 lift transition-colors hover:border-primary/30"
             >
               <h3 className="text-base font-semibold text-fg">{v.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted">{v.body}</p>

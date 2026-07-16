@@ -37,7 +37,7 @@ export default async function ArticlesPage({
             <Reveal key={a.slug}>
               <Link
                 href={`/${dict.locale}/articles/${a.slug}/`}
-                className="block rounded-xl border border-line/5 bg-surface/50 p-7 transition-colors hover:border-primary/30"
+                className="block rounded-xl border border-line/5 bg-surface/50 p-7 lift transition-colors hover:border-primary/30"
               >
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-faint">
                   <span>

@@ -32,7 +32,7 @@ export default async function ProjectsPage({
           <Reveal key={c.slug}>
             <article
               id={c.slug}
-              className="rounded-2xl border border-line/5 bg-surface/50 p-7 transition-colors hover:border-primary/25 md:p-9"
+              className="rounded-2xl border border-line/5 bg-surface/50 p-7 lift transition-colors hover:border-primary/25 md:p-9"
             >
               <header>
                 <p className="text-xs font-semibold uppercase tracking-wider text-primary">

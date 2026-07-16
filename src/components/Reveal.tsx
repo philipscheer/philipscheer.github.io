@@ -1,13 +1,16 @@
 'use client';
 
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 
 export default function Reveal({
   children,
   className = '',
+  delay,
 }: {
   children: ReactNode;
   className?: string;
+  /** Reveal delay in ms (for manual staggering outside a .stagger parent). */
+  delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -29,8 +32,11 @@ export default function Reveal({
     return () => observer.disconnect();
   }, []);
 
+  const style =
+    delay != null ? ({ '--reveal-delay': `${delay}ms` } as CSSProperties) : undefined;
+
   return (
-    <div ref={ref} className={`reveal ${className}`}>
+    <div ref={ref} className={`reveal ${className}`} style={style}>
       {children}
     </div>
   );
