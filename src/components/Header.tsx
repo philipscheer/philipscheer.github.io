@@ -43,7 +43,8 @@ export default function Header({ dict }: { dict: Dictionary }) {
             <Link
               key={l.href}
               href={l.href}
-              className={`text-sm transition-colors hover:text-fg ${
+              data-active={isActive(l.href) ? 'true' : 'false'}
+              className={`nav-underline text-sm transition-colors hover:text-fg ${
                 isActive(l.href) ? 'text-fg' : 'text-muted'
               }`}
             >

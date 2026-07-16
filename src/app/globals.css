@@ -70,10 +70,15 @@ body {
   @apply bg-primary/30 text-fg;
 }
 
+/* --- Motion layer (subtle / executive) -------------------------------- */
+
+/* Scroll reveal — Reveal.tsx toggles .visible when the element enters view. */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal.visible {
@@ -81,10 +86,77 @@ body {
   transform: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
+/* Sequential stagger for grids/lists whose direct children are .reveal. */
+.stagger > .reveal:nth-child(1) { --reveal-delay: 0ms; }
+.stagger > .reveal:nth-child(2) { --reveal-delay: 70ms; }
+.stagger > .reveal:nth-child(3) { --reveal-delay: 140ms; }
+.stagger > .reveal:nth-child(4) { --reveal-delay: 210ms; }
+.stagger > .reveal:nth-child(5) { --reveal-delay: 280ms; }
+.stagger > .reveal:nth-child(6) { --reveal-delay: 350ms; }
+.stagger > .reveal:nth-child(7) { --reveal-delay: 420ms; }
+.stagger > .reveal:nth-child(8) { --reveal-delay: 490ms; }
+.stagger > .reveal:nth-child(n + 9) { --reveal-delay: 560ms; }
+
+/* On-load entrance for above-the-fold content (no JS, no scroll trigger). */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
     opacity: 1;
     transform: none;
+  }
+}
+
+.animate-in {
+  opacity: 0;
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+@layer components {
+  /* Subtle hover lift for interactive cards. */
+  .lift {
+    @apply transition-transform duration-300 ease-out will-change-transform;
+  }
+  .lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Animated underline for nav links (grows from the left on hover/active). */
+  .nav-underline {
+    position: relative;
+  }
+  .nav-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 1.5px;
+    border-radius: 1px;
+    background: rgb(var(--c-primary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+  .nav-underline:hover::after,
+  .nav-underline[data-active='true']::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .animate-in,
+  .lift {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .nav-underline::after {
     transition: none;
   }
 }

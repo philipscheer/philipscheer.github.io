@@ -34,7 +34,7 @@ export default async function RecruitersPage({
         </p>
       </Reveal>
 
-      <div className="mt-10 grid gap-8 md:grid-cols-2">
+      <div className="stagger mt-10 grid gap-8 md:grid-cols-2">
         <Reveal>
           <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">{r.rolesTitle}</h2>
           <ul className="mt-4 space-y-2.5">

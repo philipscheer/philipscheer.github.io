@@ -31,7 +31,7 @@ export default async function HomePage({
           aria-hidden="true"
         />
         <div className="mx-auto max-w-content px-5 pb-20 pt-16 md:pb-28 md:pt-24">
-          <p className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary">
+          <p className="animate-in inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-ok" />
@@ -39,15 +39,17 @@ export default async function HomePage({
             {home.availability}
           </p>
 
-          <h1 className="mt-7 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-fg md:text-6xl">
+          <h1 className="animate-in [--enter-delay:80ms] mt-7 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-fg md:text-6xl">
             {home.headline}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
+          <p className="animate-in [--enter-delay:160ms] mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
             {home.subheadline}
           </p>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-faint">{home.pitch}</p>
+          <p className="animate-in [--enter-delay:220ms] mt-5 max-w-2xl text-base leading-relaxed text-faint">
+            {home.pitch}
+          </p>
 
-          <div className="mt-6 flex flex-wrap items-center gap-2">
+          <div className="animate-in [--enter-delay:300ms] mt-6 flex flex-wrap items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-faint">
               {home.targetRolesLabel}:
             </span>
@@ -61,7 +63,7 @@ export default async function HomePage({
             ))}
           </div>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="animate-in [--enter-delay:380ms] mt-9 flex flex-wrap gap-3">
             <Link
               href={`/${dict.locale}/resume/`}
               className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
@@ -94,7 +96,7 @@ export default async function HomePage({
 
       {/* Metrics */}
       <section className="border-y border-line/5 bg-surface/60">
-        <div className="mx-auto grid max-w-content grid-cols-2 gap-px px-5 py-10 md:grid-cols-4 md:py-12">
+        <div className="stagger mx-auto grid max-w-content grid-cols-2 gap-px px-5 py-10 md:grid-cols-4 md:py-12">
           {home.metrics.map((m) => (
             <Reveal key={m.value} className="px-4 py-3 text-center md:text-left">
               <p className="text-3xl font-extrabold text-fg md:text-4xl">{m.value}</p>
@@ -115,10 +117,10 @@ export default async function HomePage({
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="stagger mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {home.technical.areas.map((area) => (
             <Reveal key={area.title}>
-              <article className="h-full rounded-xl border border-line/5 bg-surface/50 p-6 transition-colors hover:border-primary/30">
+              <article className="lift h-full rounded-xl border border-line/5 bg-surface/50 p-6 transition-colors hover:border-primary/30">
                 <h3 className="text-base font-semibold text-fg">{area.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{area.body}</p>
               </article>
