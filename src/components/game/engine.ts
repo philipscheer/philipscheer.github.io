@@ -1127,6 +1127,16 @@ export class CareerQuestEngine {
       pants = '#2a3648';
       hood = false;
     }
+    let polo = false;
+    if (zi >= 9) {
+      // founder era — the dark gray polo
+      top = '#4a5563';
+      topL = shade(top, 0.22);
+      shirt = null;
+      tie = null;
+      pants = '#31394a';
+      polo = true;
+    }
 
     const walking = p.move !== 0 && p.onGround;
     const phase = this.reduced ? 0 : Math.floor(this.t * 9) % 4;
@@ -1151,9 +1161,13 @@ export class CareerQuestEngine {
       o.fillRect(Math.round(px), Math.round(py), Math.round(w), Math.round(h));
     };
 
-    const skin = '#e8b98c';
-    const skinD = '#c99a6e';
-    const hair = '#38302c';
+    const skin = '#eec39a';
+    const skinD = '#d3a578';
+    const hair = '#9c8657'; // dark blond, swept back
+    const hairD = '#7d6a45';
+    const beard = '#8a6f4c';
+    const beardD = '#6f583b';
+    const frame = '#1a1c22'; // glasses
     const shoe = '#181c26';
 
     // legs (4-phase walk)
@@ -1172,6 +1186,11 @@ export class CareerQuestEngine {
       if (tie) P(-1, -18 + idle, 2, 5, tie);
       P(-5, -18 + idle, 10, 1, shade(top, 0.15)); // collar
     }
+    if (polo) {
+      P(-5, -18 + idle, 10, 1, shade(top, -0.3)); // polo collar
+      P(-1, -17 + idle, 2, 3, shade(top, -0.2)); // placket
+      P(0, -16 + idle, 1, 1, '#c9b48a'); // button
+    }
     if (hood) {
       P(-5, -19 + idle, 10, 2, shade(top, -0.25)); // hood roll
     }
@@ -1182,16 +1201,39 @@ export class CareerQuestEngine {
     P(4, -10 + idle + armA, 2, 2, skin);
     P(-7, -10 + idle - armA, 2, 2, skin);
 
-    // head with outline, hair, face shading
+    // head with outline (front = +x)
     P(-5, -28 + idle, 10, 10, OUTLINE);
     P(-4, -27 + idle, 8, 8, skin);
-    P(2, -27 + idle, 2, 8, skinD); // back-of-head shade
-    P(-4, -28 + idle, 8, 3, hair);
-    P(-4, -25 + idle, 2, 3, hair); // sideburn
-    P(2, -28 + idle, 2, 4, shade(hair, -0.3));
-    // face: eye + mouth pixel
-    P(1, -24 + idle, 2, 2, '#20242e');
-    P(0, -21 + idle, 2, 1, skinD);
+    P(-4, -27 + idle, 2, 8, skinD); // back-of-head shade
+
+    // hair swept back: volume on top/back, forehead showing at the front
+    P(-5, -28 + idle, 8, 2, hair);
+    P(-2, -28 + idle, 4, 1, shade(hair, 0.2)); // combed-back highlight
+    P(-5, -26 + idle, 2, 4, hairD); // short faded side/back
+    P(-6, -27 + idle, 1, 4, hairD); // back volume
+    P(3, -28 + idle, 1, 1, skin); // receded front hairline
+
+    // rectangular black glasses + temple arm
+    P(0, -25 + idle, 5, 1, frame); // top rim
+    P(0, -22 + idle, 5, 1, frame); // bottom rim
+    P(0, -25 + idle, 1, 4, frame); // inner rim
+    P(4, -25 + idle, 1, 4, frame); // outer rim
+    P(1, -24 + idle, 3, 2, '#f2ddc4'); // lens
+    P(2, -24 + idle, 1, 2, '#20242e'); // eye behind the lens
+    P(-4, -24 + idle, 4, 1, frame); // temple arm to the ear
+
+    if (zi >= 3) {
+      // full beard + goatee, grown from the consulting years on
+      P(-2, -21 + idle, 7, 2, beard);
+      P(-3, -22 + idle, 2, 3, beardD); // jawline up the sideburn
+      P(1, -22 + idle, 4, 1, beardD); // mustache
+      P(0, -19 + idle, 5, 1, beard); // chin
+      P(1, -20 + idle, 3, 1, beardD); // goatee shadow
+      P(1, -21 + idle, 2, 1, '#5a4630'); // smile line
+    } else {
+      // young and clean-shaven in the early years
+      P(1, -20 + idle, 3, 1, skinD); // smile
+    }
 
     o.restore();
   }
