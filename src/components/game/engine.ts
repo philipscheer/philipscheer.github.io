@@ -384,12 +384,15 @@ export class CareerQuestEngine {
     this.drawSky(pal, dark, camX);
     this.drawFarHills(pal, camX);
     this.drawBuildings(pal, camX, 0.35, 0.55, true);
-    this.drawBuildings(pal, camX, 0.6, 0.9, false);
-    this.drawGround(pal, camX);
 
     const zFirst = Math.max(0, Math.floor(camX / ZONE_WIDTH));
     const zLast = Math.min(this.zones.length - 1, Math.floor((camX + vw) / ZONE_WIDTH) + 1);
     const texts: { text: string; x: number; y: number; size: number; color: string; stroke?: boolean }[] = [];
+
+    // Real-world landmark scenery per era (behind the ground props)
+    for (let zi = zFirst; zi <= zLast; zi++) this.drawLandmarks(zi, camX, dark);
+
+    this.drawGround(pal, camX);
 
     for (let zi = zFirst; zi <= zLast; zi++) {
       this.drawSign(zi, camX, texts);
@@ -553,6 +556,390 @@ export class CareerQuestEngine {
     for (let i = first; i < first + Math.ceil(this.vw / 14) + 2; i++) {
       const r = mulberry32(i * 389 + 3)();
       if (r > 0.5) this.px(i * 14 - camX + r * 6, gy + 5, 1, 6 + r * 8, shade(pal.ground, -0.18));
+    }
+  }
+
+  // ——— landmark scenery (one real place per era) ——————————————
+
+  private drawLandmarks(zi: number, camX: number, dark: boolean) {
+    const s = zi * ZONE_WIDTH - camX; // zone origin on screen
+    if (s > this.vw + 80 || s + ZONE_WIDTH < -80) return;
+    const g = this.groundY - 6; // background floor line (behind walkable strip)
+    const win = dark ? '#ffe9a8' : '#7e94ad';
+
+    switch (zi) {
+      case 0: this.lmSchool(s + 150, g); break;
+      case 1: this.lmCopan(s + 130, g, win); break;
+      case 2: this.lmBanespa(s + 170, g, win); break;
+      case 3: this.lmPonteEstaiada(s + 170, g, win); break;
+      case 4: this.lmFiesp(s + 160, g, win); break;
+      case 5: // 99/DiDi world tour — the featured zone
+        this.lmNewYork(s + 70, g, win);
+        this.lmGoldenGate(s + 225, g);
+        this.lmBeijing(s + 372, g);
+        break;
+      case 6: this.lmShops(s + 130, g, win); break;
+      case 7: this.lmHomeOffice(s + 150, g); break;
+      case 8: this.lmFactory(s + 150, g); break;
+      case 9: this.lmPharma(s + 150, g); break;
+      case 10: this.lmMasp(s + 150, g, win); break;
+      case 11: this.lmStadium(s + 170, g); break;
+      case 12: this.lmHorizon(s + 140, g); break;
+    }
+  }
+
+  private winGrid(x: number, y: number, w: number, h: number, color: string, seed: number, sx = 5, sy = 7) {
+    const rnd = mulberry32(seed);
+    for (let cx = x + 2; cx < x + w - 3; cx += sx) {
+      for (let cy = y + 3; cy < y + h - 4; cy += sy) {
+        if (rnd() > 0.4) this.px(cx, cy, 2, 3, color);
+      }
+    }
+  }
+
+  /** Clovis Bevilacqua — schoolhouse with the Brazilian flag. */
+  private lmSchool(x: number, g: number) {
+    this.px(x, g - 34, 64, 34, '#c9a37a');
+    this.px(x, g - 34, 64, 2, '#a57f56');
+    this.px(x - 3, g - 40, 70, 6, '#8a4b32'); // roof
+    this.px(x + 4, g - 46, 56, 6, '#8a4b32');
+    this.px(x + 28, g - 14, 10, 14, '#5b3a24'); // door
+    this.px(x + 6, g - 26, 8, 8, '#d7e6f2'); // windows
+    this.px(x + 50, g - 26, 8, 8, '#d7e6f2');
+    this.px(x + 30, g - 43, 6, 6, '#f2ecdc'); // clock
+    this.px(x + 32, g - 41, 1, 2, '#3a3020');
+    // flagpole + Brazil flag (waving 2-frame)
+    const wave = this.reduced ? 0 : Math.floor(this.t * 2) % 2;
+    this.px(x + 74, g - 52, 2, 52, '#8d99ae');
+    this.px(x + 76, g - 50 + wave, 12, 8, '#159947');
+    this.px(x + 79, g - 48 + wave, 6, 4, '#f6d31c');
+    this.px(x + 81, g - 47 + wave, 2, 2, '#1b3fa0');
+  }
+
+  /** Datatex era — Copan curve + Edifício Itália, downtown São Paulo. */
+  private lmCopan(x: number, g: number, win: string) {
+    const off = [0, 3, 5, 6, 5, 3, 0, -2];
+    for (let i = 0; i < 8; i++) {
+      this.px(x + i * 9, g - 48 + off[i] * 0, 9, 48, i % 2 ? '#9aa7b5' : '#8b98a6');
+      for (let y = g - 44; y < g - 4; y += 4) this.px(x + i * 9, y + off[i], 9, 1, '#6f7c8a');
+    }
+    // Edifício Itália
+    this.px(x + 96, g - 66, 18, 66, '#b3a48e');
+    this.px(x + 98, g - 70, 14, 4, '#9d8f7a');
+    this.winGrid(x + 96, g - 64, 18, 60, win, 101, 4, 6);
+  }
+
+  /** BR part / Synchro — Altino Arantes (Banespão) skyline. */
+  private lmBanespa(x: number, g: number, win: string) {
+    this.px(x - 24, g - 40, 20, 40, '#7d8a99');
+    this.winGrid(x - 24, g - 40, 20, 40, win, 33);
+    this.px(x, g - 58, 26, 58, '#a89f8d');
+    this.px(x + 3, g - 66, 20, 8, '#a89f8d');
+    this.px(x + 6, g - 72, 14, 6, '#998f7d');
+    this.px(x + 9, g - 78, 8, 6, '#8a8070'); // stepped crown
+    this.px(x + 12, g - 84, 2, 6, '#6e6557'); // antenna
+    this.winGrid(x, g - 56, 26, 52, win, 44, 5, 6);
+    this.px(x + 34, g - 34, 18, 34, '#8b96a4');
+    this.winGrid(x + 34, g - 34, 18, 34, win, 55);
+  }
+
+  /** IT Convergence — Ponte Estaiada, Berrini. */
+  private lmPonteEstaiada(x: number, g: number, win: string) {
+    // deck
+    this.px(x - 80, g - 16, 170, 3, '#c9ced8');
+    this.px(x - 80, g - 13, 170, 2, '#8d99ae');
+    // X mast
+    for (let i = 0; i < 26; i++) {
+      this.px(x - 10 + i, g - 16 - i * 1.6, 3, 2, '#e3e7ee');
+      this.px(x + 13 - i, g - 16 - i * 1.6, 3, 2, '#e3e7ee');
+    }
+    // cables from apex
+    for (let c = 1; c <= 5; c++) {
+      const tx = x + c * 13;
+      const txm = x - c * 13;
+      for (let i = 0; i < 12; i++) {
+        this.px(x + 1 + ((tx - x - 1) * i) / 12, g - 56 + ((g - 16 - (g - 56)) * i) / 12, 1, 1, '#f2f4f8');
+        this.px(x + 1 + ((txm - x - 1) * i) / 12, g - 56 + ((g - 16 - (g - 56)) * i) / 12, 1, 1, '#f2f4f8');
+      }
+    }
+    // Berrini glass towers
+    this.px(x + 110, g - 46, 20, 46, '#5f7d96');
+    this.winGrid(x + 110, g - 46, 20, 46, win, 66, 4, 5);
+    this.px(x + 134, g - 36, 16, 36, '#6d8aa2');
+    this.winGrid(x + 134, g - 36, 16, 36, win, 77, 4, 5);
+  }
+
+  /** Synchro — FIESP pyramid + Paulista antenna. */
+  private lmFiesp(x: number, g: number, win: string) {
+    for (let i = 0; i < 12; i++) {
+      const w = 48 - i * 4;
+      this.px(x - w / 2, g - 5 - i * 5, w, 5, i % 2 ? '#9b93a8' : '#8f8799');
+    }
+    this.winGrid(x - 18, g - 44, 36, 40, win, 88, 6, 8);
+    // antenna mast with blinking light
+    this.px(x + 70, g - 70, 3, 70, '#7a7f8c');
+    this.px(x + 66, g - 50, 11, 2, '#7a7f8c');
+    this.px(x + 66, g - 32, 11, 2, '#7a7f8c');
+    const blink = this.reduced ? 1 : Math.floor(this.t * 2) % 2;
+    if (blink) this.px(x + 70, g - 73, 3, 3, '#ff4d5e');
+  }
+
+  /** 99/DiDi — New York: Statue of Liberty + Empire State. */
+  private lmNewYork(x: number, g: number, win: string) {
+    const cu = '#3d9b82'; // copper green
+    const cuD = '#2c7a66';
+    // pedestal
+    this.px(x - 7, g - 12, 14, 12, '#b8a88f');
+    this.px(x - 5, g - 16, 10, 4, '#a89878');
+    // body / robe
+    this.px(x - 4, g - 34, 8, 18, cu);
+    this.px(x + 1, g - 34, 3, 18, cuD);
+    // head + crown spikes
+    this.px(x - 2, g - 40, 5, 6, cu);
+    for (let i = -3; i <= 3; i += 2) this.px(x + i, g - 43, 1, 3, cuD);
+    // torch arm (raised) with flame
+    this.px(x + 4, g - 46, 2, 12, cu);
+    const flame = this.reduced ? 0 : Math.floor(this.t * 4) % 2;
+    this.px(x + 3, g - 50 + flame, 4, 4, '#ffd23e');
+    this.px(x + 4, g - 51 + flame, 2, 2, '#fff3ae');
+    // tablet arm
+    this.px(x - 7, g - 30, 3, 6, cuD);
+    // Empire State Building
+    const ex = x + 42;
+    this.px(ex, g - 46, 22, 46, '#9aa2b2');
+    this.px(ex + 3, g - 60, 16, 14, '#8d95a5');
+    this.px(ex + 6, g - 70, 10, 10, '#808898');
+    this.px(ex + 9, g - 76, 4, 6, '#737b8b');
+    this.px(ex + 10, g - 84, 2, 8, '#666e7e'); // spire
+    this.winGrid(ex, g - 44, 22, 42, win, 111, 4, 5);
+    this.winGrid(ex + 3, g - 58, 16, 12, win, 112, 4, 5);
+    // Chrysler-ish neighbor
+    this.px(ex + 30, g - 38, 14, 38, '#a7afbf');
+    this.px(ex + 33, g - 44, 8, 6, '#99a1b1');
+    this.px(ex + 36, g - 48, 2, 4, '#8b93a3');
+    this.winGrid(ex + 30, g - 36, 14, 34, win, 113, 4, 5);
+  }
+
+  /** 99/DiDi — Silicon Valley: Golden Gate + rolling hills. */
+  private lmGoldenGate(x: number, g: number) {
+    const red = '#c0453a';
+    const redD = '#93332a';
+    // hills behind
+    this.px(x - 30, g - 14, 40, 14, '#5e7355');
+    this.px(x - 14, g - 20, 34, 20, '#54684c');
+    this.px(x + 70, g - 16, 46, 16, '#5e7355');
+    // deck
+    this.px(x - 20, g - 18, 130, 3, red);
+    this.px(x - 20, g - 15, 130, 1, redD);
+    // towers (two portals)
+    for (const tx of [x + 12, x + 74]) {
+      this.px(tx, g - 52, 4, 34, red);
+      this.px(tx + 10, g - 52, 4, 34, red);
+      this.px(tx, g - 52, 14, 3, red);
+      this.px(tx, g - 40, 14, 2, red);
+      this.px(tx, g - 28, 14, 2, red);
+      this.px(tx + 3, g - 49, 1, 31, redD);
+      this.px(tx + 13, g - 49, 1, 31, redD);
+    }
+    // sagging main cable between towers + side spans
+    const t1 = x + 19;
+    const t2 = x + 81;
+    for (let i = 0; i <= 20; i++) {
+      const cx = t1 + ((t2 - t1) * i) / 20;
+      const sagT = i / 20;
+      const cy = g - 52 + Math.round(Math.sin(sagT * Math.PI) * 22);
+      this.px(cx, cy, 1, 1, redD);
+      if (i % 3 === 0 && cy < g - 18) this.px(cx, cy, 1, g - 18 - cy, 'rgba(147,51,42,0.55)');
+    }
+    for (let i = 0; i <= 8; i++) {
+      this.px(t1 - 2 - i * 2, g - 52 + i * 4, 1, 1, redD);
+      this.px(t2 + 2 + i * 2, g - 52 + i * 4, 1, 1, redD);
+    }
+  }
+
+  /** 99/DiDi — Beijing: Temple of Heaven + Great Wall. */
+  private lmBeijing(x: number, g: number) {
+    const roof = '#2b5ea7';
+    const roofD = '#1e4479';
+    const body = '#a53030';
+    // Temple of Heaven — three round tiers
+    this.px(x - 4, g - 8, 40, 8, '#d8d2c2'); // marble base
+    this.px(x, g - 16, 32, 8, body);
+    this.px(x - 4, g - 20, 40, 4, roof);
+    this.px(x - 2, g - 21, 36, 1, roofD);
+    this.px(x + 4, g - 28, 24, 8, body);
+    this.px(x, g - 32, 32, 4, roof);
+    this.px(x + 2, g - 33, 28, 1, roofD);
+    this.px(x + 9, g - 40, 14, 7, body);
+    this.px(x + 5, g - 44, 22, 4, roof);
+    this.px(x + 14, g - 48, 4, 4, roofD);
+    this.px(x + 15, g - 50, 2, 2, '#f6d31c'); // gold finial
+    // Great Wall snaking on a hill toward the boss
+    const wx = x + 52;
+    for (let i = 0; i < 14; i++) {
+      const hx = wx + i * 6;
+      const hy = g - 10 - Math.round(Math.sin(i * 0.55) * 6) - i;
+      this.px(hx, hy, 6, g - hy, '#6b6353'); // rampart body
+      this.px(hx, hy - 2, 6, 2, '#7d7565');
+      if (i % 2 === 0) this.px(hx + 1, hy - 4, 2, 2, '#7d7565'); // crenellation
+    }
+    // watchtower
+    const twx = wx + 60;
+    const twy = g - 34;
+    this.px(twx, twy, 12, 22, '#7d7565');
+    this.px(twx - 2, twy - 4, 16, 4, '#8a8272');
+    this.px(twx + 2, twy - 8, 8, 4, '#6b6353');
+    this.px(twx + 5, twy + 6, 3, 4, '#3a3428'); // window
+    // red lantern
+    const sway = this.reduced ? 0 : Math.round(Math.sin(this.t * 2));
+    this.px(x + 44 + sway, g - 36, 4, 5, '#e03131');
+    this.px(x + 45 + sway, g - 31, 2, 2, '#f6d31c');
+  }
+
+  /** Restoque — fashion storefronts. */
+  private lmShops(x: number, g: number, win: string) {
+    const awn = ['#c94f6d', '#3f7fb5', '#4a9d6e'];
+    for (let i = 0; i < 3; i++) {
+      const sx = x + i * 46;
+      this.px(sx, g - 30, 40, 30, '#b0a696');
+      // striped awning
+      for (let a = 0; a < 6; a++) {
+        this.px(sx + 2 + a * 6, g - 22, 6, 4, a % 2 ? awn[i] : '#efe9dc');
+      }
+      this.px(sx + 4, g - 16, 14, 12, '#dfe8ef'); // display window
+      this.px(sx + 7, g - 13, 3, 7, '#5a4a58'); // mannequin
+      this.px(sx + 12, g - 12, 3, 6, '#7a5a68');
+      this.px(sx + 24, g - 14, 10, 14, '#5b3a24'); // door
+      this.px(sx + 6, g - 27, 28, 3, '#8f8577'); // sign board
+    }
+    void win;
+  }
+
+  /** Dell — remote work: suburban home office, wifi beaming to the world. */
+  private lmHomeOffice(x: number, g: number) {
+    // main house
+    this.px(x, g - 24, 40, 24, '#b8a892');
+    this.px(x - 3, g - 32, 46, 8, '#6e5a48'); // roof
+    this.px(x + 4, g - 38, 8, 6, '#8a7460'); // chimney
+    this.px(x + 6, g - 18, 10, 8, '#ffd98c'); // lit office window
+    this.px(x + 8, g - 16, 2, 2, '#6b5334'); // person pixel at the desk
+    this.px(x + 26, g - 14, 9, 14, '#5b3a24'); // door
+    // antenna + wifi arcs (pulsing)
+    this.px(x + 34, g - 44, 2, 12, '#8d99ae');
+    const pulse = this.reduced ? 2 : Math.floor(this.t * 2.5) % 3;
+    for (let r = 0; r <= pulse; r++) {
+      const rr = 4 + r * 4;
+      this.octx.globalAlpha = 0.7 - r * 0.2;
+      this.px(x + 35 - rr, g - 46 - rr, rr * 2, 1, '#9ecbff');
+      this.px(x + 35 - rr, g - 46 - rr, 1, rr, '#9ecbff');
+      this.px(x + 35 + rr, g - 46 - rr, 1, rr, '#9ecbff');
+      this.octx.globalAlpha = 1;
+    }
+    // neighbor house
+    this.px(x + 66, g - 18, 30, 18, '#a89882');
+    this.px(x + 63, g - 24, 36, 6, '#5e4a38');
+    this.px(x + 72, g - 14, 7, 6, '#ffd98c');
+  }
+
+  /** Dexco — industrial plant with sawtooth roof. */
+  private lmFactory(x: number, g: number) {
+    this.px(x, g - 26, 66, 26, '#8d8478');
+    // sawtooth roof
+    for (let i = 0; i < 3; i++) {
+      const sx = x + i * 22;
+      for (let j = 0; j < 8; j++) this.px(sx + j * 2, g - 26 - j, 2, j + 1, '#6e665c');
+      this.px(sx + 14, g - 34, 2, 8, '#aebdd0'); // skylight glass
+    }
+    this.px(x + 8, g - 18, 8, 8, '#5c554b');
+    this.px(x + 30, g - 18, 8, 8, '#5c554b');
+    this.px(x + 50, g - 14, 10, 14, '#4a4238'); // gate
+    // chimney with drifting smoke
+    this.px(x + 74, g - 44, 8, 44, '#7a7264');
+    this.px(x + 73, g - 46, 10, 3, '#655e52');
+    if (!this.reduced) {
+      const dr = (this.t * 6) % 12;
+      this.octx.globalAlpha = 0.5;
+      this.px(x + 76 + dr * 0.6, g - 50 - dr, 4, 3, '#cfd4dc');
+      this.px(x + 79 + dr * 0.8, g - 56 - dr, 5, 3, '#dde1e8');
+      this.octx.globalAlpha = 1;
+    }
+    // lumber stack (Duratex wood)
+    this.px(x + 92, g - 6, 18, 3, '#9a6b3f');
+    this.px(x + 94, g - 9, 14, 3, '#8a5c32');
+    this.px(x + 96, g - 12, 10, 3, '#7a4e28');
+  }
+
+  /** EMS — pharma plant: clean building, green cross, silos. */
+  private lmPharma(x: number, g: number) {
+    this.px(x, g - 30, 46, 30, '#e3e9f1');
+    this.px(x, g - 30, 46, 2, '#c3ccd8');
+    this.px(x + 5, g - 22, 8, 6, '#b8d2e8');
+    this.px(x + 33, g - 22, 8, 6, '#b8d2e8');
+    this.px(x + 19, g - 14, 9, 14, '#9fb3c8'); // glass door
+    // green cross
+    this.px(x + 19, g - 27, 9, 3, '#1faa59');
+    this.px(x + 22, g - 30, 3, 9, '#1faa59');
+    // silo tanks + pipe
+    for (const tx of [x + 58, x + 74]) {
+      this.px(tx, g - 26, 12, 26, '#c2cbd6');
+      this.px(tx + 1, g - 29, 10, 3, '#aab4c0');
+      this.px(tx + 2, g - 24, 2, 20, '#dbe2ea'); // highlight
+    }
+    this.px(x + 46, g - 20, 12, 2, '#8d99ae'); // pipe to building
+    this.px(x + 70, g - 16, 4, 2, '#8d99ae');
+  }
+
+  /** Crefisa — Av. Paulista: MASP + bank towers. */
+  private lmMasp(x: number, g: number, win: string) {
+    const red = '#c22b2b';
+    // suspended box on two red pillars
+    this.px(x, g - 14, 5, 14, red);
+    this.px(x + 65, g - 14, 5, 14, red);
+    this.px(x - 4, g - 30, 78, 14, '#9aa4b2'); // glass volume
+    this.px(x - 4, g - 30, 78, 2, red); // top beam
+    this.px(x - 4, g - 18, 78, 2, red); // bottom beam
+    for (let i = 0; i < 12; i++) this.px(x + i * 6, g - 27, 1, 8, '#7c8694'); // mullions
+    // bank towers
+    this.px(x + 92, g - 52, 20, 52, '#5f6d80');
+    this.winGrid(x + 92, g - 52, 20, 52, win, 220, 4, 5);
+    this.px(x + 116, g - 42, 16, 42, '#6d7b8e');
+    this.winGrid(x + 116, g - 42, 16, 42, win, 221, 4, 5);
+  }
+
+  /** R10 — stadium under floodlights. */
+  private lmStadium(x: number, g: number) {
+    // bowl
+    this.px(x - 10, g - 20, 120, 20, '#5a6272');
+    this.px(x - 16, g - 14, 132, 14, '#4c5464');
+    this.px(x - 4, g - 24, 108, 4, '#6a7284'); // rim
+    for (let i = 0; i < 13; i++) this.px(x - 6 + i * 9, g - 20, 2, 6, '#3c4454'); // gates
+    this.px(x + 20, g - 18, 60, 3, '#7ec97e'); // pitch glimpse
+    // floodlight masts
+    const glow = this.reduced ? 0.8 : 0.6 + Math.sin(this.t * 3) * 0.25;
+    for (const mx of [x - 22, x + 116]) {
+      this.px(mx, g - 54, 2, 54, '#8d99ae');
+      this.px(mx - 5, g - 58, 12, 5, '#3c4454');
+      this.octx.globalAlpha = glow;
+      for (let i = 0; i < 4; i++) this.px(mx - 4 + i * 3, g - 57, 2, 3, '#fff3ae');
+      this.octx.globalAlpha = 0.12 * glow;
+      // light cone
+      for (let i = 0; i < 18; i++) this.px(mx - 4 - i, g - 54 + i * 2.6, 12 + i * 2, 3, '#fff3ae');
+      this.octx.globalAlpha = 1;
+    }
+  }
+
+  /** Epilogue — open horizon. */
+  private lmHorizon(x: number, g: number) {
+    this.px(x - 40, g - 12, 70, 12, '#3d3968');
+    this.px(x + 10, g - 18, 90, 18, '#343060');
+    this.px(x + 80, g - 10, 70, 10, '#3d3968');
+    // birds
+    if (!this.reduced) {
+      const fl = Math.floor(this.t * 3) % 2;
+      for (const [bx, by] of [[x + 30, g - 66], [x + 44, g - 72], [x + 58, g - 62]] as const) {
+        this.px(bx, by + fl, 2, 1, '#1c1a38');
+        this.px(bx + 3, by + fl, 2, 1, '#1c1a38');
+      }
     }
   }
 
@@ -740,6 +1127,16 @@ export class CareerQuestEngine {
       pants = '#2a3648';
       hood = false;
     }
+    let polo = false;
+    if (zi >= 9) {
+      // founder era — the dark gray polo
+      top = '#4a5563';
+      topL = shade(top, 0.22);
+      shirt = null;
+      tie = null;
+      pants = '#31394a';
+      polo = true;
+    }
 
     const walking = p.move !== 0 && p.onGround;
     const phase = this.reduced ? 0 : Math.floor(this.t * 9) % 4;
@@ -764,9 +1161,13 @@ export class CareerQuestEngine {
       o.fillRect(Math.round(px), Math.round(py), Math.round(w), Math.round(h));
     };
 
-    const skin = '#e8b98c';
-    const skinD = '#c99a6e';
-    const hair = '#38302c';
+    const skin = '#eec39a';
+    const skinD = '#d3a578';
+    const hair = '#9c8657'; // dark blond, swept back
+    const hairD = '#7d6a45';
+    const beard = '#8a6f4c';
+    const beardD = '#6f583b';
+    const frame = '#1a1c22'; // glasses
     const shoe = '#181c26';
 
     // legs (4-phase walk)
@@ -785,6 +1186,11 @@ export class CareerQuestEngine {
       if (tie) P(-1, -18 + idle, 2, 5, tie);
       P(-5, -18 + idle, 10, 1, shade(top, 0.15)); // collar
     }
+    if (polo) {
+      P(-5, -18 + idle, 10, 1, shade(top, -0.3)); // polo collar
+      P(-1, -17 + idle, 2, 3, shade(top, -0.2)); // placket
+      P(0, -16 + idle, 1, 1, '#c9b48a'); // button
+    }
     if (hood) {
       P(-5, -19 + idle, 10, 2, shade(top, -0.25)); // hood roll
     }
@@ -795,16 +1201,39 @@ export class CareerQuestEngine {
     P(4, -10 + idle + armA, 2, 2, skin);
     P(-7, -10 + idle - armA, 2, 2, skin);
 
-    // head with outline, hair, face shading
+    // head with outline (front = +x)
     P(-5, -28 + idle, 10, 10, OUTLINE);
     P(-4, -27 + idle, 8, 8, skin);
-    P(2, -27 + idle, 2, 8, skinD); // back-of-head shade
-    P(-4, -28 + idle, 8, 3, hair);
-    P(-4, -25 + idle, 2, 3, hair); // sideburn
-    P(2, -28 + idle, 2, 4, shade(hair, -0.3));
-    // face: eye + mouth pixel
-    P(1, -24 + idle, 2, 2, '#20242e');
-    P(0, -21 + idle, 2, 1, skinD);
+    P(-4, -27 + idle, 2, 8, skinD); // back-of-head shade
+
+    // hair swept back: volume on top/back, forehead showing at the front
+    P(-5, -28 + idle, 8, 2, hair);
+    P(-2, -28 + idle, 4, 1, shade(hair, 0.2)); // combed-back highlight
+    P(-5, -26 + idle, 2, 4, hairD); // short faded side/back
+    P(-6, -27 + idle, 1, 4, hairD); // back volume
+    P(3, -28 + idle, 1, 1, skin); // receded front hairline
+
+    // rectangular black glasses + temple arm
+    P(0, -25 + idle, 5, 1, frame); // top rim
+    P(0, -22 + idle, 5, 1, frame); // bottom rim
+    P(0, -25 + idle, 1, 4, frame); // inner rim
+    P(4, -25 + idle, 1, 4, frame); // outer rim
+    P(1, -24 + idle, 3, 2, '#f2ddc4'); // lens
+    P(2, -24 + idle, 1, 2, '#20242e'); // eye behind the lens
+    P(-4, -24 + idle, 4, 1, frame); // temple arm to the ear
+
+    if (zi >= 3) {
+      // full beard + goatee, grown from the consulting years on
+      P(-2, -21 + idle, 7, 2, beard);
+      P(-3, -22 + idle, 2, 3, beardD); // jawline up the sideburn
+      P(1, -22 + idle, 4, 1, beardD); // mustache
+      P(0, -19 + idle, 5, 1, beard); // chin
+      P(1, -20 + idle, 3, 1, beardD); // goatee shadow
+      P(1, -21 + idle, 2, 1, '#5a4630'); // smile line
+    } else {
+      // young and clean-shaven in the early years
+      P(1, -20 + idle, 3, 1, skinD); // smile
+    }
 
     o.restore();
   }
