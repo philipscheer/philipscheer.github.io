@@ -38,7 +38,8 @@ export interface Dictionary {
     | 'about'
     | 'leadership'
     | 'articles'
-    | 'playbook',
+    | 'playbook'
+    | 'play',
     PageMeta
   >;
   nav: {
@@ -52,6 +53,7 @@ export interface Dictionary {
     leadership: string;
     articles: string;
     playbook: string;
+    play: string;
   };
   about: {
     title: string;

@@ -19,6 +19,7 @@ export default function Header({ dict }: { dict: Dictionary }) {
     { href: `/${locale}/leadership/`, label: dict.nav.leadership },
     { href: `/${locale}/articles/`, label: dict.nav.articles },
     { href: `/${locale}/playbook/`, label: dict.nav.playbook },
+    { href: `/${locale}/play/`, label: `🎮 ${dict.nav.play}` },
     { href: `/${locale}/resume/`, label: dict.nav.resume },
     { href: `/${locale}/contact/`, label: dict.nav.contact },
   ];

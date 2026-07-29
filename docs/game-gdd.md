@@ -200,16 +200,16 @@ Fluxo de trabalho: branch por milestone, commits pequenos, PR com descrição e 
 
 ---
 
-## 12. Pendências / decisões abertas (bloqueiam M1)
+## 12. Pendências / decisões — resolvidas em 2026-07-29
 
-1. `[PENDENTE]` **Colégio técnico**: nome, cidade e anos (Prólogo).
-2. `[PENDENTE]` **FAENAC**: anos de início/conclusão (posicionar a insígnia Graduação corretamente — hoje assumida entre 2009–2012).
-3. `[PENDENTE]` **Gap 2004–2008**: houve trabalho antes da Datatex (estágio, suporte)? Vira fase ou o Prólogo cobre o período?
-4. `[PENDENTE]` **Viagens** nacionais/internacionais a destacar (99/Dell/IT Convergence): quais países/eventos merecem coletáveis próprios?
-5. Confirmar **exibição dos nomes reais** de todas as empresas (todos já públicos no LinkedIn — presumo ok).
-6. Nome final do jogo: **Career Quest** / *Play My Career* / *Press Start to Hire* / outro.
-7. Engine: Phaser 3 (recomendado) vs Kaplay — decisão travada em M1 após spike de bundle size.
-8. Áudio: chiptune opcional (mudo por padrão) ou sem áudio no MVP.
+1. ✅ **Colégio técnico**: Clovis Bevilacqua — Técnico em Informática, 2005–2007.
+2. ✅ **FAENAC**: Bacharelado em Ciência da Computação, 2008–2011 (insígnia Graduação após a fase BR part/Synchro).
+3. ✅ **Gap 2004–2008**: coberto pelo Prólogo (colégio técnico) — sem fase adicional.
+4. ✅ **Viagens**: Nova York, Califórnia (Palo Alto/Vale do Silício), Beijing; nacionais: SP, Rio, BH, Curitiba, Campinas, Cuiabá, Maringá — na insígnia Globetrotter (fase 99/DiDi).
+5. ✅ Nomes reais de empresas exibidos (públicos no LinkedIn). Fase Dexco inclui **Vivadecora** e gestão de **80+ pessoas**.
+6. ✅ Nome final: **Career Quest**.
+7. ✅ Engine: **canvas 2D próprio** (zero dependências, ~7 kB de página, 100% procedural — sem Phaser). Motivo: peso mínimo, sem assets, compatível com static export.
+8. ✅ Áudio: sem áudio no MVP.
 
 ---
 

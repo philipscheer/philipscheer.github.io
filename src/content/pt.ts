@@ -53,6 +53,11 @@ export const pt: Dictionary = {
       description:
         'Templates práticos de engenharia: design.md, ADR, RFC técnico, checklist de custos cloud e checklist de rollout/rollback. Baixe e adapte livremente.',
     },
+    play: {
+      title: 'Career Quest — Jogue os 20 anos de jornada do Philip Scheer em tecnologia',
+      description:
+        'Um currículo jogável: percorra 20+ anos de liderança em tecnologia, desbloqueie habilidades de desenvolvimento, gestão e negócio e vença chefes reais — do primeiro Hello World a 1M+ de usuários simultâneos.',
+    },
   },
   nav: {
     home: 'Início',
@@ -65,6 +70,7 @@ export const pt: Dictionary = {
     leadership: 'Liderança',
     articles: 'Artigos',
     playbook: 'Playbook',
+    play: 'Career Quest',
   },
   about: {
     title: 'Sobre',
