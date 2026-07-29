@@ -11,7 +11,8 @@ type PageKey =
   | 'about'
   | 'leadership'
   | 'articles'
-  | 'playbook';
+  | 'playbook'
+  | 'play';
 
 const pagePaths: Record<PageKey, string> = {
   home: '',
@@ -24,6 +25,7 @@ const pagePaths: Record<PageKey, string> = {
   leadership: '/leadership',
   articles: '/articles',
   playbook: '/playbook',
+  play: '/play',
 };
 
 export function buildMetadata(locale: string, page: PageKey): Metadata {

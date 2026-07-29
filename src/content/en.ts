@@ -53,6 +53,11 @@ export const en: Dictionary = {
       description:
         'Practical engineering templates: design.md, ADR, technical RFC, cloud cost checklist and rollout/rollback checklist. Free to download and adapt.',
     },
+    play: {
+      title: 'Career Quest — Play Philip Scheer’s 20-Year Journey in Tech',
+      description:
+        'A playable resume: walk through 20+ years of technology leadership, unlock development, management and business skills, and beat real-world bosses — from the first Hello World to 1M+ concurrent users.',
+    },
   },
   nav: {
     home: 'Home',
@@ -65,6 +70,7 @@ export const en: Dictionary = {
     leadership: 'Leadership',
     articles: 'Articles',
     playbook: 'Playbook',
+    play: 'Career Quest',
   },
   about: {
     title: 'About',
