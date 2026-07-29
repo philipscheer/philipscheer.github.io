@@ -64,6 +64,7 @@ export interface GameDictionary {
     cvTitle: string;
     shareBtn: string;
     shareCopied: string;
+    resetBtn: string;
     trees: Record<SkillTree, string>;
     touchLeft: string;
     touchRight: string;

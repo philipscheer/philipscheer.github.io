@@ -358,6 +358,14 @@ export default function CareerQuest({
               </button>
             </div>
             <p className="max-w-md text-xs text-white/60">{dict.ui.recruiterNote}</p>
+            {(collected.size > 0 || badges.length > 0 || xp > 0) && (
+              <button
+                onClick={resetRun}
+                className="text-xs font-semibold text-white/60 underline-offset-2 transition hover:text-white hover:underline"
+              >
+                ↻ {dict.ui.resetBtn}
+              </button>
+            )}
           </div>
         )}
 
