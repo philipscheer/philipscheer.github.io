@@ -36,7 +36,6 @@ export interface GameZone {
 }
 
 export interface GameDictionary {
-  meta: { title: string; description: string };
   page: { title: string; intro: string; noscript: string };
   ui: {
     startTitle: string;
@@ -63,6 +62,8 @@ export interface GameDictionary {
     mapHint: string;
     travelBtn: string;
     cvTitle: string;
+    shareBtn: string;
+    shareCopied: string;
     trees: Record<SkillTree, string>;
     touchLeft: string;
     touchRight: string;
@@ -79,6 +80,7 @@ export interface GameDictionary {
     ctaResume: string;
     ctaLinkedin: string;
     replay: string;
+    shareText: string;
   };
   zones: GameZone[];
 }

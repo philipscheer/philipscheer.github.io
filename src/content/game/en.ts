@@ -1,11 +1,6 @@
 import type { GameDictionary } from './types';
 
 export const gameEn: GameDictionary = {
-  meta: {
-    title: 'Career Quest — Play Philip Scheer’s 20-Year Journey in Tech',
-    description:
-      'A playable resume: walk through 20+ years of technology leadership, unlock development, management and business skills, and beat real-world bosses — from the first Hello World to 1M+ concurrent users.',
-  },
   page: {
     title: 'Career Quest',
     intro:
@@ -21,6 +16,7 @@ export const gameEn: GameDictionary = {
       '← → or A/D — walk through time, forward and back',
       'Space or ↑ — jump',
       'E or tap the banner — face the boss',
+      'Enter or Space — confirm dialogs · 1–3 — answer the boss · Esc — close',
       'Walk into the floating gems to collect skills (Development · Management · Business)',
       'Beat each era’s boss to unlock the next chapter',
     ],
@@ -45,6 +41,8 @@ export const gameEn: GameDictionary = {
     mapHint: 'Click a phase to travel there. This map is the whole resume at a glance.',
     travelBtn: 'Travel',
     cvTitle: 'Mini-CV',
+    shareBtn: 'Copy my result',
+    shareCopied: 'Copied to clipboard',
     trees: { dev: 'Development', mgmt: 'Management', biz: 'Business' },
     touchLeft: 'Walk left',
     touchRight: 'Walk right',
@@ -62,6 +60,8 @@ export const gameEn: GameDictionary = {
     ctaResume: 'Download resume',
     ctaLinkedin: 'Connect on LinkedIn',
     replay: 'Play again',
+    shareText:
+      '🎮 I just played through Philip Scheer’s 20-year tech journey — {skills} skills unlocked, {badges} badges earned. Play it yourself: {url}',
   },
   zones: [
     {

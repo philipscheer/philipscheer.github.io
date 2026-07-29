@@ -7,7 +7,7 @@ import { CareerQuestEngine, type EngineZone } from './engine';
 
 type Overlay =
   | { kind: 'skill'; z: number; s: number }
-  | { kind: 'boss'; z: number; phase: 'intro' | 'wrong' | 'result' }
+  | { kind: 'boss'; z: number; phase: 'intro' | 'wrong' | 'result'; order: number[] }
   | { kind: 'badge'; z: number }
   | { kind: 'cv' }
   | { kind: 'map' }
@@ -18,6 +18,42 @@ const TREE_BADGE_CLASS: Record<SkillTree, string> = {
   mgmt: 'bg-amber-500/15 text-amber-500',
   biz: 'bg-emerald-500/15 text-emerald-500',
 };
+
+const STORAGE_KEY = 'cq-progress-v1';
+
+interface SavedProgress {
+  xp: number;
+  collected: string[];
+  defeated: number[];
+  badges: string[];
+}
+
+function loadProgress(): SavedProgress {
+  const empty: SavedProgress = { xp: 0, collected: [], defeated: [], badges: [] };
+  if (typeof window === 'undefined') return empty;
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return empty;
+    const p = JSON.parse(raw) as Partial<SavedProgress>;
+    return {
+      xp: typeof p.xp === 'number' ? p.xp : 0,
+      collected: Array.isArray(p.collected) ? p.collected : [],
+      defeated: Array.isArray(p.defeated) ? p.defeated : [],
+      badges: Array.isArray(p.badges) ? p.badges : [],
+    };
+  } catch {
+    return empty;
+  }
+}
+
+function shuffle(n: number): number[] {
+  const a = Array.from({ length: n }, (_, i) => i);
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 export default function CareerQuest({
   dict,
@@ -34,12 +70,18 @@ export default function CareerQuest({
   const [started, setStarted] = useState(false);
   const [overlay, setOverlay] = useState<Overlay | null>(null);
   const [zone, setZone] = useState(0);
-  const [xp, setXp] = useState(0);
-  const [collected, setCollected] = useState<Set<string>>(new Set());
-  const [defeated, setDefeated] = useState<Set<number>>(new Set());
-  const [badges, setBadges] = useState<string[]>([]);
+  const [saved] = useState<SavedProgress>(loadProgress);
+  const [xp, setXp] = useState(saved.xp);
+  const [collected, setCollected] = useState<Set<string>>(() => new Set(saved.collected));
+  const [defeated, setDefeated] = useState<Set<number>>(() => new Set(saved.defeated));
+  const [badges, setBadges] = useState<string[]>(saved.badges);
   const [bossPromptZone, setBossPromptZone] = useState<number>(-1);
+  const [copied, setCopied] = useState(false);
   const finishedRef = useRef(false);
+  const collectedRef = useRef(collected);
+  const defeatedRef = useRef(defeated);
+  collectedRef.current = collected;
+  defeatedRef.current = defeated;
 
   const totalSkills = useMemo(
     () => dict.zones.reduce((acc, z) => acc + z.skills.length, 0),
@@ -47,6 +89,7 @@ export default function CareerQuest({
   );
   const totalBadges = useMemo(() => dict.zones.filter((z) => z.badge).length, [dict.zones]);
 
+  // Engine lifecycle
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -61,12 +104,16 @@ export default function CareerQuest({
 
     const engine = new CareerQuestEngine(canvas, engineZones, zonePalettes, {
       onSkillTouch: (z, s) => {
-        setCollected((prev) => new Set(prev).add(`${z}:${s}`));
-        setXp((prev) => prev + 10);
+        setCollected((prev) => {
+          if (prev.has(`${z}:${s}`)) return prev;
+          setXp((x) => x + 10);
+          return new Set(prev).add(`${z}:${s}`);
+        });
         setOverlay({ kind: 'skill', z, s });
       },
       onBossRange: (z, inRange) => setBossPromptZone(inRange ? z : -1),
-      onBossInteract: (z) => setOverlay({ kind: 'boss', z, phase: 'intro' }),
+      onBossInteract: (z) =>
+        setOverlay({ kind: 'boss', z, phase: 'intro', order: shuffle(dict.zones[z].boss?.options.length ?? 3) }),
       onZoneChange: (z) => setZone(z),
       onFinish: () => {
         if (!finishedRef.current) {
@@ -77,6 +124,8 @@ export default function CareerQuest({
     });
     engineRef.current = engine;
     engine.start();
+    // Restore saved progress (also protects against dev double-mount)
+    engine.restoreState(collectedRef.current, defeatedRef.current);
     return () => {
       engine.destroy();
       engineRef.current = null;
@@ -84,23 +133,79 @@ export default function CareerQuest({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dict]);
 
+  // Pause while any overlay is open or before the start
   useEffect(() => {
     const engine = engineRef.current;
     if (engine) engine.paused = !started || overlay !== null;
   }, [started, overlay]);
 
+  // Persist progress
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          xp,
+          collected: Array.from(collected),
+          defeated: Array.from(defeated),
+          badges,
+        } satisfies SavedProgress)
+      );
+    } catch {
+      /* storage unavailable — progress is session-only */
+    }
+  }, [xp, collected, defeated, badges]);
+
   const closeOverlay = useCallback(() => setOverlay(null), []);
 
-  const answerBoss = (z: number, i: number) => {
+  // Keyboard on overlays: Escape closes; Enter/Space confirms the primary action
+  useEffect(() => {
+    if (!overlay) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeOverlay();
+        return;
+      }
+      // Digits 1..N answer the boss question directly
+      if (overlay.kind === 'boss' && overlay.phase === 'intro' && /^[1-9]$/.test(e.key)) {
+        const idx = Number(e.key) - 1;
+        if (idx < overlay.order.length) {
+          e.preventDefault();
+          answerBoss(overlay.z, idx, overlay.order);
+        }
+        return;
+      }
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      // A focused button/link already handles Enter/Space natively — avoid double fire
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (tag === 'BUTTON' || tag === 'A') return;
+      e.preventDefault();
+      if (overlay.kind === 'boss') {
+        if (overlay.phase === 'result') afterBossResult(overlay.z);
+        else if (overlay.phase === 'wrong') {
+          const boss = dict.zones[overlay.z].boss!;
+          setOverlay({ kind: 'boss', z: overlay.z, phase: 'intro', order: shuffle(boss.options.length) });
+        }
+        // intro: an answer must be chosen explicitly
+      } else {
+        closeOverlay();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [overlay, closeOverlay]);
+
+  const answerBoss = (z: number, displayIdx: number, order: number[]) => {
     const boss = dict.zones[z].boss;
     if (!boss) return;
-    if (i === boss.correct) {
+    if (order[displayIdx] === boss.correct) {
       engineRef.current?.markBossDefeated(z);
       setDefeated((prev) => new Set(prev).add(z));
       setXp((prev) => prev + 25);
-      setOverlay({ kind: 'boss', z, phase: 'result' });
+      setOverlay({ kind: 'boss', z, phase: 'result', order });
     } else {
-      setOverlay({ kind: 'boss', z, phase: 'wrong' });
+      setOverlay({ kind: 'boss', z, phase: 'wrong', order });
     }
   };
 
@@ -118,7 +223,31 @@ export default function CareerQuest({
     engineRef.current?.teleport(z);
     setZone(z);
     setStarted(true);
+    finishedRef.current = false;
     closeOverlay();
+  };
+
+  const shareResult = async () => {
+    const text = dict.final.shareText
+      .replace('{skills}', `${collected.size}/${totalSkills}`)
+      .replace('{badges}', `${badges.length}/${totalBadges}`)
+      .replace('{url}', `https://philipscheer.github.io/${locale}/play/`);
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+
+  const resetRun = () => {
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* noop */
+    }
+    window.location.reload();
   };
 
   const zoneData = dict.zones[zone] ?? dict.zones[0];
@@ -133,7 +262,7 @@ export default function CareerQuest({
     <div className="relative mt-8 overflow-hidden rounded-2xl border border-line/10 bg-[#0b1120]">
       {/* Stage */}
       <div className="relative h-[420px] w-full md:h-[500px]" aria-label={dict.ui.startTitle}>
-        <canvas ref={canvasRef} className="absolute inset-0" />
+        <canvas ref={canvasRef} className="absolute inset-0" role="img" aria-label={dict.page.intro} />
 
         {/* HUD */}
         {started && (
@@ -173,14 +302,14 @@ export default function CareerQuest({
             {bossPromptZone >= 0 && overlay === null && (
               <button
                 onClick={() => engineRef.current?.interact()}
-                className="absolute bottom-24 left-1/2 -translate-x-1/2 animate-pulse rounded-lg bg-red-600/90 px-4 py-2 font-mono text-sm font-bold text-white shadow-lg transition hover:bg-red-500 md:bottom-16"
+                className="absolute bottom-24 left-1/2 -translate-x-1/2 animate-pulse rounded-lg bg-red-600/90 px-4 py-2 font-mono text-sm font-bold text-white shadow-lg transition hover:bg-red-500 motion-reduce:animate-none md:bottom-16"
               >
                 ⚔ {dict.zones[bossPromptZone].boss?.name} — {dict.ui.bossPrompt}
               </button>
             )}
 
-            {/* Touch controls */}
-            <div className="absolute inset-x-0 bottom-3 flex items-end justify-between px-4 md:hidden">
+            {/* Touch controls (any coarse-pointer device, including tablets) */}
+            <div className="absolute inset-x-0 bottom-3 hidden items-end justify-between px-4 [@media(pointer:coarse)]:flex">
               <div className="flex gap-2">
                 <TouchBtn label="◀" aria={dict.ui.touchLeft} onDown={() => engineRef.current?.setMove(-1)} onUp={() => engineRef.current?.setMove(0)} />
                 <TouchBtn label="▶" aria={dict.ui.touchRight} onDown={() => engineRef.current?.setMove(1)} onUp={() => engineRef.current?.setMove(0)} />
@@ -211,7 +340,11 @@ export default function CareerQuest({
               </ul>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <button onClick={() => setStarted(true)} className={`${btnPrimary} animate-pulse font-mono`}>
+              <button
+                onClick={() => setStarted(true)}
+                autoFocus
+                className={`${btnPrimary} animate-pulse font-mono motion-reduce:animate-none`}
+              >
                 ▶ {dict.ui.startBtn}
               </button>
               <button
@@ -230,7 +363,11 @@ export default function CareerQuest({
 
         {/* Overlays */}
         {overlay && (
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/65 p-4 backdrop-blur-[2px]">
+          <div
+            className="absolute inset-0 z-10 flex items-center justify-center bg-black/65 p-4 backdrop-blur-[2px]"
+            role="dialog"
+            aria-modal="true"
+          >
             <div className="max-h-full w-full max-w-lg overflow-y-auto rounded-2xl border border-line/10 bg-bg p-6 shadow-2xl">
               {overlay.kind === 'skill' && (() => {
                 const skill = dict.zones[overlay.z].skills[overlay.s];
@@ -244,7 +381,7 @@ export default function CareerQuest({
                       {dict.ui.trees[skill.tree]}
                     </span>
                     <p className="mt-3 text-sm text-muted">{skill.evidence}</p>
-                    <button onClick={closeOverlay} className={`${btnPrimary} mt-5`}>
+                    <button onClick={closeOverlay} autoFocus className={`${btnPrimary} mt-5`}>
                       {dict.ui.continueBtn}
                     </button>
                   </div>
@@ -266,13 +403,13 @@ export default function CareerQuest({
                         <p className="mt-3 text-sm italic text-muted">{boss.intro}</p>
                         <p className="mt-4 text-sm font-semibold text-fg">{boss.question}</p>
                         <div className="mt-4 space-y-2">
-                          {boss.options.map((opt, i) => (
+                          {overlay.order.map((optIdx, i) => (
                             <button
-                              key={opt}
-                              onClick={() => answerBoss(overlay.z, i)}
+                              key={boss.options[optIdx]}
+                              onClick={() => answerBoss(overlay.z, i, overlay.order)}
                               className="w-full rounded-lg border border-line/15 px-4 py-3 text-left text-sm text-fg transition hover:border-primary hover:text-primary"
                             >
-                              {String.fromCharCode(65 + i)}. {opt}
+                              {i + 1}. {boss.options[optIdx]}
                             </button>
                           ))}
                         </div>
@@ -283,7 +420,15 @@ export default function CareerQuest({
                         <div className="text-lg font-bold text-fg">{dict.ui.wrongTitle}</div>
                         <p className="mt-2 text-sm text-muted">💡 {boss.hint}</p>
                         <button
-                          onClick={() => setOverlay({ kind: 'boss', z: overlay.z, phase: 'intro' })}
+                          onClick={() =>
+                            setOverlay({
+                              kind: 'boss',
+                              z: overlay.z,
+                              phase: 'intro',
+                              order: shuffle(boss.options.length),
+                            })
+                          }
+                          autoFocus
                           className={`${btnPrimary} mt-5`}
                         >
                           {dict.ui.tryAgain}
@@ -298,7 +443,7 @@ export default function CareerQuest({
                         <p className="mt-3 rounded-xl border border-primary/25 bg-primary/5 p-4 text-sm font-medium text-fg">
                           {boss.result}
                         </p>
-                        <button onClick={() => afterBossResult(overlay.z)} className={`${btnPrimary} mt-5`}>
+                        <button onClick={() => afterBossResult(overlay.z)} autoFocus className={`${btnPrimary} mt-5`}>
                           {dict.ui.continueBtn}
                         </button>
                       </div>
@@ -317,7 +462,7 @@ export default function CareerQuest({
                     <div className="mt-3 text-5xl">{badge.icon}</div>
                     <div className="mt-2 text-2xl font-black text-fg">{badge.name}</div>
                     <p className="mt-3 text-sm text-muted">{badge.desc}</p>
-                    <button onClick={closeOverlay} className={`${btnPrimary} mt-5`}>
+                    <button onClick={closeOverlay} autoFocus className={`${btnPrimary} mt-5`}>
                       {dict.ui.continueBtn}
                     </button>
                   </div>
@@ -339,7 +484,7 @@ export default function CareerQuest({
                       </li>
                     ))}
                   </ul>
-                  <button onClick={closeOverlay} className={`${btnSecondary} mt-5`}>
+                  <button onClick={closeOverlay} autoFocus className={`${btnSecondary} mt-5`}>
                     {dict.ui.closeBtn}
                   </button>
                 </div>
@@ -378,7 +523,7 @@ export default function CareerQuest({
                       </button>
                     ))}
                   </div>
-                  <button onClick={closeOverlay} className={`${btnSecondary} mt-4`}>
+                  <button onClick={closeOverlay} autoFocus className={`${btnSecondary} mt-4`}>
                     {dict.ui.closeBtn}
                   </button>
                 </div>
@@ -408,15 +553,23 @@ export default function CareerQuest({
                     <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className={btnSecondary}>
                       {dict.final.ctaLinkedin}
                     </a>
-                    <button
-                      onClick={() => {
-                        finishedRef.current = false;
-                        travel(0);
-                      }}
-                      className="mt-1 text-xs font-semibold text-muted transition hover:text-primary"
-                    >
-                      ↻ {dict.final.replay}
+                    <button onClick={shareResult} className={btnSecondary}>
+                      {copied ? `✓ ${dict.ui.shareCopied}` : `⧉ ${dict.ui.shareBtn}`}
                     </button>
+                    <div className="mt-1 flex items-center justify-center gap-4">
+                      <button
+                        onClick={closeOverlay}
+                        className="text-xs font-semibold text-muted transition hover:text-primary"
+                      >
+                        {dict.ui.closeBtn}
+                      </button>
+                      <button
+                        onClick={resetRun}
+                        className="text-xs font-semibold text-muted transition hover:text-primary"
+                      >
+                        ↻ {dict.final.replay}
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
