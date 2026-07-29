@@ -1,11 +1,6 @@
 import type { GameDictionary } from './types';
 
 export const gamePt: GameDictionary = {
-  meta: {
-    title: 'Career Quest — Jogue os 20 anos de jornada do Philip Scheer em tecnologia',
-    description:
-      'Um currículo jogável: percorra 20+ anos de liderança em tecnologia, desbloqueie habilidades de desenvolvimento, gestão e negócio e vença chefes reais — do primeiro Hello World a 1M+ de usuários simultâneos.',
-  },
   page: {
     title: 'Career Quest',
     intro:
@@ -21,6 +16,7 @@ export const gamePt: GameDictionary = {
       '← → ou A/D — ande no tempo, para frente e para trás',
       'Espaço ou ↑ — pular',
       'E ou toque no aviso — enfrentar o chefe',
+      'Enter ou Espaço — confirmar diálogos · 1–3 — responder o chefe · Esc — fechar',
       'Encoste nas gemas flutuantes para coletar habilidades (Desenvolvimento · Gestão · Negócio)',
       'Vença o chefe de cada era para liberar o próximo capítulo',
     ],
@@ -45,6 +41,8 @@ export const gamePt: GameDictionary = {
     mapHint: 'Clique em uma fase para viajar até ela. Este mapa é o currículo inteiro de relance.',
     travelBtn: 'Viajar',
     cvTitle: 'Mini-CV',
+    shareBtn: 'Copiar meu resultado',
+    shareCopied: 'Copiado para a área de transferência',
     trees: { dev: 'Desenvolvimento', mgmt: 'Gestão', biz: 'Negócio' },
     touchLeft: 'Andar para a esquerda',
     touchRight: 'Andar para a direita',
@@ -62,6 +60,8 @@ export const gamePt: GameDictionary = {
     ctaResume: 'Baixar currículo',
     ctaLinkedin: 'Conectar no LinkedIn',
     replay: 'Jogar de novo',
+    shareText:
+      '🎮 Acabei de jogar os 20 anos de jornada em tecnologia do Philip Scheer — {skills} skills desbloqueadas, {badges} insígnias. Jogue você também: {url}',
   },
   zones: [
     {
