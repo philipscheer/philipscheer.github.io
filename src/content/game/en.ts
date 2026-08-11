@@ -43,6 +43,7 @@ export const gameEn: GameDictionary = {
     cvTitle: 'Mini-CV',
     shareBtn: 'Copy my result',
     shareCopied: 'Copied to clipboard',
+    resetBtn: 'Restart from zero (bosses & questions return)',
     trees: { dev: 'Development', mgmt: 'Management', biz: 'Business' },
     touchLeft: 'Walk left',
     touchRight: 'Walk right',
