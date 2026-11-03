@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { getDictionary, locales, siteUrl, type Locale } from '@/content';
 import { getAllArticles, getArticle, formatDate } from '@/lib/articles';
 import ArticleBody from '@/components/ArticleBody';
+import { ogImage } from '@/lib/seo';
 
 export const dynamicParams = false;
 
@@ -28,6 +29,7 @@ export async function generateMetadata({
   for (const l of locales) {
     languages[l === 'pt' ? 'pt-BR' : l] = `${siteUrl}/${l}/articles/${slug}/`;
   }
+  languages['x-default'] = `${siteUrl}/en/articles/${slug}/`;
 
   return {
     title: `${article.title} — Philip Scheer`,
@@ -40,7 +42,15 @@ export async function generateMetadata({
       siteName: 'Philip Scheer',
       type: 'article',
       publishedTime: article.date,
+      tags: article.tags,
       locale: dict.locale === 'pt' ? 'pt_BR' : 'en_US',
+      images: [ogImage(dict.locale)],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.description,
+      images: [ogImage(dict.locale).url],
     },
   };
 }
@@ -56,8 +66,26 @@ export default async function ArticlePage({
   const article = getArticle(slug, dict.locale as Locale);
   if (!article) notFound();
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.title,
+    description: article.description,
+    datePublished: article.date,
+    inLanguage: dict.locale === 'pt' ? 'pt-BR' : 'en',
+    keywords: article.tags.join(', '),
+    url: `${siteUrl}/${dict.locale}/articles/${slug}/`,
+    mainEntityOfPage: `${siteUrl}/${dict.locale}/articles/${slug}/`,
+    author: { '@type': 'Person', name: 'Philip Scheer', url: siteUrl },
+    publisher: { '@type': 'Person', name: 'Philip Scheer', url: siteUrl },
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-5 py-16 md:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <Link
         href={`/${dict.locale}/articles/`}
         className="text-sm text-faint transition-colors hover:text-primary"

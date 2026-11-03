@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getDictionary, locales, siteUrl, social } from '@/content';
@@ -6,6 +7,10 @@ import { integrations } from '@/lib/integrations';
 import '../globals.css';
 
 export const dynamicParams = false;
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
