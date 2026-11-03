@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { getDictionary, locales, siteUrl, type Locale } from '@/content';
 import { getAllArticles, getArticle, formatDate } from '@/lib/articles';
 import ArticleBody from '@/components/ArticleBody';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import { ogImage } from '@/lib/seo';
 
 export const dynamicParams = false;
@@ -122,6 +123,9 @@ export default async function ArticlePage({
       <ArticleBody html={article.html} />
 
       <footer className="mt-14 border-t border-line/5 pt-8">
+        <div className="mb-8">
+          <NewsletterSignup dict={dict} place="article" />
+        </div>
         <Link
           href={`/${dict.locale}/contact/`}
           className="inline-block rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"

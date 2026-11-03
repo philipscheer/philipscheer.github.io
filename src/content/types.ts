@@ -190,6 +190,15 @@ export interface Dictionary {
     availability: string;
     note: string;
   };
+  newsletter: {
+    title: string;
+    body: string;
+    emailLabel: string;
+    placeholder: string;
+    button: string;
+    privacy: string;
+    rssLabel: string;
+  };
   testimonials: {
     title: string;
     intro: string;

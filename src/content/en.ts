@@ -746,6 +746,15 @@ export const en: Dictionary = {
     availability: 'Open to remote roles (international preferred); available for conversations in English or Portuguese.',
     note: 'Recruiters: feel free to send the job description directly — I reply to every serious opportunity.',
   },
+  newsletter: {
+    title: 'Get the Tech Radar in your inbox',
+    body: 'Three times a week: the technology news that matters for engineering leaders, with business impact, risks and my take. No hype, no spam.',
+    emailLabel: 'Email address',
+    placeholder: 'you@company.com',
+    button: 'Subscribe',
+    privacy: 'Unsubscribe anytime.',
+    rssLabel: 'Prefer RSS? Subscribe to the feed',
+  },
   testimonials: {
     title: 'What people I worked with say',
     intro: 'Recommendations from managers, peers and clients, quoted as originally written.',

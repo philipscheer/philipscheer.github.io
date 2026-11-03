@@ -746,6 +746,15 @@ export const pt: Dictionary = {
     availability: 'Aberto a posições remotas (preferência internacional); disponível para conversas em inglês ou português.',
     note: 'Recrutadores: fiquem à vontade para enviar a descrição da vaga diretamente — respondo a toda oportunidade séria.',
   },
+  newsletter: {
+    title: 'Receba o Tech Radar por e-mail',
+    body: 'Três vezes por semana: as notícias de tecnologia que importam para líderes de engenharia, com impacto no negócio, riscos e minha leitura. Sem hype, sem spam.',
+    emailLabel: 'Endereço de e-mail',
+    placeholder: 'voce@empresa.com',
+    button: 'Assinar',
+    privacy: 'Cancele quando quiser.',
+    rssLabel: 'Prefere RSS? Assine o feed',
+  },
   testimonials: {
     title: 'O que dizem as pessoas com quem trabalhei',
     intro: 'Recomendações de gestores, pares e clientes, citadas como foram escritas originalmente.',

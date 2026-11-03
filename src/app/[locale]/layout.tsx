@@ -60,6 +60,12 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${dict.articles.title} — Philip Scheer`}
+          href={`${siteUrl}/${dict.locale}/feed.xml`}
+        />
         {integrations.umamiWebsiteId && (
           <script
             defer
