@@ -330,7 +330,7 @@ export const en: Dictionary = {
       'Technical Product Manager',
     ],
     credentialsLabel: 'Built and led at',
-    credentials: ['99 (a DiDi company)', 'Dell Technologies', 'Dexco', 'Accenture · Avanade', 'Restoque'],
+    credentials: ['99 (a DiDi company)', 'Dell Technologies', 'Dexco', 'Accenture / Avanade', 'Restoque'],
     metrics: [
       { value: '1M+', label: 'concurrent users on a real-time platform, scaled 10x' },
       { value: '-57%', label: 'operating cost after architecture redesign' },
