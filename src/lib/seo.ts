@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getDictionary, locales, siteUrl } from '@/content';
 
-type PageKey =
+export type PageKey =
   | 'home'
   | 'recruiters'
   | 'experience'
@@ -12,9 +12,10 @@ type PageKey =
   | 'leadership'
   | 'articles'
   | 'playbook'
-  | 'play';
+  | 'play'
+  | 'speaking';
 
-const pagePaths: Record<PageKey, string> = {
+export const pagePaths: Record<PageKey, string> = {
   home: '',
   recruiters: '/recruiters',
   experience: '/experience',
@@ -26,7 +27,17 @@ const pagePaths: Record<PageKey, string> = {
   articles: '/articles',
   playbook: '/playbook',
   play: '/play',
+  speaking: '/speaking',
 };
+
+export function ogImage(locale: string) {
+  return {
+    url: `${siteUrl}/og/${locale === 'pt' ? 'pt' : 'en'}.png`,
+    width: 1200,
+    height: 630,
+    alt: 'Philip Scheer — Engineering & Technology Manager',
+  };
+}
 
 export function buildMetadata(locale: string, page: PageKey): Metadata {
   const dict = getDictionary(locale);
@@ -51,11 +62,13 @@ export function buildMetadata(locale: string, page: PageKey): Metadata {
       siteName: 'Philip Scheer',
       type: 'website',
       locale: dict.locale === 'pt' ? 'pt_BR' : 'en_US',
+      images: [ogImage(dict.locale)],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: meta.title,
       description: meta.description,
+      images: [ogImage(dict.locale).url],
     },
   };
 }

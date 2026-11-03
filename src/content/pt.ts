@@ -58,6 +58,11 @@ export const pt: Dictionary = {
       description:
         'Um currículo jogável: percorra 20+ anos de liderança em tecnologia, desbloqueie habilidades de desenvolvimento, gestão e negócio e vença chefes reais — do primeiro Hello World a 1M+ de usuários simultâneos.',
     },
+    speaking: {
+      title: 'Palestras e Press Kit — Philip Scheer',
+      description:
+        'Bios, temas de palestra e informações para organizadores de eventos, podcasts e imprensa: custo de cloud via arquitetura, agentic coding com governança e plataformas em tempo real com 1M+ usuários.',
+    },
   },
   nav: {
     home: 'Início',
@@ -71,6 +76,61 @@ export const pt: Dictionary = {
     articles: 'Artigos',
     playbook: 'Playbook',
     play: 'Career Quest',
+    speaking: 'Palestras',
+  },
+  speaking: {
+    title: 'Palestras e Press Kit',
+    intro:
+      'Para organizadores de eventos, podcasts e imprensa: bios prontas, os temas sobre os quais falo e as informações que você pode precisar. Fique à vontade para copiar.',
+    biosTitle: 'Bios',
+    bios: [
+      {
+        label: 'Uma linha',
+        text: 'Philip Scheer é Gerente de Engenharia e Tecnologia e Arquiteto de Soluções, e transforma ideias em produtos de baixo custo e alta performance.',
+      },
+      {
+        label: 'Curta (≈50 palavras)',
+        text: 'Philip Scheer é Gerente de Engenharia e Tecnologia e Arquiteto de Soluções, com mais de 20 anos em tecnologia e mais de 10 liderando times remote-first. Arquitetou uma plataforma esportiva em tempo real que escalou para mais de 1 milhão de usuários simultâneos com custo operacional ~57% menor, e ajuda empresas a levar FinOps e engenharia assistida por IA para o dia a dia.',
+      },
+      {
+        label: 'Longa (≈110 palavras)',
+        text: 'Philip Scheer é Gerente de Engenharia e Tecnologia e Arquiteto de Soluções, baseado em São Paulo. Em mais de 20 anos de tecnologia, liderou squads de mais de 80 pessoas e um portfólio de R$26M+ em projetos nos setores financeiro, sports-tech, varejo e farmacêutico. Sua trajetória inclui arquitetura de pagamentos na 99 (empresa DiDi) entre Brasil, EUA e China, o design system corporativo da Dell Technologies, a gestão sênior de tecnologia na Dexco e a fundação da Scheer Tecnologia. Hoje lidera engenharia e arquitetura de uma plataforma em tempo real com mais de um milhão de usuários simultâneos, escalada 10x com custo ~57% menor. Escreve sobre arquitetura, FinOps e agentic coding com governança.',
+      },
+    ],
+    topicsTitle: 'Temas de palestra',
+    topics: [
+      {
+        title: 'Arquitetura é sua melhor ferramenta de FinOps',
+        body: 'Por que o right-sizing tem teto e como decisões de arquitetura escalaram uma plataforma em tempo real 10x cortando ~57% do custo operacional.',
+        link: 'finops-architecture',
+      },
+      {
+        title: 'Agentic coding com governança',
+        body: 'Como levar Claude Code e agentes baseados em MCP para fluxos de produção com arquivos de contexto, aprovações e quality gates — produtividade sem perder o controle.',
+        link: 'claude-code-agentic-coding',
+      },
+      {
+        title: 'Tempo real com 1M+ usuários simultâneos',
+        body: 'A arquitetura de uma plataforma de dados esportivos ao vivo: ingestão gRPC/Protobuf, Redis pub/sub e fan-out WebSocket em Go com P99 abaixo de 300 ms.',
+      },
+    ],
+    formatsTitle: 'Formatos',
+    formats: [
+      'Palestras e keynotes em conferências (30–45 min)',
+      'Painéis e podcasts',
+      'Workshops internos para lideranças de engenharia',
+      'Em português ou inglês, remoto ou presencial',
+    ],
+    factsTitle: 'Dados rápidos',
+    facts: [
+      { label: 'Nome', value: 'Philip Scheer' },
+      { label: 'Cargo', value: 'Gerente de Engenharia e Tecnologia · Arquiteto de Soluções' },
+      { label: 'Base', value: 'São Paulo, Brasil (GMT-3)' },
+      { label: 'Idiomas', value: 'Português, inglês, alemão (intermediário)' },
+      { label: 'Site', value: 'philipscheer.github.io' },
+    ],
+    cta: 'Convidar para palestrar',
+    readRelated: 'Ler o artigo relacionado',
   },
   about: {
     title: 'Sobre',
@@ -153,6 +213,12 @@ export const pt: Dictionary = {
     publishedLabel: 'Publicado em',
     minuteRead: 'min de leitura',
     empty: 'Novos artigos em breve.',
+    essaysTitle: 'Ensaios e aprofundamentos',
+    essaysIntro: 'Textos longos sobre arquitetura, FinOps e engenharia assistida por IA, a partir de plataformas reais.',
+    essentialLabel: 'Essencial',
+    radarTitle: 'Tech Radar',
+    radarIntro: 'Curadoria de notícias de tecnologia para líderes de engenharia, três vezes por semana: o que aconteceu, o impacto no negócio e minha leitura.',
+    showAllEditions: 'Ver todas as {count} edições',
   },
   playbook: {
     title: 'Engineering Playbook',
@@ -257,11 +323,14 @@ export const pt: Dictionary = {
     targetRolesLabel: 'Cargos-alvo',
     targetRoles: [
       'Engineering Manager',
+      'Head of Engineering',
       'Head of Technology',
       'Gerente de Tecnologia',
       'Arquiteto de Soluções',
       'Technical Product Manager',
     ],
+    credentialsLabel: 'Experiência em',
+    credentials: ['99 (empresa DiDi)', 'Dell Technologies', 'Dexco', 'Accenture / Avanade', 'Restoque'],
     metrics: [
       { value: '1M+', label: 'usuários simultâneos em plataforma real-time, escalada 10x' },
       { value: '-57%', label: 'custo de operação após redesenho de arquitetura' },
@@ -271,6 +340,7 @@ export const pt: Dictionary = {
     ctas: {
       resume: 'Ver Currículo',
       contact: 'Fale Comigo',
+      schedule: 'Agendar conversa de 20 min',
       linkedin: 'Conectar no LinkedIn',
       cases: 'Explorar Cases',
     },
@@ -310,6 +380,34 @@ export const pt: Dictionary = {
       body: 'Vamos conversar sobre como posso ajudar sua organização de engenharia a escalar — com arquitetura mais enxuta, entrega previsível e menor custo de operação.',
       button: 'Entrar em contato',
     },
+    paths: {
+      title: 'Duas formas de trabalharmos juntos',
+      intro: 'Contratando um líder de tecnologia ou precisando de apoio sênior em um problema específico? Escolha o caminho que faz sentido.',
+      hiring: {
+        eyebrow: 'Para recrutadores e gestores',
+        title: 'Posição de liderança remota em tempo integral',
+        body: 'Engineering Manager, Head of Engineering ou Head of Technology para um time remote-first — preferência por empresas internacionais.',
+        bullets: [
+          'GMT-3, com sobreposição diária com EUA e Europa',
+          'Inglês fluente, português nativo, alemão intermediário',
+          'Liderando times distribuídos desde 2017 entre EUA, China e Brasil',
+        ],
+        primary: 'Agendar conversa de 20 min',
+        secondary: 'Baixar currículo',
+      },
+      consulting: {
+        eyebrow: 'Para empresas · Scheer Tecnologia',
+        title: 'Consultoria e times dedicados',
+        body: 'Projetos pontuais pela minha consultoria quando você precisa de arquitetura e liderança de engenharia sênior sem uma contratação em tempo integral.',
+        bullets: [
+          'Diagnóstico de arquitetura e custos de cloud (FinOps)',
+          'Arquitetura de soluções e times de engenharia dedicados',
+          'Adoção de engenharia assistida por IA com governança e quality gates',
+        ],
+        primary: 'Solicitar diagnóstico',
+        secondary: 'Ver cases',
+      },
+    },
   },
   recruiters: {
     title: 'Para Recrutadores',
@@ -319,7 +417,7 @@ export const pt: Dictionary = {
     rolesTitle: 'Cargos-alvo',
     roles: [
       'Engineering Manager / Software Engineering Manager',
-      'Head of Technology / Gerente de Tecnologia',
+      'Head of Engineering / Head of Technology / Gerente de Tecnologia',
       'Arquiteto de Soluções / Software Architecture Manager',
       'Technical Product Manager',
     ],
@@ -348,6 +446,7 @@ export const pt: Dictionary = {
       'Liderei até 3 departamentos simultâneos (Produto, Inovação, UX Labs) e 18 projetos em paralelo. Experiência com Architecture Review Boards, stakeholders executivos, times distribuídos e governança de entrega do discovery à produção.',
     downloadCta: 'Baixar currículo (PDF)',
     contactCta: 'Contato para oportunidades remotas',
+    scheduleCta: 'Agendar conversa de 20 min',
   },
   experience: {
     title: 'Experiência',
@@ -712,6 +811,45 @@ export const pt: Dictionary = {
     availabilityLabel: 'Disponibilidade',
     availability: 'Aberto a posições remotas (preferência internacional); disponível para conversas em inglês ou português.',
     note: 'Recrutadores: fiquem à vontade para enviar a descrição da vaga diretamente — respondo a toda oportunidade séria.',
+    form: {
+      title: 'Envie uma mensagem',
+      intro: 'Conte sobre a vaga ou o problema. Respondo em até dois dias úteis.',
+      name: 'Nome',
+      email: 'E-mail',
+      company: 'Empresa (opcional)',
+      topic: 'Assunto',
+      topics: {
+        hiring: 'Posição de liderança remota',
+        consulting: 'Consultoria / Scheer Tecnologia',
+        other: 'Outro assunto',
+      },
+      message: 'Mensagem',
+      messageHintHiring: 'Cargo, tamanho do time, localização/fuso e o link da descrição da vaga.',
+      messageHintConsulting: 'Seu contexto, o problema (custo, escala, entrega, adoção de IA) e o prazo.',
+      submit: 'Enviar mensagem',
+      sending: 'Enviando…',
+      success: 'Obrigado — sua mensagem chegou. Retorno em até dois dias úteis.',
+      error: 'Não foi possível enviar a mensagem. Tente novamente ou escreva direto para:',
+    },
+    schedule: {
+      title: 'Prefere conversar?',
+      body: 'Agende uma conversa inicial de 20 minutos no horário que for melhor para você.',
+      button: 'Agendar conversa de 20 min',
+    },
+  },
+  newsletter: {
+    title: 'Receba o Tech Radar por e-mail',
+    body: 'Três vezes por semana: as notícias de tecnologia que importam para líderes de engenharia, com impacto no negócio, riscos e minha leitura. Sem hype, sem spam.',
+    emailLabel: 'Endereço de e-mail',
+    placeholder: 'voce@empresa.com',
+    button: 'Assinar',
+    privacy: 'Cancele quando quiser.',
+    rssLabel: 'Prefere RSS? Assine o feed',
+  },
+  testimonials: {
+    title: 'O que dizem as pessoas com quem trabalhei',
+    intro: 'Recomendações de gestores, pares e clientes, citadas como foram escritas originalmente.',
+    sourceLabel: 'Ver original no LinkedIn',
   },
   footer: {
     tagline: 'Transformo ideias em produtos de baixo custo e alta performance.',

@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Reveal from '@/components/Reveal';
+import Testimonials from '@/components/Testimonials';
 import { getDictionary, social } from '@/content';
 import { buildMetadata } from '@/lib/seo';
+import { integrations, scheduleHref, trackEvent } from '@/lib/integrations';
 
 export async function generateMetadata({
   params,
@@ -21,6 +23,9 @@ export default async function HomePage({
   const { locale } = await params;
   const dict = getDictionary(locale);
   const { home } = dict;
+  const resumeFile = dict.locale === 'pt' ? '/resume/philip-scheer-cv-pt.pdf' : '/resume/philip-scheer-cv-en.pdf';
+  const hasCalendly = Boolean(integrations.calendlyUrl);
+  const external = hasCalendly ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
   return (
     <>
@@ -49,6 +54,22 @@ export default async function HomePage({
             {home.pitch}
           </p>
 
+          <p className="animate-in [--enter-delay:260ms] mt-5 flex max-w-3xl flex-wrap items-baseline gap-x-2 gap-y-1 text-sm">
+            <span className="text-xs font-semibold uppercase tracking-wider text-faint">
+              {home.credentialsLabel}:
+            </span>
+            {home.credentials.map((c, i) => (
+              <span key={c} className="font-semibold text-fg">
+                {c}
+                {i < home.credentials.length - 1 && (
+                  <span className="ml-2 font-normal text-faint" aria-hidden="true">
+                    ·
+                  </span>
+                )}
+              </span>
+            ))}
+          </p>
+
           <div className="animate-in [--enter-delay:300ms] mt-6 flex flex-wrap items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-faint">
               {home.targetRolesLabel}:
@@ -64,20 +85,23 @@ export default async function HomePage({
           </div>
 
           <div className="animate-in [--enter-delay:380ms] mt-9 flex flex-wrap gap-3">
+            <a
+              href={scheduleHref(dict.locale)}
+              {...external}
+              {...trackEvent('schedule-click', { place: 'hero' })}
+              className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
+            >
+              {hasCalendly ? home.ctas.schedule : home.ctas.contact}
+            </a>
             <Link
               href={`/${dict.locale}/resume/`}
-              className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
+              className="rounded-lg border border-line/15 px-5 py-3 text-sm font-semibold text-fg transition hover:border-primary hover:text-primary"
             >
               {home.ctas.resume}
             </Link>
-            <Link
-              href={`/${dict.locale}/contact/`}
-              className="rounded-lg border border-line/15 px-5 py-3 text-sm font-semibold text-fg transition hover:border-primary hover:text-primary"
-            >
-              {home.ctas.contact}
-            </Link>
             <a
               href={social.linkedin}
+              {...trackEvent('linkedin-click', { place: 'hero' })}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg border border-line/15 px-5 py-3 text-sm font-semibold text-fg transition hover:border-primary hover:text-primary"
@@ -106,6 +130,8 @@ export default async function HomePage({
         </div>
       </section>
 
+      <Testimonials dict={dict} limit={4} />
+
       {/* Layer 2 — technical authority */}
       <section className="mx-auto max-w-content px-5 py-20 md:py-24">
         <Reveal>
@@ -129,23 +155,80 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* Recruiter CTA */}
+      {/* Two paths — hiring vs consulting */}
       <section className="border-t border-line/5 bg-[radial-gradient(50%_80%_at_50%_100%,rgba(20,184,166,0.08),transparent)]">
-        <div className="mx-auto max-w-content px-5 py-20 text-center md:py-24">
-          <Reveal>
-            <h2 className="text-3xl font-bold tracking-tight text-fg md:text-4xl">
-              {home.recruiterCta.title}
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">
-              {home.recruiterCta.body}
-            </p>
-            <Link
-              href={`/${dict.locale}/contact/`}
-              className="mt-8 inline-block rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
-            >
-              {home.recruiterCta.button}
-            </Link>
+        <div className="mx-auto max-w-content px-5 py-20 md:py-24">
+          <Reveal className="text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-fg md:text-4xl">{home.paths.title}</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted">{home.paths.intro}</p>
           </Reveal>
+
+          <div className="stagger mt-12 grid gap-6 md:grid-cols-2">
+            <Reveal>
+              <article className="flex h-full flex-col rounded-2xl border border-primary/30 bg-surface/60 p-7">
+                <p className="text-xs font-semibold uppercase tracking-wider text-primary">{home.paths.hiring.eyebrow}</p>
+                <h3 className="mt-3 text-xl font-semibold text-fg">{home.paths.hiring.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{home.paths.hiring.body}</p>
+                <ul className="mt-5 flex-1 space-y-2.5">
+                  {home.paths.hiring.bullets.map((b) => (
+                    <li key={b} className="flex gap-3 text-sm text-muted">
+                      <span className="text-ok" aria-hidden="true">✓</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <a
+                    href={scheduleHref(dict.locale, 'hiring')}
+                    {...external}
+                    {...trackEvent('schedule-click', { place: 'home-hiring' })}
+                    className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
+                  >
+                    {hasCalendly ? home.paths.hiring.primary : home.ctas.contact}
+                  </a>
+                  <a
+                    href={resumeFile}
+                    download
+                    {...trackEvent('resume-download', { lang: dict.locale, place: 'home-hiring' })}
+                    className="rounded-lg border border-line/15 px-5 py-3 text-sm font-semibold text-fg transition hover:border-primary hover:text-primary"
+                  >
+                    {home.paths.hiring.secondary}
+                  </a>
+                </div>
+              </article>
+            </Reveal>
+
+            <Reveal>
+              <article className="flex h-full flex-col rounded-2xl border border-line/10 bg-surface/60 p-7">
+                <p className="text-xs font-semibold uppercase tracking-wider text-primary">{home.paths.consulting.eyebrow}</p>
+                <h3 className="mt-3 text-xl font-semibold text-fg">{home.paths.consulting.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{home.paths.consulting.body}</p>
+                <ul className="mt-5 flex-1 space-y-2.5">
+                  {home.paths.consulting.bullets.map((b) => (
+                    <li key={b} className="flex gap-3 text-sm text-muted">
+                      <span className="text-primary" aria-hidden="true">▸</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Link
+                    href={`/${dict.locale}/contact/?topic=consulting#form`}
+                    {...trackEvent('consulting-click', { place: 'home' })}
+                    className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
+                  >
+                    {home.paths.consulting.primary}
+                  </Link>
+                  <Link
+                    href={`/${dict.locale}/projects/`}
+                    className="rounded-lg border border-line/15 px-5 py-3 text-sm font-semibold text-fg transition hover:border-primary hover:text-primary"
+                  >
+                    {home.paths.consulting.secondary}
+                  </Link>
+                </div>
+              </article>
+            </Reveal>
+          </div>
         </div>
       </section>
     </>

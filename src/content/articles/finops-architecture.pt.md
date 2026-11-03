@@ -3,6 +3,7 @@ title: 'Arquitetura é sua melhor ferramenta de FinOps: como escalamos 10x corta
 description: 'Right-sizing e savings plans têm teto. As grandes economias de cloud vivem nas decisões de arquitetura — um case real escalando uma plataforma de 100K para 1M+ usuários simultâneos com metade do custo de operação.'
 date: '2026-06-09'
 tags: ['FinOps', 'arquitetura cloud', 'otimização de custos', 'sistemas em tempo real']
+featured: true
 ---
 
 A maioria dos programas de FinOps começa — e estaciona — no mesmo lugar: right-sizing de instâncias, exclusão de volumes órfãos, compra de savings plans. Vale a pena fazer. Normalmente vale de 15 a 25%. E então a curva achata, porque o custo restante não é desperdício. É arquitetura.

@@ -58,6 +58,11 @@ export const en: Dictionary = {
       description:
         'A playable resume: walk through 20+ years of technology leadership, unlock development, management and business skills, and beat real-world bosses — from the first Hello World to 1M+ concurrent users.',
     },
+    speaking: {
+      title: 'Speaking & Press Kit — Philip Scheer',
+      description:
+        'Bios, talk topics and facts for event organizers, podcasts and press: cloud cost through architecture, agentic coding with governance and real-time platforms at 1M+ users.',
+    },
   },
   nav: {
     home: 'Home',
@@ -71,6 +76,61 @@ export const en: Dictionary = {
     articles: 'Articles',
     playbook: 'Playbook',
     play: 'Career Quest',
+    speaking: 'Speaking',
+  },
+  speaking: {
+    title: 'Speaking & Press Kit',
+    intro:
+      'For event organizers, podcast hosts and press: ready-to-use bios, the topics I speak about and the facts you may need. Copy freely.',
+    biosTitle: 'Bios',
+    bios: [
+      {
+        label: 'One line',
+        text: 'Philip Scheer is an Engineering & Technology Manager and Solutions Architect who turns ideas into low-cost, high-performance products.',
+      },
+      {
+        label: 'Short (≈50 words)',
+        text: 'Philip Scheer is an Engineering & Technology Manager and Solutions Architect with 20+ years in technology and 10+ leading remote-first teams. He architected a real-time sports platform that scaled to 1M+ concurrent users at ~57% lower operating cost, and helps companies bring FinOps and AI-assisted engineering into daily practice.',
+      },
+      {
+        label: 'Long (≈110 words)',
+        text: 'Philip Scheer is an Engineering & Technology Manager and Solutions Architect based in São Paulo, Brazil. Across 20+ years in technology, he has led squads of 80+ people and a R$26M+ project portfolio in finance, sports-tech, retail and pharma. His path includes payments architecture at 99 (a DiDi company) across Brazil, the USA and China, the enterprise design system at Dell Technologies, senior technology management at Dexco, and founding Scheer Tecnologia. Today he leads engineering and architecture for a real-time platform serving over a million concurrent users, scaled 10x at ~57% lower cost. He writes about architecture, FinOps and agentic coding with governance.',
+      },
+    ],
+    topicsTitle: 'Talk topics',
+    topics: [
+      {
+        title: 'Architecture is your best FinOps tool',
+        body: 'Why right-sizing has a ceiling, and how architecture decisions scaled a real-time platform 10x while cutting operating cost by ~57%.',
+        link: 'finops-architecture',
+      },
+      {
+        title: 'Agentic coding with governance',
+        body: 'How to put Claude Code and MCP-based agents into production workflows with context files, approval gates and quality gates — productivity without losing control.',
+        link: 'claude-code-agentic-coding',
+      },
+      {
+        title: 'Real-time at 1M+ concurrent users',
+        body: 'The architecture behind a live sports data platform: gRPC/Protobuf ingestion, Redis pub/sub and Go WebSocket fan-out at sub-300ms P99.',
+      },
+    ],
+    formatsTitle: 'Formats',
+    formats: [
+      'Conference talks and keynotes (30–45 min)',
+      'Panels and podcasts',
+      'Internal workshops for engineering leadership teams',
+      'In English or Portuguese, remote or in person',
+    ],
+    factsTitle: 'Quick facts',
+    facts: [
+      { label: 'Name', value: 'Philip Scheer' },
+      { label: 'Title', value: 'Engineering & Technology Manager · Solutions Architect' },
+      { label: 'Based in', value: 'São Paulo, Brazil (GMT-3)' },
+      { label: 'Languages', value: 'English, Portuguese, German (intermediate)' },
+      { label: 'Website', value: 'philipscheer.github.io' },
+    ],
+    cta: 'Invite me to speak',
+    readRelated: 'Read the related article',
   },
   about: {
     title: 'About',
@@ -153,6 +213,12 @@ export const en: Dictionary = {
     publishedLabel: 'Published',
     minuteRead: 'min read',
     empty: 'New articles coming soon.',
+    essaysTitle: 'Essays & deep dives',
+    essaysIntro: 'Long-form pieces on architecture, FinOps and AI-assisted engineering, grounded in real platforms.',
+    essentialLabel: 'Essential',
+    radarTitle: 'Tech Radar',
+    radarIntro: 'Curated technology news for engineering leaders, three times a week: what happened, the business impact and my take.',
+    showAllEditions: 'Show all {count} editions',
   },
   playbook: {
     title: 'Engineering Playbook',
@@ -257,11 +323,14 @@ export const en: Dictionary = {
     targetRolesLabel: 'Target roles',
     targetRoles: [
       'Engineering Manager',
+      'Head of Engineering',
       'Head of Technology',
       'Technology Manager',
       'Solutions Architect',
       'Technical Product Manager',
     ],
+    credentialsLabel: 'Built and led at',
+    credentials: ['99 (a DiDi company)', 'Dell Technologies', 'Dexco', 'Accenture / Avanade', 'Restoque'],
     metrics: [
       { value: '1M+', label: 'concurrent users on a real-time platform, scaled 10x' },
       { value: '-57%', label: 'operating cost after architecture redesign' },
@@ -271,6 +340,7 @@ export const en: Dictionary = {
     ctas: {
       resume: 'View Resume',
       contact: 'Contact Me',
+      schedule: 'Schedule a 20-min call',
       linkedin: 'Connect on LinkedIn',
       cases: 'Explore Case Studies',
     },
@@ -310,6 +380,34 @@ export const en: Dictionary = {
       body: "Let's discuss how I can help your engineering organization scale — with leaner architecture, predictable delivery and lower operating cost.",
       button: 'Get in touch',
     },
+    paths: {
+      title: 'Two ways to work together',
+      intro: 'Hiring a technology leader, or need senior help on a specific problem? Pick the path that fits.',
+      hiring: {
+        eyebrow: 'For recruiters & hiring managers',
+        title: 'Full-time remote leadership role',
+        body: 'Engineering Manager, Head of Engineering or Head of Technology for a remote-first team — international companies preferred.',
+        bullets: [
+          'GMT-3 with daily overlap with the US and Europe',
+          'Fluent English, native Portuguese, intermediate German',
+          'Leading distributed teams since 2017 across the US, China and Brazil',
+        ],
+        primary: 'Schedule a 20-min call',
+        secondary: 'Download resume',
+      },
+      consulting: {
+        eyebrow: 'For companies · Scheer Tecnologia',
+        title: 'Consulting & dedicated teams',
+        body: 'Targeted engagements through my consultancy when you need senior architecture and engineering leadership without a full-time hire.',
+        bullets: [
+          'Architecture and cloud cost diagnostic (FinOps)',
+          'Solution architecture and dedicated engineering teams',
+          'AI-assisted engineering adoption with governance and quality gates',
+        ],
+        primary: 'Request a diagnostic',
+        secondary: 'See case studies',
+      },
+    },
   },
   recruiters: {
     title: 'For Recruiters',
@@ -319,7 +417,7 @@ export const en: Dictionary = {
     rolesTitle: 'Target roles',
     roles: [
       'Engineering Manager / Software Engineering Manager',
-      'Head of Technology / Technology Manager',
+      'Head of Engineering / Head of Technology / Technology Manager',
       'Solutions Architect / Software Architecture Manager',
       'Technical Product Manager',
     ],
@@ -348,6 +446,7 @@ export const en: Dictionary = {
       'Led up to 3 simultaneous departments (Product, Innovation, UX Labs) and 18 concurrent projects. Comfortable with Architecture Review Boards, executive stakeholders, distributed teams and delivery governance from discovery to production.',
     downloadCta: 'Download resume (PDF)',
     contactCta: 'Contact for remote opportunities',
+    scheduleCta: 'Schedule a 20-min call',
   },
   experience: {
     title: 'Experience',
@@ -712,6 +811,45 @@ export const en: Dictionary = {
     availabilityLabel: 'Availability',
     availability: 'Open to remote roles (international preferred); available for conversations in English or Portuguese.',
     note: 'Recruiters: feel free to send the job description directly — I reply to every serious opportunity.',
+    form: {
+      title: 'Send a message',
+      intro: 'Tell me about the role or the problem. I reply within two business days.',
+      name: 'Name',
+      email: 'Email',
+      company: 'Company (optional)',
+      topic: 'Topic',
+      topics: {
+        hiring: 'Remote leadership role',
+        consulting: 'Consulting / Scheer Tecnologia',
+        other: 'Something else',
+      },
+      message: 'Message',
+      messageHintHiring: 'Role, team size, location/time zone and a link to the job description.',
+      messageHintConsulting: 'Your context, the problem (cost, scale, delivery, AI adoption) and your timeline.',
+      submit: 'Send message',
+      sending: 'Sending…',
+      success: 'Thanks — your message is in. I will get back to you within two business days.',
+      error: 'The message could not be sent. Please try again or email me directly:',
+    },
+    schedule: {
+      title: 'Prefer to talk?',
+      body: 'Book a 20-minute introductory call at a time that works for you.',
+      button: 'Schedule a 20-min call',
+    },
+  },
+  newsletter: {
+    title: 'Get the Tech Radar in your inbox',
+    body: 'Three times a week: the technology news that matters for engineering leaders, with business impact, risks and my take. No hype, no spam.',
+    emailLabel: 'Email address',
+    placeholder: 'you@company.com',
+    button: 'Subscribe',
+    privacy: 'Unsubscribe anytime.',
+    rssLabel: 'Prefer RSS? Subscribe to the feed',
+  },
+  testimonials: {
+    title: 'What people I worked with say',
+    intro: 'Recommendations from managers, peers and clients, quoted as originally written.',
+    sourceLabel: 'View original on LinkedIn',
   },
   footer: {
     tagline: 'I turn ideas into low-cost, high-performance products.',

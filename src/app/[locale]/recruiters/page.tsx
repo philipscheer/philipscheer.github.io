@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Reveal from '@/components/Reveal';
+import Testimonials from '@/components/Testimonials';
 import { getDictionary } from '@/content';
 import { buildMetadata } from '@/lib/seo';
+import { integrations, scheduleHref, trackEvent } from '@/lib/integrations';
 
 export async function generateMetadata({
   params,
@@ -84,10 +86,26 @@ export default async function RecruitersPage({
         </Reveal>
       </div>
 
+      <div className="-mx-5">
+        <Testimonials dict={dict} />
+      </div>
+
       <div className="mt-14 flex flex-wrap gap-3">
+        {integrations.calendlyUrl && (
+          <a
+            href={scheduleHref(dict.locale)}
+            target="_blank"
+            rel="noopener noreferrer"
+            {...trackEvent('schedule-click', { place: 'recruiters' })}
+            className="rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
+          >
+            {r.scheduleCta}
+          </a>
+        )}
         <a
           href={resumeFile}
           download
+          {...trackEvent('resume-download', { lang: dict.locale, place: 'recruiters' })}
           className="rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
         >
           {r.downloadCta}

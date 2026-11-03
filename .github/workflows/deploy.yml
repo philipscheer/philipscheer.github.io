@@ -32,6 +32,13 @@ jobs:
 
       - name: Build static export
         run: npm run build
+        env:
+          # Optional integrations — set as repository variables (Settings → Secrets and variables → Actions → Variables).
+          # All values are public identifiers; leave unset to disable the integration.
+          NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
+          NEXT_PUBLIC_CALENDLY_URL: ${{ vars.CALENDLY_URL }}
+          NEXT_PUBLIC_FORMSPREE_ID: ${{ vars.FORMSPREE_ID }}
+          NEXT_PUBLIC_BUTTONDOWN_USERNAME: ${{ vars.BUTTONDOWN_USERNAME }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

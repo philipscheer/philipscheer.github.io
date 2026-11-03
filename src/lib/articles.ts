@@ -12,6 +12,10 @@ export interface ArticleMeta {
   date: string;
   tags: string[];
   readingMinutes: number;
+  /** Marked as an essential read via `featured: true` in front matter. */
+  featured: boolean;
+  /** Recurring series the article belongs to, derived from its slug. */
+  series: 'tech-radar' | null;
 }
 
 export interface Article extends ArticleMeta {
@@ -41,6 +45,8 @@ function readArticleFile(slug: string, locale: Locale) {
     date: String(data.date ?? ''),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     readingMinutes: Math.max(1, Math.round(words / 220)),
+    featured: data.featured === true,
+    series: slug.startsWith('tech-radar-') ? 'tech-radar' : null,
   };
   return { meta, content };
 }

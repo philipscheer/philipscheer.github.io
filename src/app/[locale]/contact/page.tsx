@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Reveal from '@/components/Reveal';
 import { getDictionary, social } from '@/content';
 import { buildMetadata } from '@/lib/seo';
+import { integrations, trackEvent } from '@/lib/integrations';
+import ContactForm from '@/components/ContactForm';
 
 export async function generateMetadata({
   params,
@@ -75,8 +77,36 @@ export default async function ContactPage({
 
       <p className="mt-8 max-w-2xl text-sm italic leading-relaxed text-faint">{c.note}</p>
 
+      {(integrations.formspreeId || integrations.calendlyUrl) && (
+        <div id="form" className="mt-14 grid scroll-mt-24 gap-8 lg:grid-cols-[2fr_1fr]">
+          {integrations.formspreeId && (
+            <section aria-labelledby="form-title" className="rounded-2xl border border-line/5 bg-surface/50 p-6 md:p-8">
+              <h2 id="form-title" className="text-xl font-semibold text-fg">{c.form.title}</h2>
+              <p className="mb-6 mt-2 text-sm text-muted">{c.form.intro}</p>
+              <ContactForm dict={dict} formspreeId={integrations.formspreeId} />
+            </section>
+          )}
+          {integrations.calendlyUrl && (
+            <aside className="h-fit rounded-2xl border border-primary/25 bg-primary/5 p-6 md:p-8">
+              <h2 className="text-lg font-semibold text-fg">{c.schedule.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{c.schedule.body}</p>
+              <a
+                href={integrations.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                {...trackEvent('schedule-click', { place: 'contact' })}
+                className="mt-6 inline-block rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
+              >
+                {c.schedule.button}
+              </a>
+            </aside>
+          )}
+        </div>
+      )}
+
       <a
         href={`mailto:${c.email}`}
+        {...trackEvent('email-click', { place: 'contact' })}
         className="mt-9 inline-block rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
       >
         {c.emailLabel} →

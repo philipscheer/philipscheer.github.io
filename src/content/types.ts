@@ -21,6 +21,15 @@ export interface ExperienceItem {
   bullets: string[];
 }
 
+export interface WorkPath {
+  eyebrow: string;
+  title: string;
+  body: string;
+  bullets: string[];
+  primary: string;
+  secondary: string;
+}
+
 export interface PageMeta {
   title: string;
   description: string;
@@ -39,7 +48,8 @@ export interface Dictionary {
     | 'leadership'
     | 'articles'
     | 'playbook'
-    | 'play',
+    | 'play'
+    | 'speaking',
     PageMeta
   >;
   nav: {
@@ -54,6 +64,21 @@ export interface Dictionary {
     articles: string;
     playbook: string;
     play: string;
+    speaking: string;
+  };
+  speaking: {
+    title: string;
+    intro: string;
+    biosTitle: string;
+    bios: { label: string; text: string }[];
+    topicsTitle: string;
+    topics: { title: string; body: string; link?: string }[];
+    formatsTitle: string;
+    formats: string[];
+    factsTitle: string;
+    facts: { label: string; value: string }[];
+    cta: string;
+    readRelated: string;
   };
   about: {
     title: string;
@@ -84,6 +109,12 @@ export interface Dictionary {
     publishedLabel: string;
     minuteRead: string;
     empty: string;
+    essaysTitle: string;
+    essaysIntro: string;
+    essentialLabel: string;
+    radarTitle: string;
+    radarIntro: string;
+    showAllEditions: string;
   };
   playbook: {
     title: string;
@@ -101,14 +132,22 @@ export interface Dictionary {
     pitch: string;
     targetRolesLabel: string;
     targetRoles: string[];
+    credentialsLabel: string;
+    credentials: string[];
     metrics: { value: string; label: string }[];
-    ctas: { resume: string; contact: string; linkedin: string; cases: string };
+    ctas: { resume: string; contact: string; schedule: string; linkedin: string; cases: string };
     technical: {
       title: string;
       intro: string;
       areas: { title: string; body: string }[];
     };
     recruiterCta: { title: string; body: string; button: string };
+    paths: {
+      title: string;
+      intro: string;
+      hiring: WorkPath;
+      consulting: WorkPath;
+    };
   };
   recruiters: {
     title: string;
@@ -126,6 +165,7 @@ export interface Dictionary {
     leadership: string;
     downloadCta: string;
     contactCta: string;
+    scheduleCta: string;
   };
   experience: {
     title: string;
@@ -171,6 +211,37 @@ export interface Dictionary {
     availabilityLabel: string;
     availability: string;
     note: string;
+    form: {
+      title: string;
+      intro: string;
+      name: string;
+      email: string;
+      company: string;
+      topic: string;
+      topics: { hiring: string; consulting: string; other: string };
+      message: string;
+      messageHintHiring: string;
+      messageHintConsulting: string;
+      submit: string;
+      sending: string;
+      success: string;
+      error: string;
+    };
+    schedule: { title: string; body: string; button: string };
+  };
+  newsletter: {
+    title: string;
+    body: string;
+    emailLabel: string;
+    placeholder: string;
+    button: string;
+    privacy: string;
+    rssLabel: string;
+  };
+  testimonials: {
+    title: string;
+    intro: string;
+    sourceLabel: string;
   };
   footer: {
     tagline: string;

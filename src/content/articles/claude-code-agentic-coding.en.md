@@ -3,6 +3,7 @@ title: 'Agentic coding with governance: how my teams use Claude Code in producti
 description: 'AI assistants can ship real software — if you give them context, boundaries and quality gates. The operating model we use for AI-assisted development.'
 date: '2026-06-10'
 tags: ['Claude Code', 'agentic coding', 'AI engineering', 'code review', 'CI/CD']
+featured: true
 ---
 
 There are two failure modes in AI-assisted development. The first is ignoring it and losing the productivity gain — measured in my teams, not marketing decks. The second is letting an agent loose on a codebase with no context and no gates, then spending the saved time debugging confident nonsense.
