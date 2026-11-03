@@ -195,6 +195,23 @@ export interface Dictionary {
     availabilityLabel: string;
     availability: string;
     note: string;
+    form: {
+      title: string;
+      intro: string;
+      name: string;
+      email: string;
+      company: string;
+      topic: string;
+      topics: { hiring: string; consulting: string; other: string };
+      message: string;
+      messageHintHiring: string;
+      messageHintConsulting: string;
+      submit: string;
+      sending: string;
+      success: string;
+      error: string;
+    };
+    schedule: { title: string; body: string; button: string };
   };
   newsletter: {
     title: string;
