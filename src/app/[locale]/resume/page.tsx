@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Reveal from '@/components/Reveal';
 import { getDictionary } from '@/content';
 import { buildMetadata } from '@/lib/seo';
+import { trackEvent } from '@/lib/integrations';
 
 export async function generateMetadata({
   params,
@@ -30,6 +31,7 @@ export default async function ResumePage({
         <a
           href="/resume/philip-scheer-cv-en.pdf"
           download
+          {...trackEvent('resume-download', { lang: 'en', place: 'resume' })}
           className="rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
         >
           {r.downloadEn}
@@ -37,6 +39,7 @@ export default async function ResumePage({
         <a
           href="/resume/philip-scheer-cv-pt.pdf"
           download
+          {...trackEvent('resume-download', { lang: 'pt', place: 'resume' })}
           className="rounded-lg border border-line/15 px-6 py-3.5 text-sm font-semibold text-fg transition hover:border-primary hover:text-primary"
         >
           {r.downloadPt}

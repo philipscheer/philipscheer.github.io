@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Reveal from '@/components/Reveal';
 import { getDictionary, social } from '@/content';
 import { buildMetadata } from '@/lib/seo';
+import { trackEvent } from '@/lib/integrations';
 
 export async function generateMetadata({
   params,
@@ -77,6 +78,7 @@ export default async function ContactPage({
 
       <a
         href={`mailto:${c.email}`}
+        {...trackEvent('email-click', { place: 'contact' })}
         className="mt-9 inline-block rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-fg transition hover:bg-primary-hover"
       >
         {c.emailLabel} →

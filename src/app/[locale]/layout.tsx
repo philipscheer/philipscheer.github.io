@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getDictionary, locales, siteUrl, social } from '@/content';
+import { integrations } from '@/lib/integrations';
 import '../globals.css';
 
 export const dynamicParams = false;
@@ -54,6 +55,14 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+        {integrations.umamiWebsiteId && (
+          <script
+            defer
+            src={integrations.umamiScriptUrl}
+            data-website-id={integrations.umamiWebsiteId}
+            data-domains="philipscheer.github.io"
+          />
+        )}
       </head>
       <body className="flex min-h-screen flex-col font-sans">
         <Header dict={dict} />

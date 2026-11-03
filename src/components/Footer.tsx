@@ -1,4 +1,5 @@
 import { social } from '@/content';
+import { trackEvent } from '@/lib/integrations';
 import type { Dictionary } from '@/content';
 
 export default function Footer({ dict }: { dict: Dictionary }) {
@@ -12,6 +13,7 @@ export default function Footer({ dict }: { dict: Dictionary }) {
         <div className="flex items-center gap-5 text-sm">
           <a
             href={social.linkedin}
+            {...trackEvent('linkedin-click', { place: 'footer' })}
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted transition-colors hover:text-primary"
@@ -28,6 +30,7 @@ export default function Footer({ dict }: { dict: Dictionary }) {
           </a>
           <a
             href={`mailto:${social.email}`}
+            {...trackEvent('email-click', { place: 'footer' })}
             className="text-muted transition-colors hover:text-primary"
           >
             Email
