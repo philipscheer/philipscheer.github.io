@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Reveal from '@/components/Reveal';
+import Testimonials from '@/components/Testimonials';
 import { getDictionary, social } from '@/content';
 import { buildMetadata } from '@/lib/seo';
 import { integrations, scheduleHref, trackEvent } from '@/lib/integrations';
@@ -128,6 +129,8 @@ export default async function HomePage({
           ))}
         </div>
       </section>
+
+      <Testimonials dict={dict} limit={4} />
 
       {/* Layer 2 — technical authority */}
       <section className="mx-auto max-w-content px-5 py-20 md:py-24">

@@ -746,6 +746,11 @@ export const pt: Dictionary = {
     availability: 'Aberto a posições remotas (preferência internacional); disponível para conversas em inglês ou português.',
     note: 'Recrutadores: fiquem à vontade para enviar a descrição da vaga diretamente — respondo a toda oportunidade séria.',
   },
+  testimonials: {
+    title: 'O que dizem as pessoas com quem trabalhei',
+    intro: 'Recomendações de gestores, pares e clientes, citadas como foram escritas originalmente.',
+    sourceLabel: 'Ver original no LinkedIn',
+  },
   footer: {
     tagline: 'Transformo ideias em produtos de baixo custo e alta performance.',
     rights: 'Philip Scheer. Todos os direitos reservados.',

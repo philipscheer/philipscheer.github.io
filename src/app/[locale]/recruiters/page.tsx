@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Reveal from '@/components/Reveal';
+import Testimonials from '@/components/Testimonials';
 import { getDictionary } from '@/content';
 import { buildMetadata } from '@/lib/seo';
 import { integrations, scheduleHref, trackEvent } from '@/lib/integrations';
@@ -83,6 +84,10 @@ export default async function RecruitersPage({
             ))}
           </ul>
         </Reveal>
+      </div>
+
+      <div className="-mx-5">
+        <Testimonials dict={dict} />
       </div>
 
       <div className="mt-14 flex flex-wrap gap-3">

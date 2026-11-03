@@ -190,6 +190,11 @@ export interface Dictionary {
     availability: string;
     note: string;
   };
+  testimonials: {
+    title: string;
+    intro: string;
+    sourceLabel: string;
+  };
   footer: {
     tagline: string;
     rights: string;
