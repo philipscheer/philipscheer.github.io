@@ -274,6 +274,7 @@ export const pt: Dictionary = {
     ctas: {
       resume: 'Ver Currículo',
       contact: 'Fale Comigo',
+      schedule: 'Agendar conversa de 20 min',
       linkedin: 'Conectar no LinkedIn',
       cases: 'Explorar Cases',
     },
@@ -313,6 +314,34 @@ export const pt: Dictionary = {
       body: 'Vamos conversar sobre como posso ajudar sua organização de engenharia a escalar — com arquitetura mais enxuta, entrega previsível e menor custo de operação.',
       button: 'Entrar em contato',
     },
+    paths: {
+      title: 'Duas formas de trabalharmos juntos',
+      intro: 'Contratando um líder de tecnologia ou precisando de apoio sênior em um problema específico? Escolha o caminho que faz sentido.',
+      hiring: {
+        eyebrow: 'Para recrutadores e gestores',
+        title: 'Posição de liderança remota em tempo integral',
+        body: 'Engineering Manager, Head of Engineering ou Head of Technology para um time remote-first — preferência por empresas internacionais.',
+        bullets: [
+          'GMT-3, com sobreposição diária com EUA e Europa',
+          'Inglês fluente, português nativo, alemão intermediário',
+          'Liderando times distribuídos desde 2017 entre EUA, China e Brasil',
+        ],
+        primary: 'Agendar conversa de 20 min',
+        secondary: 'Baixar currículo',
+      },
+      consulting: {
+        eyebrow: 'Para empresas · Scheer Tecnologia',
+        title: 'Consultoria e times dedicados',
+        body: 'Projetos pontuais pela minha consultoria quando você precisa de arquitetura e liderança de engenharia sênior sem uma contratação em tempo integral.',
+        bullets: [
+          'Diagnóstico de arquitetura e custos de cloud (FinOps)',
+          'Arquitetura de soluções e times de engenharia dedicados',
+          'Adoção de engenharia assistida por IA com governança e quality gates',
+        ],
+        primary: 'Solicitar diagnóstico',
+        secondary: 'Ver cases',
+      },
+    },
   },
   recruiters: {
     title: 'Para Recrutadores',
@@ -351,6 +380,7 @@ export const pt: Dictionary = {
       'Liderei até 3 departamentos simultâneos (Produto, Inovação, UX Labs) e 18 projetos em paralelo. Experiência com Architecture Review Boards, stakeholders executivos, times distribuídos e governança de entrega do discovery à produção.',
     downloadCta: 'Baixar currículo (PDF)',
     contactCta: 'Contato para oportunidades remotas',
+    scheduleCta: 'Agendar conversa de 20 min',
   },
   experience: {
     title: 'Experiência',

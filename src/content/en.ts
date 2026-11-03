@@ -274,6 +274,7 @@ export const en: Dictionary = {
     ctas: {
       resume: 'View Resume',
       contact: 'Contact Me',
+      schedule: 'Schedule a 20-min call',
       linkedin: 'Connect on LinkedIn',
       cases: 'Explore Case Studies',
     },
@@ -313,6 +314,34 @@ export const en: Dictionary = {
       body: "Let's discuss how I can help your engineering organization scale — with leaner architecture, predictable delivery and lower operating cost.",
       button: 'Get in touch',
     },
+    paths: {
+      title: 'Two ways to work together',
+      intro: 'Hiring a technology leader, or need senior help on a specific problem? Pick the path that fits.',
+      hiring: {
+        eyebrow: 'For recruiters & hiring managers',
+        title: 'Full-time remote leadership role',
+        body: 'Engineering Manager, Head of Engineering or Head of Technology for a remote-first team — international companies preferred.',
+        bullets: [
+          'GMT-3 with daily overlap with the US and Europe',
+          'Fluent English, native Portuguese, intermediate German',
+          'Leading distributed teams since 2017 across the US, China and Brazil',
+        ],
+        primary: 'Schedule a 20-min call',
+        secondary: 'Download resume',
+      },
+      consulting: {
+        eyebrow: 'For companies · Scheer Tecnologia',
+        title: 'Consulting & dedicated teams',
+        body: 'Targeted engagements through my consultancy when you need senior architecture and engineering leadership without a full-time hire.',
+        bullets: [
+          'Architecture and cloud cost diagnostic (FinOps)',
+          'Solution architecture and dedicated engineering teams',
+          'AI-assisted engineering adoption with governance and quality gates',
+        ],
+        primary: 'Request a diagnostic',
+        secondary: 'See case studies',
+      },
+    },
   },
   recruiters: {
     title: 'For Recruiters',
@@ -351,6 +380,7 @@ export const en: Dictionary = {
       'Led up to 3 simultaneous departments (Product, Innovation, UX Labs) and 18 concurrent projects. Comfortable with Architecture Review Boards, executive stakeholders, distributed teams and delivery governance from discovery to production.',
     downloadCta: 'Download resume (PDF)',
     contactCta: 'Contact for remote opportunities',
+    scheduleCta: 'Schedule a 20-min call',
   },
   experience: {
     title: 'Experience',

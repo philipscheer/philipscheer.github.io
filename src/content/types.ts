@@ -21,6 +21,15 @@ export interface ExperienceItem {
   bullets: string[];
 }
 
+export interface WorkPath {
+  eyebrow: string;
+  title: string;
+  body: string;
+  bullets: string[];
+  primary: string;
+  secondary: string;
+}
+
 export interface PageMeta {
   title: string;
   description: string;
@@ -104,13 +113,19 @@ export interface Dictionary {
     credentialsLabel: string;
     credentials: string[];
     metrics: { value: string; label: string }[];
-    ctas: { resume: string; contact: string; linkedin: string; cases: string };
+    ctas: { resume: string; contact: string; schedule: string; linkedin: string; cases: string };
     technical: {
       title: string;
       intro: string;
       areas: { title: string; body: string }[];
     };
     recruiterCta: { title: string; body: string; button: string };
+    paths: {
+      title: string;
+      intro: string;
+      hiring: WorkPath;
+      consulting: WorkPath;
+    };
   };
   recruiters: {
     title: string;
@@ -128,6 +143,7 @@ export interface Dictionary {
     leadership: string;
     downloadCta: string;
     contactCta: string;
+    scheduleCta: string;
   };
   experience: {
     title: string;

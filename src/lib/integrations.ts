@@ -15,6 +15,11 @@ export const integrations = {
   buttondownUsername: process.env.NEXT_PUBLIC_BUTTONDOWN_USERNAME ?? '',
 };
 
+/** Where "schedule a call" points: Calendly when configured, otherwise the contact form. */
+export function scheduleHref(locale: string, topic: 'hiring' | 'consulting' = 'hiring') {
+  return integrations.calendlyUrl || `/${locale}/contact/?topic=${topic}#form`;
+}
+
 /** Umami custom-event attribute, e.g. {...trackEvent('resume-download', { lang: 'en' })} */
 export function trackEvent(name: string, data: Record<string, string> = {}) {
   const attrs: Record<string, string> = { 'data-umami-event': name };
