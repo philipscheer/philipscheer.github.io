@@ -101,6 +101,8 @@ export interface Dictionary {
     pitch: string;
     targetRolesLabel: string;
     targetRoles: string[];
+    credentialsLabel: string;
+    credentials: string[];
     metrics: { value: string; label: string }[];
     ctas: { resume: string; contact: string; linkedin: string; cases: string };
     technical: {

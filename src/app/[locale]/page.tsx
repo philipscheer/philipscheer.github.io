@@ -49,6 +49,22 @@ export default async function HomePage({
             {home.pitch}
           </p>
 
+          <p className="animate-in [--enter-delay:260ms] mt-5 flex max-w-3xl flex-wrap items-baseline gap-x-2 gap-y-1 text-sm">
+            <span className="text-xs font-semibold uppercase tracking-wider text-faint">
+              {home.credentialsLabel}:
+            </span>
+            {home.credentials.map((c, i) => (
+              <span key={c} className="font-semibold text-fg">
+                {c}
+                {i < home.credentials.length - 1 && (
+                  <span className="ml-2 font-normal text-faint" aria-hidden="true">
+                    ·
+                  </span>
+                )}
+              </span>
+            ))}
+          </p>
+
           <div className="animate-in [--enter-delay:300ms] mt-6 flex flex-wrap items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-faint">
               {home.targetRolesLabel}:

@@ -257,11 +257,14 @@ export const pt: Dictionary = {
     targetRolesLabel: 'Cargos-alvo',
     targetRoles: [
       'Engineering Manager',
+      'Head of Engineering',
       'Head of Technology',
       'Gerente de Tecnologia',
       'Arquiteto de Soluções',
       'Technical Product Manager',
     ],
+    credentialsLabel: 'Experiência em',
+    credentials: ['99 (empresa DiDi)', 'Dell Technologies', 'Dexco', 'Accenture · Avanade', 'Restoque'],
     metrics: [
       { value: '1M+', label: 'usuários simultâneos em plataforma real-time, escalada 10x' },
       { value: '-57%', label: 'custo de operação após redesenho de arquitetura' },
@@ -319,7 +322,7 @@ export const pt: Dictionary = {
     rolesTitle: 'Cargos-alvo',
     roles: [
       'Engineering Manager / Software Engineering Manager',
-      'Head of Technology / Gerente de Tecnologia',
+      'Head of Engineering / Head of Technology / Gerente de Tecnologia',
       'Arquiteto de Soluções / Software Architecture Manager',
       'Technical Product Manager',
     ],

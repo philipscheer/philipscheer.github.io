@@ -257,11 +257,14 @@ export const en: Dictionary = {
     targetRolesLabel: 'Target roles',
     targetRoles: [
       'Engineering Manager',
+      'Head of Engineering',
       'Head of Technology',
       'Technology Manager',
       'Solutions Architect',
       'Technical Product Manager',
     ],
+    credentialsLabel: 'Built and led at',
+    credentials: ['99 (a DiDi company)', 'Dell Technologies', 'Dexco', 'Accenture · Avanade', 'Restoque'],
     metrics: [
       { value: '1M+', label: 'concurrent users on a real-time platform, scaled 10x' },
       { value: '-57%', label: 'operating cost after architecture redesign' },
@@ -319,7 +322,7 @@ export const en: Dictionary = {
     rolesTitle: 'Target roles',
     roles: [
       'Engineering Manager / Software Engineering Manager',
-      'Head of Technology / Technology Manager',
+      'Head of Engineering / Head of Technology / Technology Manager',
       'Solutions Architect / Software Architecture Manager',
       'Technical Product Manager',
     ],
