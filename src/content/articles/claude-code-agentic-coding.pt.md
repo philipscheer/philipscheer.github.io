@@ -3,6 +3,7 @@ title: 'Agentic coding com governança: como meus times usam Claude Code em flux
 description: 'Assistentes de IA conseguem entregar software de verdade — se você der contexto, limites e quality gates. O modelo operacional que usamos para desenvolvimento assistido por IA.'
 date: '2026-06-10'
 tags: ['Claude Code', 'agentic coding', 'AI engineering', 'code review', 'CI/CD']
+featured: true
 ---
 
 Existem dois modos de falha no desenvolvimento assistido por IA. O primeiro é ignorá-lo e perder o ganho de produtividade — medido nos meus times, não em slides de marketing. O segundo é soltar um agente numa base de código sem contexto e sem gates, e gastar o tempo economizado depurando bobagem confiante.

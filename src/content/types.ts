@@ -93,6 +93,12 @@ export interface Dictionary {
     publishedLabel: string;
     minuteRead: string;
     empty: string;
+    essaysTitle: string;
+    essaysIntro: string;
+    essentialLabel: string;
+    radarTitle: string;
+    radarIntro: string;
+    showAllEditions: string;
   };
   playbook: {
     title: string;

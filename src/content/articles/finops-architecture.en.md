@@ -3,6 +3,7 @@ title: 'Architecture is your best FinOps tool: how we scaled 10x and cut cost by
 description: 'Right-sizing and savings plans have a ceiling. The big cloud savings live in architecture decisions — a real case scaling a platform from 100K to 1M+ concurrent users while cutting operating cost in half.'
 date: '2026-06-09'
 tags: ['FinOps', 'cloud architecture', 'cost optimization', 'real-time systems']
+featured: true
 ---
 
 Most FinOps programs start — and stall — at the same place: right-sizing instances, deleting orphaned volumes, buying savings plans. Worth doing. Typically worth 15–25%. And then the curve flattens, because the remaining cost is not waste. It is architecture.

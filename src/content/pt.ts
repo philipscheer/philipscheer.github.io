@@ -153,6 +153,12 @@ export const pt: Dictionary = {
     publishedLabel: 'Publicado em',
     minuteRead: 'min de leitura',
     empty: 'Novos artigos em breve.',
+    essaysTitle: 'Ensaios e aprofundamentos',
+    essaysIntro: 'Textos longos sobre arquitetura, FinOps e engenharia assistida por IA, a partir de plataformas reais.',
+    essentialLabel: 'Essencial',
+    radarTitle: 'Tech Radar',
+    radarIntro: 'Curadoria de notícias de tecnologia para líderes de engenharia, três vezes por semana: o que aconteceu, o impacto no negócio e minha leitura.',
+    showAllEditions: 'Ver todas as {count} edições',
   },
   playbook: {
     title: 'Engineering Playbook',

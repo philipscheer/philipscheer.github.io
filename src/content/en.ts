@@ -153,6 +153,12 @@ export const en: Dictionary = {
     publishedLabel: 'Published',
     minuteRead: 'min read',
     empty: 'New articles coming soon.',
+    essaysTitle: 'Essays & deep dives',
+    essaysIntro: 'Long-form pieces on architecture, FinOps and AI-assisted engineering, grounded in real platforms.',
+    essentialLabel: 'Essential',
+    radarTitle: 'Tech Radar',
+    radarIntro: 'Curated technology news for engineering leaders, three times a week: what happened, the business impact and my take.',
+    showAllEditions: 'Show all {count} editions',
   },
   playbook: {
     title: 'Engineering Playbook',
