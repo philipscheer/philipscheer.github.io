@@ -58,6 +58,11 @@ export const pt: Dictionary = {
       description:
         'Um currículo jogável: percorra 20+ anos de liderança em tecnologia, desbloqueie habilidades de desenvolvimento, gestão e negócio e vença chefes reais — do primeiro Hello World a 1M+ de usuários simultâneos.',
     },
+    speaking: {
+      title: 'Palestras e Press Kit — Philip Scheer',
+      description:
+        'Bios, temas de palestra e informações para organizadores de eventos, podcasts e imprensa: custo de cloud via arquitetura, agentic coding com governança e plataformas em tempo real com 1M+ usuários.',
+    },
   },
   nav: {
     home: 'Início',
@@ -71,6 +76,61 @@ export const pt: Dictionary = {
     articles: 'Artigos',
     playbook: 'Playbook',
     play: 'Career Quest',
+    speaking: 'Palestras',
+  },
+  speaking: {
+    title: 'Palestras e Press Kit',
+    intro:
+      'Para organizadores de eventos, podcasts e imprensa: bios prontas, os temas sobre os quais falo e as informações que você pode precisar. Fique à vontade para copiar.',
+    biosTitle: 'Bios',
+    bios: [
+      {
+        label: 'Uma linha',
+        text: 'Philip Scheer é Gerente de Engenharia e Tecnologia e Arquiteto de Soluções, e transforma ideias em produtos de baixo custo e alta performance.',
+      },
+      {
+        label: 'Curta (≈50 palavras)',
+        text: 'Philip Scheer é Gerente de Engenharia e Tecnologia e Arquiteto de Soluções, com mais de 20 anos em tecnologia e mais de 10 liderando times remote-first. Arquitetou uma plataforma esportiva em tempo real que escalou para mais de 1 milhão de usuários simultâneos com custo operacional ~57% menor, e ajuda empresas a levar FinOps e engenharia assistida por IA para o dia a dia.',
+      },
+      {
+        label: 'Longa (≈110 palavras)',
+        text: 'Philip Scheer é Gerente de Engenharia e Tecnologia e Arquiteto de Soluções, baseado em São Paulo. Em mais de 20 anos de tecnologia, liderou squads de mais de 80 pessoas e um portfólio de R$26M+ em projetos nos setores financeiro, sports-tech, varejo e farmacêutico. Sua trajetória inclui arquitetura de pagamentos na 99 (empresa DiDi) entre Brasil, EUA e China, o design system corporativo da Dell Technologies, a gestão sênior de tecnologia na Dexco e a fundação da Scheer Tecnologia. Hoje lidera engenharia e arquitetura de uma plataforma em tempo real com mais de um milhão de usuários simultâneos, escalada 10x com custo ~57% menor. Escreve sobre arquitetura, FinOps e agentic coding com governança.',
+      },
+    ],
+    topicsTitle: 'Temas de palestra',
+    topics: [
+      {
+        title: 'Arquitetura é sua melhor ferramenta de FinOps',
+        body: 'Por que o right-sizing tem teto e como decisões de arquitetura escalaram uma plataforma em tempo real 10x cortando ~57% do custo operacional.',
+        link: 'finops-architecture',
+      },
+      {
+        title: 'Agentic coding com governança',
+        body: 'Como levar Claude Code e agentes baseados em MCP para fluxos de produção com arquivos de contexto, aprovações e quality gates — produtividade sem perder o controle.',
+        link: 'claude-code-agentic-coding',
+      },
+      {
+        title: 'Tempo real com 1M+ usuários simultâneos',
+        body: 'A arquitetura de uma plataforma de dados esportivos ao vivo: ingestão gRPC/Protobuf, Redis pub/sub e fan-out WebSocket em Go com P99 abaixo de 300 ms.',
+      },
+    ],
+    formatsTitle: 'Formatos',
+    formats: [
+      'Palestras e keynotes em conferências (30–45 min)',
+      'Painéis e podcasts',
+      'Workshops internos para lideranças de engenharia',
+      'Em português ou inglês, remoto ou presencial',
+    ],
+    factsTitle: 'Dados rápidos',
+    facts: [
+      { label: 'Nome', value: 'Philip Scheer' },
+      { label: 'Cargo', value: 'Gerente de Engenharia e Tecnologia · Arquiteto de Soluções' },
+      { label: 'Base', value: 'São Paulo, Brasil (GMT-3)' },
+      { label: 'Idiomas', value: 'Português, inglês, alemão (intermediário)' },
+      { label: 'Site', value: 'philipscheer.github.io' },
+    ],
+    cta: 'Convidar para palestrar',
+    readRelated: 'Ler o artigo relacionado',
   },
   about: {
     title: 'Sobre',

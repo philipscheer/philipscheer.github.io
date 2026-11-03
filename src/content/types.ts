@@ -48,7 +48,8 @@ export interface Dictionary {
     | 'leadership'
     | 'articles'
     | 'playbook'
-    | 'play',
+    | 'play'
+    | 'speaking',
     PageMeta
   >;
   nav: {
@@ -63,6 +64,21 @@ export interface Dictionary {
     articles: string;
     playbook: string;
     play: string;
+    speaking: string;
+  };
+  speaking: {
+    title: string;
+    intro: string;
+    biosTitle: string;
+    bios: { label: string; text: string }[];
+    topicsTitle: string;
+    topics: { title: string; body: string; link?: string }[];
+    formatsTitle: string;
+    formats: string[];
+    factsTitle: string;
+    facts: { label: string; value: string }[];
+    cta: string;
+    readRelated: string;
   };
   about: {
     title: string;

@@ -58,6 +58,11 @@ export const en: Dictionary = {
       description:
         'A playable resume: walk through 20+ years of technology leadership, unlock development, management and business skills, and beat real-world bosses — from the first Hello World to 1M+ concurrent users.',
     },
+    speaking: {
+      title: 'Speaking & Press Kit — Philip Scheer',
+      description:
+        'Bios, talk topics and facts for event organizers, podcasts and press: cloud cost through architecture, agentic coding with governance and real-time platforms at 1M+ users.',
+    },
   },
   nav: {
     home: 'Home',
@@ -71,6 +76,61 @@ export const en: Dictionary = {
     articles: 'Articles',
     playbook: 'Playbook',
     play: 'Career Quest',
+    speaking: 'Speaking',
+  },
+  speaking: {
+    title: 'Speaking & Press Kit',
+    intro:
+      'For event organizers, podcast hosts and press: ready-to-use bios, the topics I speak about and the facts you may need. Copy freely.',
+    biosTitle: 'Bios',
+    bios: [
+      {
+        label: 'One line',
+        text: 'Philip Scheer is an Engineering & Technology Manager and Solutions Architect who turns ideas into low-cost, high-performance products.',
+      },
+      {
+        label: 'Short (≈50 words)',
+        text: 'Philip Scheer is an Engineering & Technology Manager and Solutions Architect with 20+ years in technology and 10+ leading remote-first teams. He architected a real-time sports platform that scaled to 1M+ concurrent users at ~57% lower operating cost, and helps companies bring FinOps and AI-assisted engineering into daily practice.',
+      },
+      {
+        label: 'Long (≈110 words)',
+        text: 'Philip Scheer is an Engineering & Technology Manager and Solutions Architect based in São Paulo, Brazil. Across 20+ years in technology, he has led squads of 80+ people and a R$26M+ project portfolio in finance, sports-tech, retail and pharma. His path includes payments architecture at 99 (a DiDi company) across Brazil, the USA and China, the enterprise design system at Dell Technologies, senior technology management at Dexco, and founding Scheer Tecnologia. Today he leads engineering and architecture for a real-time platform serving over a million concurrent users, scaled 10x at ~57% lower cost. He writes about architecture, FinOps and agentic coding with governance.',
+      },
+    ],
+    topicsTitle: 'Talk topics',
+    topics: [
+      {
+        title: 'Architecture is your best FinOps tool',
+        body: 'Why right-sizing has a ceiling, and how architecture decisions scaled a real-time platform 10x while cutting operating cost by ~57%.',
+        link: 'finops-architecture',
+      },
+      {
+        title: 'Agentic coding with governance',
+        body: 'How to put Claude Code and MCP-based agents into production workflows with context files, approval gates and quality gates — productivity without losing control.',
+        link: 'claude-code-agentic-coding',
+      },
+      {
+        title: 'Real-time at 1M+ concurrent users',
+        body: 'The architecture behind a live sports data platform: gRPC/Protobuf ingestion, Redis pub/sub and Go WebSocket fan-out at sub-300ms P99.',
+      },
+    ],
+    formatsTitle: 'Formats',
+    formats: [
+      'Conference talks and keynotes (30–45 min)',
+      'Panels and podcasts',
+      'Internal workshops for engineering leadership teams',
+      'In English or Portuguese, remote or in person',
+    ],
+    factsTitle: 'Quick facts',
+    facts: [
+      { label: 'Name', value: 'Philip Scheer' },
+      { label: 'Title', value: 'Engineering & Technology Manager · Solutions Architect' },
+      { label: 'Based in', value: 'São Paulo, Brazil (GMT-3)' },
+      { label: 'Languages', value: 'English, Portuguese, German (intermediate)' },
+      { label: 'Website', value: 'philipscheer.github.io' },
+    ],
+    cta: 'Invite me to speak',
+    readRelated: 'Read the related article',
   },
   about: {
     title: 'About',

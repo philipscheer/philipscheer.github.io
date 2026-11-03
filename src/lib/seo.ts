@@ -12,7 +12,8 @@ export type PageKey =
   | 'leadership'
   | 'articles'
   | 'playbook'
-  | 'play';
+  | 'play'
+  | 'speaking';
 
 export const pagePaths: Record<PageKey, string> = {
   home: '',
@@ -26,6 +27,7 @@ export const pagePaths: Record<PageKey, string> = {
   articles: '/articles',
   playbook: '/playbook',
   play: '/play',
+  speaking: '/speaking',
 };
 
 export function ogImage(locale: string) {

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { social } from '@/content';
 import { trackEvent } from '@/lib/integrations';
 import type { Dictionary } from '@/content';
@@ -10,7 +11,16 @@ export default function Footer({ dict }: { dict: Dictionary }) {
           <p className="text-sm font-medium text-fg">Philip Scheer</p>
           <p className="mt-1 text-sm text-faint">{dict.footer.tagline}</p>
         </div>
-        <div className="flex items-center gap-5 text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+          <Link
+            href={`/${dict.locale}/speaking/`}
+            className="text-muted transition-colors hover:text-primary"
+          >
+            {dict.nav.speaking}
+          </Link>
+          <a href={`/${dict.locale}/feed.xml`} className="text-muted transition-colors hover:text-primary">
+            RSS
+          </a>
           <a
             href={social.linkedin}
             {...trackEvent('linkedin-click', { place: 'footer' })}
